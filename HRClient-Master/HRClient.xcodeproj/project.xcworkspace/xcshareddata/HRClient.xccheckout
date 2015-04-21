@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>3FF056CB-A73C-43CD-9E58-8C740F0E5BB8</string>
+	<key>IDESourceControlProjectName</key>
+	<string>HRClient</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>423f4227-cbae-4c23-a983-198dc0663e37</key>
+		<string>https://121.41.116.252:9443/svn/wanliwuyou.ios</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>trunk/HRClient-Master/HRClient.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>423f4227-cbae-4c23-a983-198dc0663e37</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>423f4227-cbae-4c23-a983-198dc0663e37</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>423f4227-cbae-4c23-a983-198dc0663e37</string>
+			<key>IDESourceControlWCCName</key>
+			<string>wanliwuyou.ios</string>
+		</dict>
+	</array>
+</dict>
+</plist>

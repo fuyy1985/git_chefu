@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>provinces</key>
+	<array>
+		<string>中国工商银行</string>
+		<string>招商银行</string>
+		<string>中国农业银行</string>
+		<string>中国建设银行</string>
+		<string>中信银行</string>
+		<string>中国光大银行</string>
+		<string>中国民生银行</string>
+		<string>中国银行</string>
+		<string>交通银行</string>
+		<string>兴业银行</string>
+		<string>上海浦东发展银行</string>
+		<string>广东发展银行</string>
+		<string>华夏银行</string>
+		<string>深圳发展银行</string>
+	</array>
+</dict>
+</plist>

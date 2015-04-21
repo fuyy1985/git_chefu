@@ -1,0 +1,35 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import "QTools.h"
+    #import "DHHudPrecess.h"
+    #import "QDefine.h"
+    #import "UIView+DEFrameAdditions.h"
+    #import "QUser.h"
+    #import "ASUserDefaults.h"
+    #import "ASRequestHUD.h"
+    #import "UIColor+Styles.h"
+#endif
+
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define NSString_No_Nil(x) x ? x : @""
+#define INTTOSTRING(x)  ([NSString stringWithFormat:@"%d", x])
+
+#ifdef DEBUG
+#define debug_NSLog(format, ...) NSLog(format, ## __VA_ARGS__)
+#else
+#define debug_NSLog(format, ...)
+#endif
+
