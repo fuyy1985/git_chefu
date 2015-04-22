@@ -31,8 +31,8 @@ void handler(int n)
     
     [UMSocialData setAppKey:@"5517b26dfd98c56f5300030f"];
     //urlType也需要改，是appid，我写的是appkey
-    [UMSocialWechatHandler setWXAppId:@"wx31854588ad20fae4" appSecret:@"cc3b153f8f1b1a03e9bfc0182f2cbf93"
-                                  url:@"http://www.umeng.com/social"];
+    [UMSocialWechatHandler setWXAppId:@"wxba1f0f3a73571da2" appSecret:@"60837783636e52eedd34b7675c0d793c"
+                                  url:@"http://www.wanliwuyou.com"];
     
     self.partner = @"2088711426105023";
     self.seller = @"286601644@qq.com";
