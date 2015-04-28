@@ -213,7 +213,7 @@
          */
         
         cell.textLabel.text = parentModel.regionName;
-        cell.textLabel.font = [UIFont systemFontOfSize:14];
+        cell.textLabel.font = [UIFont systemFontOfSize:13];
         cell.textLabel.textColor = [QTools colorWithRGB:107 :107 :107];
         /*
          QPersistentBackgroundLabel *numberLabel = [[QPersistentBackgroundLabel alloc] initWithFrame:CGRectMake(91, 9, 30, 14)];

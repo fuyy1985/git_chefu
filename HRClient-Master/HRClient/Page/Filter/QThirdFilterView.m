@@ -127,7 +127,7 @@
     
     QFilterKeyModel *model = _filterList[indexPath.row];
     cell.textLabel.text = model.keyName;
-    cell.textLabel.font = [UIFont systemFontOfSize:14];
+    cell.textLabel.font = [UIFont systemFontOfSize:13];
     cell.textLabel.textColor = [QTools colorWithRGB:107 :107 :107];
 
     
