@@ -26,6 +26,8 @@
     
     QMyListDetailModel *orderDetail;
     NSInteger curIndex;
+    
+    UIButton *_drawbackBtn;
 }
 
 @property (nonatomic,strong)UITableView *applicationDrawbackTableView;
@@ -103,6 +105,9 @@
 {
     if (alertView.tag == 10000)
     {
+        //作用在于，跳过车夫券详情页面
+        [QViewController gotoPage:@"QMyNoWarry" withParam:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], @"isNeedRefresh", nil]];
+        
         if (buttonIndex == 0)
         {
         [QViewController gotoPage:@"QGroupBuyDetailPage" withParam:
@@ -161,9 +166,12 @@
         [drawbackBtn setTitle:@"申请退款" forState:UIControlStateNormal];
         [drawbackBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         drawbackBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-        drawbackBtn.backgroundColor  = ColorTheme;
+        [drawbackBtn setBackgroundImage:[QTools createImageWithColor:ColorTheme] forState:UIControlStateNormal];
         [drawbackBtn addTarget:self action:@selector(drawBackOrder:) forControlEvents:UIControlEventTouchUpInside];
         [_view addSubview:drawbackBtn];
+        _drawbackBtn = drawbackBtn;
+        
+        _drawbackBtn.enabled = NO;
     }
     return _view;
 }
@@ -288,7 +296,7 @@
             listLabel.deFrameHeight = cellH;
             
             UILabel *keyLabel = [[UILabel alloc] initWithFrame:CGRectMake(listLabel.deFrameRight, 0, cell.frame.size.width - listLabel.deFrameRight, cellH)];
-            keyLabel.text = @"(至少选一项)";
+            keyLabel.text = @"";
             keyLabel.font = [UIFont systemFontOfSize:13];
             keyLabel.textColor = [UIColor grayColor];
             [cell addSubview:keyLabel];
@@ -355,6 +363,8 @@
     if (indexPath.section == 2)
     {
         curIndex = indexPath.row;
+        
+        _drawbackBtn.enabled = YES;
     }
     
     [tableView reloadData];

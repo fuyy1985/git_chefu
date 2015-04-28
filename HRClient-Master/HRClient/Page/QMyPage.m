@@ -26,6 +26,7 @@
     
     UILabel *nameLabel;
     UILabel *_balanceLabel;
+    UILabel *_couponLabel;
 }
 
 @property (nonatomic, strong) UIImageView *portraitImageView;
@@ -55,6 +56,12 @@
     else if (eventType == kPageEventWillShow)
     {
         nameLabel.text = [ASUserDefaults objectForKey:AccountNick];
+        
+        NSString *text = [NSString stringWithFormat:@"车夫券(%d)", [[ASUserDefaults objectForKey:AccountTicket] intValue]];
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:text
+                                                                                   attributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleNone)}];
+        [string addAttribute:NSForegroundColorAttributeName value:[QTools colorWithRGB:85 :85 :85] range:[text rangeOfString:@"车夫券"]];
+        _couponLabel.attributedText = string;
     }
     else if (eventType == kPageEventViewDispose)
     {
@@ -161,12 +168,7 @@
         couponLabel.font = [UIFont boldSystemFontOfSize:15];
         couponLabel.userInteractionEnabled = YES;
         [couponBtn addSubview:couponLabel];
-        
-        NSString *text = [NSString stringWithFormat:@"车夫券(%d)", [[ASUserDefaults objectForKey:AccountTicket] intValue]];
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:text
-                                                                            attributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleNone)}];
-        [string addAttribute:NSForegroundColorAttributeName value:[QTools colorWithRGB:85 :85 :85] range:[text rangeOfString:@"车夫券"]];
-        couponLabel.attributedText = string;
+        _couponLabel = couponLabel;
 
         UITapGestureRecognizer *myViptap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoMyNoWarryCard:)];
         [couponLabel addGestureRecognizer:myViptap];

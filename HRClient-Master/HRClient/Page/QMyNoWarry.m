@@ -12,6 +12,11 @@
 #import "QMyCoupon.h"
 
 @interface QMyNoWarry ()
+{
+    BOOL _needRefreshList;
+    UISegmentedControl *_ctrl;
+}
+
 @property (nonatomic,strong)UITableView *myNoWarryTableView;
 @property (nonatomic,strong)NSArray *dataArr;
 
@@ -25,14 +30,31 @@
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kMyCoupon object:nil];
 }
+
+- (void)setActiveWithParams:(NSDictionary *)params
+{
+    if (params)
+    {
+        _needRefreshList = [[params objectForKey:@"isNeedRefresh"] boolValue];
+    }
+}
+
 - (void)pageEvent:(QPageEventType)eventType
 {
     if (eventType == kPageEventViewCreate)
     {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(acquireMyCoupon:) name:kMyCoupon object:nil];
         
-        [[QHttpMessageManager sharedHttpMessageManager] accessMyCoupon:@"0"];
-        [ASRequestHUD show];
+        _needRefreshList = YES;
+    }
+    else if (eventType == kPageEventWillShow)
+    {
+        if (_needRefreshList)
+        {
+            [self gotoSelectIndex:_ctrl];
+            
+            _needRefreshList = NO;
+        }
     }
     else if (eventType == kPageEventWillHide)
     {
@@ -61,6 +83,7 @@
         segmentControl.selectedSegmentIndex = 0;
         [segmentControl addTarget:self action:@selector(gotoSelectIndex:) forControlEvents:UIControlEventValueChanged];
         [topView addSubview:segmentControl];
+        _ctrl = segmentControl;
         
         _myNoWarryTableView = [[UITableView alloc] initWithFrame:CGRectMake(viewBeforeW, topView.deFrameBottom + 10, viewW, frame.size.height - topView.deFrameBottom - 10) style:UITableViewStyleGrouped];
         _myNoWarryTableView.delegate = self;
@@ -69,6 +92,13 @@
         [_view addSubview:_myNoWarryTableView];
     }
     return _view;
+}
+
+#pragma mark - Private
+- (void)tryGetWarryList
+{
+    [[QHttpMessageManager sharedHttpMessageManager] accessMyCoupon:@"0"];
+    [ASRequestHUD show];
 }
 
 #pragma mark - Notification
