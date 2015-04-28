@@ -61,7 +61,7 @@
         accountTextFiled.borderStyle = UITextBorderStyleRoundedRect;
         accountTextFiled.font = [UIFont systemFontOfSize:14];
         accountTextFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
-       // accountTextFiled.keyboardType = UIKeyboardTypeNumberPad;
+        //accountTextFiled.keyboardType = UIKeyboardTypeNumberPad;
         accountTextFiled.tag = 100;
         [_view addSubview:accountTextFiled];
         

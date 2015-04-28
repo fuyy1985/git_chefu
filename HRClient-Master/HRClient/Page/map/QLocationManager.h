@@ -21,6 +21,7 @@
 @property (nonatomic, strong) BMKReverseGeoCodeResult *geoResult;
 
 + (QLocationManager *)sharedInstance;
-- (BOOL)startUserLocation;
+- (BOOL)canStartLocation;
+- (void)startUserLocation;
 
 @end

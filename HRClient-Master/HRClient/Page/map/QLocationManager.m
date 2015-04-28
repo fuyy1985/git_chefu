@@ -58,7 +58,15 @@ static QLocationManager *sharedInstance = nil;
     _localService.delegate = nil;
 }
 
-- (BOOL)startUserLocation
+- (void)startUserLocation
+{
+    if ([self canStartLocation])
+    {
+        [_localService startUserLocationService];
+    }
+}
+
+- (BOOL)canStartLocation
 {
     //定位服务是否可用
     BOOL enable = [CLLocationManager locationServicesEnabled];
@@ -72,10 +80,7 @@ static QLocationManager *sharedInstance = nil;
 #else
 #endif
         [[NSNotificationCenter defaultCenter] postNotificationName:Noti_Location_Done object:[NSNumber numberWithBool:NO]];
-    }
-    else
-    {
-        [_localService startUserLocationService];
+        self.geoResult = nil;
     }
     return canStartLocation;
 }

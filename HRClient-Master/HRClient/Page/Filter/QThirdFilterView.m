@@ -8,7 +8,7 @@
 //  智能排序/距离最近/评价最高/最新发布/人气最高/价格最低/价格最高
 
 #import "QThirdFilterView.h"
-
+#import "QLocationManager.h"
 
 @implementation QFilterKeyModel
 
@@ -141,9 +141,29 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didChangeKey:)]) {
-        [self.delegate didChangeKey:[_filterList objectAtIndex:indexPath.row]];
+    if (1 == indexPath.row && ![[QLocationManager sharedInstance] canStartLocation])
+    {
+        //距离最近
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:@"无法定位当前位置，请到\"设置->隐私\"打开定位服务"
+                                                           delegate:self
+                                                  cancelButtonTitle:nil
+                                                  otherButtonTitles:@"知道了", nil];
+        [alertView show];
     }
+    else
+    {
+        //如果没有定位结果,重新定位
+        if (![QLocationManager sharedInstance].geoResult)
+        {
+            [[QLocationManager sharedInstance] startUserLocation];
+        }
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didChangeKey:)]) {
+            [self.delegate didChangeKey:[_filterList objectAtIndex:indexPath.row]];
+        }
+    }
+    
     
     [self hideMenu];
 }

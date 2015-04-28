@@ -542,7 +542,6 @@ typedef enum{
             UIButton *drawbackBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, tableView.deFrameWidth, [self heightofCell:kCellRefund])];
             [drawbackBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             drawbackBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-            drawbackBtn.backgroundColor  = ColorTheme;
             if (_status == kOrderStatusRefund)
             {
                 drawbackBtn.backgroundColor = [UIColor grayColor];
@@ -550,7 +549,7 @@ typedef enum{
             }
             else
             {
-                drawbackBtn.backgroundColor = [UIColor redColor];
+                drawbackBtn.backgroundColor = ColorTheme;
                 [drawbackBtn setTitle:@"申请退款" forState:UIControlStateNormal];
             [drawbackBtn addTarget:self action:@selector(gotoRecharge) forControlEvents:UIControlEventTouchUpInside];
             }
