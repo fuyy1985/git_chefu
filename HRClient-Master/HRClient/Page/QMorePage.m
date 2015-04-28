@@ -22,11 +22,11 @@
 @implementation QMorePage
 
 typedef enum{
-    /*moreType_givePrize = 0,*/
-    moreType_response = 0,
-    moreType_clearcach = 1,
-    moreType_invitefriend = 2,
-    moreType_aboutme = 3,
+    moreType_givePrize = 0,
+    moreType_response = 1,
+    moreType_clearcach = 2,
+    moreType_invitefriend = 3,
+    moreType_aboutme = 4,
 }moreType;
 
 
@@ -48,7 +48,7 @@ typedef enum{
     if ([super viewWithFrame:frame])
     {
         //数据源
-        titleArray = @[/*@"节省流量",@"消息设置提醒",@"给我评价",*/ @"用户反馈",/*@"分享设置",*/@"清除缓存",
+        titleArray = @[/*@"节省流量",@"消息设置提醒",*/@"给我评价", @"用户反馈",/*@"分享设置",*/@"清除缓存",
                        @"邀请朋友使用", @"关于我们"];
         
         contentTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, _view.deFrameWidth, _view.deFrameHeight)];
@@ -100,14 +100,12 @@ typedef enum{
 {
     switch (indexPath.row)
     {
-            /*
         case moreType_givePrize:
         {
             //TODO:test
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/app/id902111700"]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/app/id988438352"]];
         }
             break;
-            */
         case moreType_response:
         {
             [QViewController gotoPage:@"QSuggestRetroactionPage" withParam:nil];
