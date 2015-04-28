@@ -169,12 +169,15 @@ typedef enum{
                 type = kCellOrderDetail;
             else if (_status == kOrderStatusUnUsed)
                 type = kCellOrderDetail;
+            else if (_status == kOrderStatusRefund)
+                type = kCellRefund;
         }
             break;
         case 4:
         {
             if (_status == kOrderStatusUnUsed)
                 type = kCellRefund;
+            
         }
             break;
         default:
@@ -304,7 +307,7 @@ typedef enum{
             //待评价
         case kOrderStatusRefund:
             //已退款
-            nCount = 3;
+            nCount = 4;
             break;
         default:
             break;
@@ -537,12 +540,20 @@ typedef enum{
         case kCellRefund:
         {
             UIButton *drawbackBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, tableView.deFrameWidth, [self heightofCell:kCellRefund])];
-            [drawbackBtn setTitle:@"申请退款" forState:UIControlStateNormal];
             [drawbackBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            drawbackBtn.backgroundColor = [UIColor redColor];
             drawbackBtn.titleLabel.font = [UIFont systemFontOfSize:14];
             drawbackBtn.backgroundColor  = ColorTheme;
+            if (_status == kOrderStatusRefund)
+            {
+                drawbackBtn.backgroundColor = [UIColor grayColor];
+                [drawbackBtn setTitle:@"退单" forState:UIControlStateNormal];
+            }
+            else
+            {
+                drawbackBtn.backgroundColor = [UIColor redColor];
+                [drawbackBtn setTitle:@"申请退款" forState:UIControlStateNormal];
             [drawbackBtn addTarget:self action:@selector(gotoRecharge) forControlEvents:UIControlEventTouchUpInside];
+            }
             [cell.contentView addSubview:drawbackBtn];
         }
             break;

@@ -115,7 +115,7 @@
         _varyLabel.layer.borderWidth = 0.0;
         //_varyLabel.textAlignment = NSTextAlignmentCenter;
     }else if ([[_listModel.status stringValue] isEqualToString:@"4"]){
-        _varyLabel.text = @"已退款";
+        _varyLabel.text = @"退单";
         _varyLabel.textColor = [UIColor grayColor];
         _varyLabel.backgroundColor = [QTools colorWithRGB:255 :255 :255];
         _varyLabel.layer.borderWidth = 0.0;

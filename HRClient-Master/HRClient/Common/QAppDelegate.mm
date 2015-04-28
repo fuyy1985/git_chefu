@@ -108,7 +108,6 @@ void handler(int n)
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     
-    return  [UMSocialSnsService handleOpenURL:url];
     if ([url.host isEqualToString:@"safepay"]) {
         
         [[AlipaySDK defaultService] processAuth_V2Result:url
@@ -118,6 +117,10 @@ void handler(int n)
                                              NSLog(@"result = %@",resultStr);
                                          }];
         
+    }
+    else
+    {
+        return  [UMSocialSnsService handleOpenURL:url];
     }
     
     return YES;

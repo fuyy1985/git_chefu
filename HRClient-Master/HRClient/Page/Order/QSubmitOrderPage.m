@@ -140,7 +140,7 @@
         
         if ([QUser sharedQUser].isVIP && self.productDetail.usrMbrPrice)
         {
-            if ([[self.productDetail.usrMbrPrice objectForKey:@"memberUnitPrice"] doubleValue] > [[QUser sharedQUser].vipAccount.balance doubleValue])
+            if ( ([[QUser sharedQUser].vipAccount.balance doubleValue] == 0) || ([[self.productDetail.usrMbrPrice objectForKey:@"memberUnitPrice"] doubleValue] > [[QUser sharedQUser].vipAccount.balance doubleValue]))
             {
                 
                 /*
@@ -382,6 +382,7 @@
 - (void)successRetList:(NSNotification*)noti
 {
     QMyListModel *model = noti.object;
+    [ASRequestHUD dismiss];
     
     //未付款 到订单详情页面付款
     if (model.status.intValue == 1)
@@ -393,11 +394,8 @@
     {
         //detailModel
         //_productDetail
-        /*
         [QViewController gotoPage:@"QConfirmOrderPageEx" withParam:[[NSDictionary alloc]
-                                                     initWithObjectsAndKeys:detailModel, @"QMyListDetailModel",_productDetail, @"productDetail",nil]];*/
-        
-        [QViewController gotoPage:@"QMyNoWarry" withParam:nil];
+                                                                    initWithObjectsAndKeys:@"YES", @"fromPurChased",_productDetail, @"productDetail",nil]];
     }
 }
 

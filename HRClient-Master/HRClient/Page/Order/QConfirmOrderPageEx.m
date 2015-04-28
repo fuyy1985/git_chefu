@@ -17,6 +17,7 @@
 @interface QConfirmOrderPageEx ()
 {
     QMyListDetailModel *_orderDetail;
+    BOOL bFromChased;
 }
 
 @property (nonatomic,strong) UITableView *confirmOrderTableView;
@@ -35,16 +36,60 @@
 
 - (void)setActiveWithParams:(NSDictionary*)params
 {
+    if ([[params objectForKey:@"fromPurChased"] isEqualToString:@"YES"])
+    {
+        _productDetail = [params objectForKey:@"productDetail"];
+        _orderDetail = nil;
+        bFromChased = YES;
+    }
+    else
+    {
     _orderDetail = [params objectForKey:@"QMyListDetailModel"];
     _productDetail = [params objectForKey:@"productDetail"];
 }
+}
 
 - (NSString *)title{
+    
+    if (bFromChased)
+    {
+        return @"确认订单";
+    }
     return @"确认支付";
 }
 
 - (void)pageEvent:(QPageEventType)eventType
 {
+    if (eventType == kPageEventWillShow)
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(successAddList:) name:kAddList object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(successGetListDetail:) name:kGetMyListDetail object:nil];
+    }
+    else if (eventType == kPageEventWillHide)
+    {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:kAddList object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:kGetMyListDetail object:nil];
+    }
+}
+
+//立即购买的返回
+- (void)successGetListDetail:(NSNotification *)noti
+{
+    _orderDetail = noti.object;
+    [ASRequestHUD dismiss];
+    
+    [QViewController gotoPage:@"QConfirmOrderPage" withParam:[[NSDictionary alloc]
+                                                              initWithObjectsAndKeys:_orderDetail, @"QMyListDetailModel",nil]];
+}
+
+- (void)successAddList:(NSNotification*)noti
+{
+    QMyListModel *model = noti.object;
+    
+    if (model.status.integerValue == 1) //未付款
+    {
+        [[QHttpMessageManager sharedHttpMessageManager] accessMyListDetail:model.orderListId.stringValue andStatus:@"1"];
+    }
 }
 
 - (UIView *)viewWithFrame:(CGRect)frame{
@@ -63,7 +108,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -72,15 +117,19 @@
     {
         return 4;
     }
+    else if (section == 1)
+    {
+        return 1;
+    }
     else
     {
-        return 3;
+        return 2;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 12;
+    return 10;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -89,19 +138,19 @@
     {
         return 46;
     }
-    else
+    else if (indexPath.section == 1)
     {
-        if (indexPath.row == 2 || indexPath.row == 1) {
-            return 46;
-        }
-        
         return 76;
     }
+    else
+    {
+            return 46;
+        }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1 && indexPath.row == 2)
+    if (indexPath.section == 2 && indexPath.row == 1)
     {
         /* 商品详情页面 */
         [QViewController gotoPage:@"QGroupBuyDetailPage" withParam:[NSDictionary dictionaryWithObjectsAndKeys:_productDetail.productId, @"ProductID", nil]];
@@ -134,26 +183,42 @@
     {
         if (indexPath.row == 0) {
             
-            CGSize size = [_orderDetail.subject sizeWithFont:[UIFont systemFontOfSize:15.f]
+            CGSize size = [_productDetail.subject sizeWithFont:[UIFont systemFontOfSize:15.f]
                                            constrainedToSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
             if (size.width > 260)
             {
-                cell.textLabel.text = [[_orderDetail.subject substringToIndex:14] stringByAppendingString:@"..."];
+                cell.textLabel.text = [[_productDetail.subject substringToIndex:14] stringByAppendingString:@"..."];
             }
             else
             {
-                cell.textLabel.text = _orderDetail.subject;
+                cell.textLabel.text = _productDetail.subject;
             }
             NSString *strPrice = [NSString stringWithFormat:@"%.2f",[[_productDetail.usrMbrPrice objectForKey:@"memberUnitPrice"] doubleValue]];
             cell.detailTextLabel.text = [strPrice stringByAppendingString:@"元"];
         }
         else if (indexPath.row == 1) {
             cell.textLabel.text = @"数量：";
+            if (bFromChased)
+            {
+                cell.detailTextLabel.text = @"1";
+            }
+            else
+            {
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d",[_orderDetail.quantity intValue]];
+        }
         }
         else if (indexPath.row == 2) {
             cell.textLabel.text = @"总价：";
-            CGFloat totalMoney = [_orderDetail.quantity integerValue] * [[_productDetail.usrMbrPrice objectForKey:@"memberUnitPrice"] doubleValue];
+            CGFloat totalMoney = 0;
+            if (bFromChased)
+            {
+                totalMoney = 1.0 * [[_productDetail.usrMbrPrice objectForKey:@"memberUnitPrice"] doubleValue];
+            }
+            else
+            {
+                totalMoney = [_orderDetail.quantity integerValue] * [[_productDetail.usrMbrPrice objectForKey:@"memberUnitPrice"] doubleValue];
+            }
+            
             cell.detailTextLabel.text = [[NSString stringWithFormat:@"%.2f",totalMoney] stringByAppendingString:@"元"];
         }
         else if (indexPath.row == 3)
@@ -171,14 +236,20 @@
         }
         
     }
-    else
-    {
-        switch (indexPath.row) {
-            case 0:
+    else if (indexPath.section == 1)
             {
                 //tip
                 UILabel *lbText = [[UILabel alloc]initWithFrame:CGRectMake(20, 10, 280, 16)];
+        lbText.adjustsFontSizeToFitWidth = YES;
+        
+        if (bFromChased)
+        {
+            lbText.text = @"今天您已经使用洗车卡购买过服务或者商品";
+        }
+        else
+        {
                 lbText.text = @"温馨提示，您的余额不足，请充值";
+        }
                 lbText.font = [UIFont systemFontOfSize:15.f];
                 lbText.textColor = [UIColor darkGrayColor];
                 [cell.contentView addSubview:lbText];
@@ -189,15 +260,24 @@
                 btn.layer.cornerRadius = 5.f;
                 btn.frame = CGRectMake(20, 36, cell.frame.size.width - 40, 30);
                 btn.backgroundColor = UIColorFromRGB(0xc40000);
+        if (bFromChased)
+        {
+            [btn setTitle:@"查看我的洗车劵" forState:UIControlStateNormal];
+        }
+        else
+        {
                 [btn setTitle:@"充值" forState:UIControlStateNormal];
-                [btn addTarget:self action:@selector(charger:) forControlEvents:UIControlEventTouchUpInside];
+        }
+        [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
                 [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
                 [cell.contentView addSubview:btn];
             }
-                break;
+    else
+    {
+        switch (indexPath.row) {
                 
-            case 1:
+            case 0:
             {
                 /*tip
                 UILabel *lbText = [[UILabel alloc]initWithFrame:CGRectMake(20, 10, 280, 16)];
@@ -220,7 +300,9 @@
                 
                 //price
                 NSString *_price = [[_productDetail.productBid objectForKey:@"bidPrice"] stringValue];
+                if (_price == nil) _price = @"";
                 NSString *_retailPrice = [NSString stringWithFormat:@" %@元", [_productDetail.price stringValue]];
+                if (_retailPrice == nil) _retailPrice = @"";
                 NSString *text = [NSString stringWithFormat:@"活动价：%@元   %@", _price, _retailPrice];
                 NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:text attributes:@{NSStrikethroughStyleAttributeName: @(NSUnderlineStyleNone)}];
                 [string addAttributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle)} range:[text rangeOfString:_retailPrice]];
@@ -234,7 +316,7 @@
             }
                 break;
                 
-            case 2:
+            case 1:
                 cell.textLabel.text = @"商品详情 >>";
                 cell.selectionStyle = UITableViewCellSelectionStyleGray;
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -250,16 +332,34 @@
 
 #pragma mark - Private
 
-- (void)charger:(id)sender
+- (void)btnAction:(id)sender
 {
+    if (bFromChased)
+    {
+        [QViewController gotoPage:@"QMyNoWarry" withParam:nil];
+        return;
+    }
+    
     //充值
     [QViewController gotoPage:@"QMyVIPCard" withParam:nil];
 }
 
 - (void)buyNow:(id)sender
 {
+    if (bFromChased) {
+        NSString *strBidType = @"";
+        if (self.productDetail.productBid)
+        {
+            strBidType = [self.productDetail.productBid objectForKey:@"bidType"];
+        }
+        [[QHttpMessageManager sharedHttpMessageManager] accessAddList:[self.productDetail.productId stringValue] andQuantity:@"1" andBidType:strBidType];
+        [ASRequestHUD show];
+    }
+    else
+    {
     [QViewController gotoPage:@"QConfirmOrderPage" withParam:[[NSDictionary alloc]
                                                  initWithObjectsAndKeys:_orderDetail, @"QMyListDetailModel",nil]];
+}
 }
 
 @end

@@ -489,8 +489,6 @@ typedef enum _payType {
             
             NSString *resultStatus = [resultDic objectForKey:@"resultStatus"];
             if ([resultStatus isEqualToString:@"9000"]) {
-            }
-        }];
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
                                                         message:@"恭喜您，已购买成功"
@@ -499,6 +497,8 @@ typedef enum _payType {
                                               otherButtonTitles:@"我的车夫券",nil];
         
         [alert show];
+    }
+        }];
     }
 }
 

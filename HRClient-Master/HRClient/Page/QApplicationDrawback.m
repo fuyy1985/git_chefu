@@ -80,10 +80,10 @@
     if ([num integerValue])
     {
         alertView = [[UIAlertView alloc] initWithTitle:nil
-                                               message:@"您的退款申请已成功提交，车夫网将在3-10个工作日内将您的退款原路退至您的支付账户！"
+                                               message:@"您的退款申请已成功提交，车夫网将在3-10个工作日内将退款原路退至您的支付账户！"
                                               delegate:self
                                      cancelButtonTitle:@"返回商品详情"
-                                     otherButtonTitles:nil];
+                                     otherButtonTitles:@"查看我的退款详情",nil];
         alertView.tag = 10000;
     }
     else
@@ -103,8 +103,16 @@
 {
     if (alertView.tag == 10000)
     {
+        if (buttonIndex == 0)
+        {
         [QViewController gotoPage:@"QGroupBuyDetailPage" withParam:
                     [NSDictionary dictionaryWithObjectsAndKeys:orderDetail.productId, @"ProductID", nil]];
+
+        }
+        else
+        {
+            [QViewController gotoPage:@"QListDetail" withParam:[[NSDictionary alloc] initWithObjectsAndKeys:orderDetail.orderListId, @"orderListId", /*orderDetail.status*/[NSNumber numberWithInt:4], @"status", nil]];
+        }
     }
 }
 

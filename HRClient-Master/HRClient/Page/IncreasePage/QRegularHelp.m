@@ -43,7 +43,7 @@
 
 + (NSString*)distanceToNSString:(NSNumber*)distance
 {
-    if (!distance || ![distance intValue]) {
+    if (!distance || ![distance doubleValue]) {
         return @"";
     }
     return [[NSString stringWithFormat:@"%.1f", [distance doubleValue]] stringByAppendingString:@"km"];

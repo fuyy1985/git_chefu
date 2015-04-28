@@ -301,13 +301,24 @@
         {
             strAmout = [NSString stringWithFormat:@"%.2f",_selectCardDetailModel.amount.floatValue -
                         [QUser sharedQUser].vipAccount.balance.floatValue];
+            
         }
-        else
-        {
-            strAmout = _selectCardDetailModel.amount.stringValue;
-        }
+        
+        strAmout = [NSString stringWithFormat:@"%.2f",_selectCardDetailModel.amount.floatValue -
+                    [QUser sharedQUser].vipAccount.balance.floatValue];
+        
+//        else
+//        {
+//            strAmout = _selectCardDetailModel.amount.stringValue;
+//        }
+        
         mbrTypeId = _selectCardDetailModel.memberTypeId;
         titleInfo = [NSString stringWithFormat:@"升级为%@", _selectCardDetailModel.memberTypeName];
+    }
+    
+    if ([strAmout doubleValue] <= 0)
+    {
+        strAmout = @"0.1";
     }
     
     [QViewController gotoPage:@"QVIPCardChong" withParam:[[NSDictionary alloc]
@@ -342,7 +353,16 @@
         inputTextFiled.enabled = NO;
     }
     else
+    {
+        if ([self getNeedPayMony] < 0)
+        {
+            inputTextFiled.placeholder = @"请输入您的充值金额";
+        }
+        else
+        {
         inputTextFiled.placeholder = [NSString stringWithFormat:@"最低充值金额 %.2f元",[self getNeedPayMony]];
+        }
+    }
     
     [self reloadTableView];
     
