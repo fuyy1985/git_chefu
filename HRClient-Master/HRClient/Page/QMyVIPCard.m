@@ -204,8 +204,8 @@ static BOOL isAgree;
         [VIPCardRechargeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [VIPCardRechargeBtn addTarget:self action:@selector(gotoVipRecharge) forControlEvents:UIControlEventTouchUpInside];
         
-        NSRange range = [[QUser sharedQUser].vipAccount.accountName rangeOfString:@"钻石年卡"];
-        VIPCardRechargeBtn.hidden = range.length;
+        //NSRange range = [[QUser sharedQUser].vipAccount.accountName rangeOfString:@"钻石年卡"];
+        //VIPCardRechargeBtn.hidden = range.length;
         
         [_buttonView addSubview:VIPCardRechargeBtn];
     }

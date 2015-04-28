@@ -307,11 +307,6 @@
         strAmout = [NSString stringWithFormat:@"%.2f",_selectCardDetailModel.amount.floatValue -
                     [QUser sharedQUser].vipAccount.balance.floatValue];
         
-//        else
-//        {
-//            strAmout = _selectCardDetailModel.amount.stringValue;
-//        }
-        
         mbrTypeId = _selectCardDetailModel.memberTypeId;
         titleInfo = [NSString stringWithFormat:@"升级为%@", _selectCardDetailModel.memberTypeName];
     }
@@ -360,7 +355,16 @@
         }
         else
         {
-        inputTextFiled.placeholder = [NSString stringWithFormat:@"最低充值金额 %.2f元",[self getNeedPayMony]];
+            if (_curModel.memberTypeId.integerValue == 5 || _curModel.memberTypeId.integerValue == 6)
+            {
+                inputTextFiled.text = [NSString stringWithFormat:@"%.2f元",[self getNeedPayMony]];
+                inputTextFiled.enabled = NO;
+            }
+            else
+            {
+                inputTextFiled.placeholder = [NSString stringWithFormat:@"最低充值金额 %.2f元",[self getNeedPayMony]];
+            }
+            
         }
     }
     
