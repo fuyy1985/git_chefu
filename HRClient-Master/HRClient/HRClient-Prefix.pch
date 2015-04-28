@@ -33,3 +33,5 @@
 #define debug_NSLog(format, ...)
 #endif
 
+#define UMSocalAppKey           @"5517b26dfd98c56f5300030f"
+

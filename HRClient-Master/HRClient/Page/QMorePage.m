@@ -10,8 +10,10 @@
 #import "QViewController.h"
 #import "QGuidepageController.h"
 #import "SDImageCache.h"
+#import "UMSocialSnsService.h"
+#import "UMSocialSnsPlatformManager.h"
 
-@interface QMorePage()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
+@interface QMorePage()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,UMSocialUIDelegate>
 {
     UITableView *contentTable;
     NSArray *titleArray;
@@ -36,6 +38,11 @@ typedef enum{
     {
         
     }
+}
+
+- (QNavigationType)navigationType
+{
+    return kNavigationTypeNormal;
 }
 
 - (QBottomMenuType)bottomMenuType
@@ -125,7 +132,14 @@ typedef enum{
             break;
         case moreType_invitefriend:
         {
-            [QViewController gotoPage:@"QInviteFriendPage" withParam:nil];
+            [UMSocialData openLog:YES];
+            /*[QViewController gotoPage:@"QInviteFriendPage" withParam:nil];*/
+            [UMSocialSnsService presentSnsIconSheetView:[QViewController shareController]
+                                              appKey:UMSocalAppKey
+                                           shareText:@"随时随地养车，让服务离您更近，让您养车更省心、有保障更放心，一路都是为了您……"
+                                          shareImage:[UIImage imageNamed:@"icon_share"]
+                                     shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,nil]
+                                            delegate:self];
         }
             break;
         default:
@@ -171,10 +185,10 @@ typedef enum{
     return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown;
 }
 
-- (QNavigationType)navigationType
+-(void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData
 {
-    return kNavigationTypeNormal;
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = @"车夫-您的全能养车小帮手";
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"车夫-您的全能养车小帮手";
 }
-
 
 @end

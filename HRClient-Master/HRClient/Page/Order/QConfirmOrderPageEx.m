@@ -259,7 +259,8 @@
                 btn.layer.masksToBounds = YES;
                 btn.layer.cornerRadius = 5.f;
                 btn.frame = CGRectMake(20, 36, cell.frame.size.width - 40, 30);
-                btn.backgroundColor = UIColorFromRGB(0xc40000);
+                [btn setBackgroundImage:[QTools createImageWithColor:ColorTheme] forState:UIControlStateNormal];
+                btn.titleLabel.font = [UIFont systemFontOfSize:14];
         if (bFromChased)
         {
             [btn setTitle:@"查看我的洗车劵" forState:UIControlStateNormal];
@@ -291,7 +292,8 @@
                 btn.layer.masksToBounds = YES;
                 btn.layer.cornerRadius = 5.f;
                 btn.frame = CGRectMake(cell.frame.size.width - 120, 8, 100, 30);
-                btn.backgroundColor = UIColorFromRGB(0xc40000);
+                [btn setBackgroundImage:[QTools createImageWithColor:ColorTheme] forState:UIControlStateNormal];
+                btn.titleLabel.font = [UIFont systemFontOfSize:14];
                 [btn setTitle:@"立即购买" forState:UIControlStateNormal];
                 [btn addTarget:self action:@selector(buyNow:) forControlEvents:UIControlEventTouchUpInside];
                 [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
