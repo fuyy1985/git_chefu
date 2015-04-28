@@ -71,7 +71,7 @@
             date = @"3年";
         else
             date = @"5年";
-        text = [NSString stringWithFormat:@"质保(%@)", date];
+        text = [NSString stringWithFormat:@"质保 (%@)", date];
     }
     NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:text attributes:@{NSStrikethroughStyleAttributeName: @(NSUnderlineStyleNone)}];
     [string addAttribute:NSBackgroundColorAttributeName value:ColorTheme range:[text rangeOfString:@"质保"]];
