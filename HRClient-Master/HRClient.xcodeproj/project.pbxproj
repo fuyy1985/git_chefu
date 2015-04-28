@@ -176,7 +176,6 @@
 		189770AC1A47F440005D234C /* IQUIView+IQKeyboardToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1897709E1A47F440005D234C /* IQUIView+IQKeyboardToolbar.m */; };
 		189770AD1A47F440005D234C /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 189770A11A47F440005D234C /* IQKeyboardManager.bundle */; };
 		189770AF1A47F477005D234C /* cities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 189770AE1A47F477005D234C /* cities.plist */; };
-		189770D81A47F5D5005D234C /* 评价_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 189770B21A47F5D5005D234C /* 评价_03.png */; };
 		189770DC1A47F5D5005D234C /* 形状 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 189770B61A47F5D5005D234C /* 形状 3.png */; };
 		189770DD1A47F5D5005D234C /* 形状 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 189770B71A47F5D5005D234C /* 形状 4.png */; };
 		189770DE1A47F5D5005D234C /* 形状 37.png in Resources */ = {isa = PBXBuildFile; fileRef = 189770B81A47F5D5005D234C /* 形状 37.png */; };
@@ -300,7 +299,6 @@
 		A7C20E991ABDB740009C807A /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C20E951ABDB740009C807A /* libssl.a */; };
 		A7C59C3A1AD2B92600C05938 /* QVipChong.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C59C391AD2B92600C05938 /* QVipChong.m */; };
 		A7C66B821AC00B8B009AD487 /* QCardDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C66B811AC00B8B009AD487 /* QCardDetailModel.m */; };
-		A7C6E2EC1AC7EC8C00CC5E5B /* QInviteFriendPage.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C6E2EB1AC7EC8C00CC5E5B /* QInviteFriendPage.m */; };
 		A7C6E3091AC7EEDA00CC5E5B /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A7C6E2EE1AC7EEDA00CC5E5B /* UMSocialLocalizable.strings */; };
 		A7C6E30A1AC7EEDA00CC5E5B /* libUMSocial_Sdk_4.2.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C6E2FC1AC7EEDA00CC5E5B /* libUMSocial_Sdk_4.2.1.a */; };
 		A7C6E30B1AC7EEDA00CC5E5B /* libUMSocial_Sdk_Comment_4.2.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C6E2FD1AC7EEDA00CC5E5B /* libUMSocial_Sdk_Comment_4.2.1.a */; };
@@ -381,18 +379,6 @@
 		E125A0171AC64BAB00775D60 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E125A0161AC64BAB00775D60 /* CoreLocation.framework */; };
 		E125A01A1AC651B100775D60 /* QLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E125A0191AC651B100775D60 /* QLocationManager.m */; };
 		E125A01D1AC690F200775D60 /* QDataPaging.m in Sources */ = {isa = PBXBuildFile; fileRef = E125A01C1AC690F200775D60 /* QDataPaging.m */; };
-		E1406F801AEFB3670082EB5A /* icon_list_all@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1406F741AEFB3670082EB5A /* icon_list_all@2x.png */; };
-		E1406F811AEFB3670082EB5A /* icon_list_baoyang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1406F751AEFB3670082EB5A /* icon_list_baoyang@2x.png */; };
-		E1406F821AEFB3670082EB5A /* icon_list_luntai@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1406F761AEFB3670082EB5A /* icon_list_luntai@2x.png */; };
-		E1406F831AEFB3670082EB5A /* icon_list_more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1406F771AEFB3670082EB5A /* icon_list_more@2x.png */; };
-		E1406F841AEFB3670082EB5A /* icon_list_new@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1406F781AEFB3670082EB5A /* icon_list_new@2x.png */; };
-		E1406F851AEFB3670082EB5A /* icon_list_paoguang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1406F791AEFB3670082EB5A /* icon_list_paoguang@2x.png */; };
-		E1406F861AEFB3670082EB5A /* icon_list_weixiu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1406F7A1AEFB3670082EB5A /* icon_list_weixiu@2x.png */; };
-		E1406F871AEFB3670082EB5A /* icon_list_xiangguang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1406F7B1AEFB3670082EB5A /* icon_list_xiangguang@2x.png */; };
-		E1406F881AEFB3670082EB5A /* icon_list_xiche@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1406F7C1AEFB3670082EB5A /* icon_list_xiche@2x.png */; };
-		E1406F891AEFB3670082EB5A /* icon_list_xintai@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1406F7D1AEFB3670082EB5A /* icon_list_xintai@2x.png */; };
-		E1406F8A1AEFB3670082EB5A /* icon_list_youqi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1406F7E1AEFB3670082EB5A /* icon_list_youqi@2x.png */; };
-		E1406F8B1AEFB3670082EB5A /* icon_list_zhuanghuang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1406F7F1AEFB3670082EB5A /* icon_list_zhuanghuang@2x.png */; };
 		E14297CB1AE3759C00D17BC0 /* icon_list_all@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14297BF1AE3759C00D17BC0 /* icon_list_all@2x.png */; };
 		E14297CC1AE3759C00D17BC0 /* icon_list_baoyang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14297C01AE3759C00D17BC0 /* icon_list_baoyang@2x.png */; };
 		E14297CD1AE3759C00D17BC0 /* icon_list_luntai@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14297C11AE3759C00D17BC0 /* icon_list_luntai@2x.png */; };
@@ -834,7 +820,6 @@
 		1897709F1A47F440005D234C /* KeyboardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardManager.h; sourceTree = "<group>"; };
 		189770A11A47F440005D234C /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
 		189770AE1A47F477005D234C /* cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cities.plist; sourceTree = "<group>"; };
-		189770B21A47F5D5005D234C /* 评价_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "评价_03.png"; sourceTree = "<group>"; };
 		189770B61A47F5D5005D234C /* 形状 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "形状 3.png"; sourceTree = "<group>"; };
 		189770B71A47F5D5005D234C /* 形状 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "形状 4.png"; sourceTree = "<group>"; };
 		189770B81A47F5D5005D234C /* 形状 37.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "形状 37.png"; sourceTree = "<group>"; };
@@ -1077,8 +1062,6 @@
 		A7C59C391AD2B92600C05938 /* QVipChong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QVipChong.m; sourceTree = "<group>"; };
 		A7C66B801AC00B8B009AD487 /* QCardDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCardDetailModel.h; sourceTree = "<group>"; };
 		A7C66B811AC00B8B009AD487 /* QCardDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCardDetailModel.m; sourceTree = "<group>"; };
-		A7C6E2EA1AC7EC8C00CC5E5B /* QInviteFriendPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QInviteFriendPage.h; sourceTree = "<group>"; };
-		A7C6E2EB1AC7EC8C00CC5E5B /* QInviteFriendPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QInviteFriendPage.m; sourceTree = "<group>"; };
 		A7C6E2EF1AC7EEDA00CC5E5B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		A7C6E2F11AC7EEDA00CC5E5B /* UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocial.h; sourceTree = "<group>"; };
 		A7C6E2F21AC7EEDA00CC5E5B /* UMSocialAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialAccountManager.h; sourceTree = "<group>"; };
@@ -1224,18 +1207,6 @@
 		E125A0191AC651B100775D60 /* QLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QLocationManager.m; sourceTree = "<group>"; };
 		E125A01B1AC690F200775D60 /* QDataPaging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QDataPaging.h; sourceTree = "<group>"; };
 		E125A01C1AC690F200775D60 /* QDataPaging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QDataPaging.m; sourceTree = "<group>"; };
-		E1406F741AEFB3670082EB5A /* icon_list_all@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_list_all@2x.png"; sourceTree = "<group>"; };
-		E1406F751AEFB3670082EB5A /* icon_list_baoyang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_list_baoyang@2x.png"; sourceTree = "<group>"; };
-		E1406F761AEFB3670082EB5A /* icon_list_luntai@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_list_luntai@2x.png"; sourceTree = "<group>"; };
-		E1406F771AEFB3670082EB5A /* icon_list_more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_list_more@2x.png"; sourceTree = "<group>"; };
-		E1406F781AEFB3670082EB5A /* icon_list_new@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_list_new@2x.png"; sourceTree = "<group>"; };
-		E1406F791AEFB3670082EB5A /* icon_list_paoguang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_list_paoguang@2x.png"; sourceTree = "<group>"; };
-		E1406F7A1AEFB3670082EB5A /* icon_list_weixiu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_list_weixiu@2x.png"; sourceTree = "<group>"; };
-		E1406F7B1AEFB3670082EB5A /* icon_list_xiangguang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_list_xiangguang@2x.png"; sourceTree = "<group>"; };
-		E1406F7C1AEFB3670082EB5A /* icon_list_xiche@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_list_xiche@2x.png"; sourceTree = "<group>"; };
-		E1406F7D1AEFB3670082EB5A /* icon_list_xintai@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_list_xintai@2x.png"; sourceTree = "<group>"; };
-		E1406F7E1AEFB3670082EB5A /* icon_list_youqi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_list_youqi@2x.png"; sourceTree = "<group>"; };
-		E1406F7F1AEFB3670082EB5A /* icon_list_zhuanghuang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_list_zhuanghuang@2x.png"; sourceTree = "<group>"; };
 		E14297BF1AE3759C00D17BC0 /* icon_list_all@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_list_all@2x.png"; path = "HRClient/Image/icon_list_all@2x.png"; sourceTree = SOURCE_ROOT; };
 		E14297C01AE3759C00D17BC0 /* icon_list_baoyang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_list_baoyang@2x.png"; path = "HRClient/Image/icon_list_baoyang@2x.png"; sourceTree = SOURCE_ROOT; };
 		E14297C11AE3759C00D17BC0 /* icon_list_luntai@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_list_luntai@2x.png"; path = "HRClient/Image/icon_list_luntai@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -1382,7 +1353,6 @@
 				67D1F7B31AAC35810067434E /* pic_yindao1@2x.png */,
 				67D1F7B21AAC35810067434E /* pic_yindao2@2x.png */,
 				67D1F7B11AAC35810067434E /* pic_yindao3@2x.png */,
-				18C186FF1A4EB68300CBE018 /* filter */,
 				18558DC51A4D9D5600B26CDA /* QImages */,
 				18F034691A48612D00BEB8C4 /* order */,
 				18F0346C1A48612D00BEB8C4 /* common */,
@@ -1959,7 +1929,6 @@
 		189770B01A47F576005D234C /* QImage */ = {
 			isa = PBXGroup;
 			children = (
-				189770B21A47F5D5005D234C /* 评价_03.png */,
 				189770B61A47F5D5005D234C /* 形状 3.png */,
 				189770B71A47F5D5005D234C /* 形状 4.png */,
 				189770B81A47F5D5005D234C /* 形状 37.png */,
@@ -1983,25 +1952,6 @@
 				189770D61A47F5D5005D234C /* yuan02.gif */,
 			);
 			name = QImage;
-			sourceTree = "<group>";
-		};
-		18C186FF1A4EB68300CBE018 /* filter */ = {
-			isa = PBXGroup;
-			children = (
-				E1406F741AEFB3670082EB5A /* icon_list_all@2x.png */,
-				E1406F751AEFB3670082EB5A /* icon_list_baoyang@2x.png */,
-				E1406F761AEFB3670082EB5A /* icon_list_luntai@2x.png */,
-				E1406F771AEFB3670082EB5A /* icon_list_more@2x.png */,
-				E1406F781AEFB3670082EB5A /* icon_list_new@2x.png */,
-				E1406F791AEFB3670082EB5A /* icon_list_paoguang@2x.png */,
-				E1406F7A1AEFB3670082EB5A /* icon_list_weixiu@2x.png */,
-				E1406F7B1AEFB3670082EB5A /* icon_list_xiangguang@2x.png */,
-				E1406F7C1AEFB3670082EB5A /* icon_list_xiche@2x.png */,
-				E1406F7D1AEFB3670082EB5A /* icon_list_xintai@2x.png */,
-				E1406F7E1AEFB3670082EB5A /* icon_list_youqi@2x.png */,
-				E1406F7F1AEFB3670082EB5A /* icon_list_zhuanghuang@2x.png */,
-			);
-			path = filter;
 			sourceTree = "<group>";
 		};
 		18F034691A48612D00BEB8C4 /* order */ = {
@@ -2773,8 +2723,6 @@
 				E1CF90B11AC7A3EE00370E8F /* QSuggestRetroactionPage.m */,
 				E1CF90B31AC7AA7200370E8F /* QAboutUs.h */,
 				E1CF90B41AC7AA7200370E8F /* QAboutUs.m */,
-				A7C6E2EA1AC7EC8C00CC5E5B /* QInviteFriendPage.h */,
-				A7C6E2EB1AC7EC8C00CC5E5B /* QInviteFriendPage.m */,
 			);
 			path = morePage;
 			sourceTree = "<group>";
@@ -2870,8 +2818,6 @@
 				DDAA5FDD1AAF48F000230734 /* icon_mine_comment@2x.png in Resources */,
 				18F034881A48612D00BEB8C4 /* business_icon@2x.png in Resources */,
 				67E540421AAED2C500E45BF6 /* icon_login_name@2x.png in Resources */,
-				E1406F801AEFB3670082EB5A /* icon_list_all@2x.png in Resources */,
-				E1406F811AEFB3670082EB5A /* icon_list_baoyang@2x.png in Resources */,
 				182A05141A52C29800D9E2C3 /* CategoryNew_3@2x.png in Resources */,
 				189770DD1A47F5D5005D234C /* 形状 4.png in Resources */,
 				182A05041A52C27000D9E2C3 /* push_down@2x.png in Resources */,
@@ -2879,14 +2825,11 @@
 				67E703531AB8275100659F0D /* icon_refund@2x.png in Resources */,
 				189770F11A47F5D5005D234C /* pic03.png in Resources */,
 				A76F9EDC1AA042710039F9E4 /* default_image@2x.png in Resources */,
-				E1406F861AEFB3670082EB5A /* icon_list_weixiu@2x.png in Resources */,
 				E14297D01AE3759C00D17BC0 /* icon_list_paoguang@2x.png in Resources */,
 				18F0348C1A48612D00BEB8C4 /* location_refresh@2x.png in Resources */,
 				A76F9EE51AA08BB00039F9E4 /* menu_busin_h@2x.png in Resources */,
 				E14297DF1AE5387A00D17BC0 /* icon_share@2x.png in Resources */,
 				A7C6E3101AC7EEDA00CC5E5B /* UMShareEditViewControlleriPad.xib in Resources */,
-				E1406F831AEFB3670082EB5A /* icon_list_more@2x.png in Resources */,
-				E1406F881AEFB3670082EB5A /* icon_list_xiche@2x.png in Resources */,
 				67D1F7B81AAC38110067434E /* btn_start@2x.png in Resources */,
 				189770DC1A47F5D5005D234C /* 形状 3.png in Resources */,
 				A7C6E3131AC7EEDA00CC5E5B /* UMSShareListController.xib in Resources */,
@@ -2916,7 +2859,6 @@
 				182A05051A52C27000D9E2C3 /* red_sign@2x.png in Resources */,
 				182A05121A52C29800D9E2C3 /* CategoryNew_1@2x.png in Resources */,
 				182A05071A52C27000D9E2C3 /* search2@2x.png in Resources */,
-				189770D81A47F5D5005D234C /* 评价_03.png in Resources */,
 				67D1F7B41AAC35810067434E /* pic_yindao3@2x.png in Resources */,
 				189770E51A47F5D5005D234C /* image.png in Resources */,
 				E1CB6B221AE29FAC00DCE7D2 /* icon_map_weixiu@2x.png in Resources */,
@@ -2959,7 +2901,6 @@
 				E14297D11AE3759C00D17BC0 /* icon_list_weixiu@2x.png in Resources */,
 				E14297CD1AE3759C00D17BC0 /* icon_list_luntai@2x.png in Resources */,
 				67E540451AAEDC9A00E45BF6 /* pic_login_head@2x.png in Resources */,
-				E1406F841AEFB3670082EB5A /* icon_list_new@2x.png in Resources */,
 				DDAA5FDF1AAF48F000230734 /* icon_mine_member@2x.png in Resources */,
 				67E540481AAFE48400E45BF6 /* icon_agree_unselected@2x.png in Resources */,
 				A76F9EE91AA08BB00039F9E4 /* menu_mine_h@2x.png in Resources */,
@@ -2973,7 +2914,6 @@
 				67E703511AB8275100659F0D /* icon_sold_num@2x.png in Resources */,
 				189770AD1A47F440005D234C /* IQKeyboardManager.bundle in Resources */,
 				189770F21A47F5D5005D234C /* pic04.png in Resources */,
-				E1406F821AEFB3670082EB5A /* icon_list_luntai@2x.png in Resources */,
 				189770E11A47F5D5005D234C /* check01.png in Resources */,
 				182A05031A52C27000D9E2C3 /* mapsign@2x.png in Resources */,
 				189770F01A47F5D5005D234C /* pic02.png in Resources */,
@@ -2987,7 +2927,6 @@
 				E14297D41AE3759C00D17BC0 /* icon_list_xintai@2x.png in Resources */,
 				DD2873621A2B55B30000B242 /* QMainMenuPage.plist in Resources */,
 				18F034861A48612D00BEB8C4 /* plus@2x.png in Resources */,
-				E1406F891AEFB3670082EB5A /* icon_list_xintai@2x.png in Resources */,
 				A7C6E3221AC7F09200CC5E5B /* icon_weixin@2x.png in Resources */,
 				DDAA5FE11AAF48F000230734 /* icon_mine_quan@2x.png in Resources */,
 				67D1F7B61AAC35810067434E /* pic_yindao1@2x.png in Resources */,
@@ -3006,7 +2945,6 @@
 				A76F9EE71AA08BB00039F9E4 /* menu_home_h@2x.png in Resources */,
 				18F034871A48612D00BEB8C4 /* arrow@2x.png in Resources */,
 				182A05021A52C27000D9E2C3 /* collect_detail@2x.png in Resources */,
-				E1406F851AEFB3670082EB5A /* icon_list_paoguang@2x.png in Resources */,
 				182A05181A52C29800D9E2C3 /* CategoryNew_7@2x.png in Resources */,
 				182A05281A52C32B00D9E2C3 /* citydict.plist in Resources */,
 				67E7034C1AB7BCD500659F0D /* icon_yellow_check@2x.png in Resources */,
@@ -3014,14 +2952,11 @@
 				A7C6E3141AC7EEDA00CC5E5B /* UMSocialSDKResourcesNew.bundle in Resources */,
 				67E7034D1AB7BCD500659F0D /* icon_yellow_uncheck@2x.png in Resources */,
 				182A05151A52C29800D9E2C3 /* CategoryNew_4@2x.png in Resources */,
-				E1406F8A1AEFB3670082EB5A /* icon_list_youqi@2x.png in Resources */,
 				A7C6E3091AC7EEDA00CC5E5B /* UMSocialLocalizable.strings in Resources */,
 				189770E01A47F5D5005D234C /* backgroundmine02.png in Resources */,
 				189770ED1A47F5D5005D234C /* no_select.png in Resources */,
-				E1406F8B1AEFB3670082EB5A /* icon_list_zhuanghuang@2x.png in Resources */,
 				189770E31A47F5D5005D234C /* check002.png in Resources */,
 				67E703521AB8275100659F0D /* icon_sale_date@2x.png in Resources */,
-				E1406F871AEFB3670082EB5A /* icon_list_xiangguang@2x.png in Resources */,
 				E1CB6B211AE29FAC00DCE7D2 /* icon_map_paoguang@2x.png in Resources */,
 				18F034891A48612D00BEB8C4 /* buyNotes_icon@2x.png in Resources */,
 				189770E21A47F5D5005D234C /* check001.png in Resources */,
@@ -3163,7 +3098,6 @@
 				18C1870D1A4FDE5C00CBE018 /* QUser.m in Sources */,
 				DD2872C31A2B53B60000B242 /* QTools.m in Sources */,
 				DD2872D11A2B53B60000B242 /* SBJsonUTF8Stream.m in Sources */,
-				A7C6E2EC1AC7EC8C00CC5E5B /* QInviteFriendPage.m in Sources */,
 				186574591A5F788900041B66 /* QRegisterModel.m in Sources */,
 				A7C20E8B1ABDB2F5009C807A /* DataSigner.m in Sources */,
 				189770681A47F394005D234C /* QSelectBank.m in Sources */,

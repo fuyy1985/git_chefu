@@ -68,7 +68,11 @@
         
         _dataArr = [[NSMutableArray alloc] initWithCapacity:0];
         [_dataArr addObject:categoryAllModel];
-        [_dataArr addObjectsFromArray:[QCategoryModel getCategory]];
+        for (QCategoryModel *model in [QCategoryModel getCategory])
+        {
+            model.photoPath = [self iconbyCategoryID:model.categoryId];
+            [_dataArr addObject:model];
+        }
         if (_dataArr.count < 2) {
             [[QHttpMessageManager sharedHttpMessageManager] accessCategorySubList];
             [ASRequestHUD show];

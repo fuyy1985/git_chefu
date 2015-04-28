@@ -132,8 +132,6 @@ typedef enum{
             break;
         case moreType_invitefriend:
         {
-            [UMSocialData openLog:YES];
-            /*[QViewController gotoPage:@"QInviteFriendPage" withParam:nil];*/
             [UMSocialSnsService presentSnsIconSheetView:[QViewController shareController]
                                               appKey:UMSocalAppKey
                                            shareText:@"随时随地养车，让服务离您更近，让您养车更省心、有保障更放心，一路都是为了您……"

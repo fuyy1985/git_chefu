@@ -129,7 +129,8 @@
 - (void)setEditig:(BOOL)editig animattted:(BOOL)animated
 {
     NSString *str = [editBtn titleForState:UIControlStateNormal];
-    if ([str isEqualToString:@"编辑"]) {
+    if ([str isEqualToString:@"编辑"])
+    {
         
         [UIView animateWithDuration:0.2 animations:^{
             
@@ -143,7 +144,9 @@
         
         collectTableView.editing = YES;
         [editBtn setTitle:@"完成" forState:UIControlStateNormal];
-    }else{
+    }
+    else
+    {
         
         [UIView animateWithDuration:0.2 animations:^{
             
