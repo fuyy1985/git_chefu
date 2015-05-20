@@ -113,6 +113,7 @@
         CGFloat nameW = 140;
         CGFloat nameH = 26;
         nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(nameBeforeW, nameTopH, nameW, nameH)];
+        nameLabel.backgroundColor = [UIColor clearColor];
         nameLabel.text = dataArr.nick;
         nameLabel.textColor = [UIColor whiteColor];
         nameLabel.font = [UIFont boldSystemFontOfSize:18];
@@ -125,6 +126,7 @@
         CGFloat balanceH = nameH;
         UILabel *balanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(balanceBeforeW, balanceTopH, balanceW, balanceH)];
         balanceLabel.text = [NSString stringWithFormat:@"账户余额：%.2f元", [[QUser sharedQUser].normalAccount.balance doubleValue]];
+        balanceLabel.backgroundColor = [UIColor clearColor];
         balanceLabel.textColor = [UIColor whiteColor];
         balanceLabel.font = [UIFont boldSystemFontOfSize:13];
         [firstImageView addSubview:balanceLabel];
@@ -164,6 +166,7 @@
         CGFloat couponTopH = 10;
         UILabel *couponLabel = [[UILabel alloc] initWithFrame:CGRectMake(couponBeforeW, couponTopH, couponW, couponH)];
         couponLabel.textAlignment = NSTextAlignmentCenter;
+        couponLabel.backgroundColor = [UIColor clearColor];
         couponLabel.textColor = ColorTheme;
         couponLabel.font = [UIFont boldSystemFontOfSize:15];
         couponLabel.userInteractionEnabled = YES;

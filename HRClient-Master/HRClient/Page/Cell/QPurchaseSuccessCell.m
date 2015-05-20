@@ -22,11 +22,13 @@
         // Initialization code
         CGFloat beforeW = 10;
         _headLabel = [[UILabel alloc] initWithFrame:CGRectMake(beforeW, 5, SCREEN_SIZE_WIDTH/3.0, 30)];
+        _headLabel.backgroundColor = [UIColor clearColor];
         _headLabel.textColor = [QTools colorWithRGB:86 :86 :86];
         [self.contentView addSubview:_headLabel];
         
         _backLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_SIZE_WIDTH/3.0, 5, SCREEN_SIZE_WIDTH/3.0 * 2 - 10, 30)];
         _backLabel.textAlignment = NSTextAlignmentRight;
+        _backLabel.backgroundColor = [UIColor clearColor];
         [self.contentView addSubview:_backLabel];
         
         

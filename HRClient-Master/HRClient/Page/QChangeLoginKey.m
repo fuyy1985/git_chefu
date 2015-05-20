@@ -47,6 +47,7 @@
         CGFloat h = 37.0;
         CGFloat blank = 10.0;
         nowKeyTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(beforeW, topH, w - 20, h)];
+        nowKeyTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         nowKeyTextFiled.placeholder = @"当前登录密码";
         nowKeyTextFiled.borderStyle = UITextBorderStyleRoundedRect;
         nowKeyTextFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -57,6 +58,7 @@
         
         againKeyTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(beforeW, nowKeyTextFiled.frame.size.height+nowKeyTextFiled.frame.origin.y + blank, w - 20, h)];
         againKeyTextFiled.placeholder = @"新登录密码";
+        againKeyTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         againKeyTextFiled.borderStyle = UITextBorderStyleRoundedRect;
         againKeyTextFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
         againKeyTextFiled.font = [UIFont systemFontOfSize:14];
@@ -66,6 +68,7 @@
         
         sureKeyTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(beforeW, againKeyTextFiled.frame.size.height+againKeyTextFiled.frame.origin.y + blank, w - 20, h)];
         sureKeyTextFiled.placeholder = @"确认新登录密码";
+        sureKeyTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         sureKeyTextFiled.borderStyle = UITextBorderStyleRoundedRect;
         sureKeyTextFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
         sureKeyTextFiled.font = [UIFont systemFontOfSize:14];

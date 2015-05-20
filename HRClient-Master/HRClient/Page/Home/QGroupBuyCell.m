@@ -34,6 +34,7 @@
         // Initialization code
         [self.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.contentView.backgroundColor = [UIColor whiteColor];
         
         CGFloat margin = 10;
         
@@ -50,6 +51,7 @@
         // 标题
         CGRect labelFrame = CGRectMake(leftBegin, heightBegin, labelWidth , 22);
         _titleLabel = [[UILabel alloc] initWithFrame:labelFrame];
+        _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.text = @"未知商家";
         _titleLabel.font = [UIFont systemFontOfSize:15];
         _titleLabel.lineBreakMode =  NSLineBreakByTruncatingTail;
@@ -60,6 +62,7 @@
         // 质保标记
         _qlyGuar = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_SIZE_WIDTH - 40, _titleLabel.deFrameTop + 5, 30, 17)];
         _qlyGuar.backgroundColor = [UIColor clearColor];
+        _qlyGuar.backgroundColor = [UIColor clearColor];
         _qlyGuar.font = [UIFont systemFontOfSize:10];
         _qlyGuar.textAlignment = NSTextAlignmentCenter;
         _qlyGuar.textColor = ColorDarkGray;
@@ -67,6 +70,7 @@
         
         // 会员卡
         _vipLabel = [[UILabel alloc] initWithFrame:CGRectMake(_qlyGuar.deFrameLeft - 30, _qlyGuar.deFrameTop, 20, 17)];
+        _vipLabel.backgroundColor = [UIColor clearColor];
         _vipLabel.text = @"卡";
         _vipLabel.font = [UIFont systemFontOfSize:11];
         _vipLabel.textAlignment = NSTextAlignmentCenter;
@@ -91,6 +95,7 @@
         labelFrame = CGRectMake(leftBegin, heightBegin, labelWidth - 100, 17);
         _priceLabel.text = @"0元";
         _priceLabel = [[UILabel alloc] initWithFrame:labelFrame];
+        _priceLabel.backgroundColor = [UIColor clearColor];
         _priceLabel.font = [UIFont systemFontOfSize:17];
         _priceLabel.textAlignment = NSTextAlignmentLeft;
         [self.contentView addSubview:_priceLabel];
@@ -98,6 +103,7 @@
         // 会员低至多少
         _vipPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_SIZE_WIDTH - 140,
                                                                    heightBegin, 100, 17)];
+        _vipPriceLabel.backgroundColor = [UIColor clearColor];
         _vipPriceLabel.font = [UIFont systemFontOfSize:14];
         _vipPriceLabel.text = @"会员价2元起";
         _vipPriceLabel.textColor = [QTools colorWithRGB:233 :113 :78];
@@ -107,6 +113,7 @@
         labelFrame = CGRectMake(SCREEN_SIZE_WIDTH - 105, heightBegin+5, 95, 17);
         _rateAndCountLabel.text = @"已售0";
         _rateAndCountLabel = [[UILabel alloc] initWithFrame:labelFrame];
+        _rateAndCountLabel.backgroundColor = [UIColor clearColor];
         _rateAndCountLabel.font = [UIFont systemFontOfSize:11];
         _rateAndCountLabel.textColor = [QTools colorWithRGB:149 :149 :149];
         _rateAndCountLabel.textAlignment = NSTextAlignmentRight;

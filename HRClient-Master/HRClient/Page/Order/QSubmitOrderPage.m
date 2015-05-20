@@ -88,7 +88,7 @@
 {
     if ([super viewWithFrame:frame])
     {
-        _orderTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) style:UITableViewStyleGrouped];
+        _orderTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) style:UITableViewStylePlain];
         _orderTableView.delegate = self;
         _orderTableView.dataSource = self;
         _orderTableView.backgroundColor = [QTools colorWithRGB:238 :238 :238];
@@ -242,6 +242,7 @@
     if (isLogin)
     {
         UILabel *infoLabel = [[UILabel alloc] init];
+        infoLabel.backgroundColor = [UIColor clearColor];
         infoLabel.text = @"您绑定的手机号码";
         infoLabel.font = [UIFont systemFontOfSize:16];
         infoLabel.textColor = [QTools colorWithRGB:85 :85 :85];
@@ -306,6 +307,7 @@
         [view addSubview:sendCodeButton];
         
         UITextField *phoneTextField = [[UITextField alloc] init];
+        phoneTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         phoneTextField.deFrameSize = CGSizeMake(_view.deFrameWidth - 18 - sendCodeButton.deFrameWidth - 10 - 15, h);
         phoneTextField.deFrameOrigin = CGPointMake(15, sendCodeButton.deFrameTop);
         phoneTextField.placeholder = @"输入手机号码";
@@ -316,6 +318,7 @@
         _phoneTextField = phoneTextField;
         
         UITextField *codeTextField = [[UITextField alloc] init];
+        codeTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         codeTextField.deFrameSize = CGSizeMake(_view.deFrameWidth - 18 - 15, h);
         codeTextField.deFrameOrigin = CGPointMake(15, phoneTextField.deFrameBottom + 10);
         codeTextField.placeholder = @"输入手机验证码";
@@ -337,6 +340,7 @@
         [view addSubview:submitButton];
         
         UILabel *loginLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        loginLabel.backgroundColor = [UIColor clearColor];
         loginLabel.text = @"已有车夫账号，";
         loginLabel.textColor = [QTools colorWithRGB:85 :85 :85];
         loginLabel.font = [UIFont systemFontOfSize:15];
@@ -509,6 +513,7 @@
             [cell.contentView addSubview:plusButton];
             
             UITextField *countTextField = [[UITextField alloc] init];
+            countTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
             countTextField.deFrameSize = CGSizeMake(60, 30);
             countTextField.deFrameTop = 8;
             countTextField.deFrameRight = plusButton.deFrameLeft - 9;

@@ -43,6 +43,7 @@
     
     [self.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.contentView.backgroundColor = [UIColor whiteColor];
     
     // Configure the self...
     
@@ -62,6 +63,7 @@
     
     CGRect labelFrame = CGRectMake(marginLeft, marginTop, labelWidth, 20);
     _titleLabel = [[UILabel alloc] initWithFrame:labelFrame];
+    _titleLabel.backgroundColor = [UIColor clearColor];
     _titleLabel.text = @"未知商家";
     _titleLabel.font = [UIFont systemFontOfSize:15];
     _titleLabel.textColor = ColorDarkGray;
@@ -74,6 +76,7 @@
     labelFrame = CGRectMake(CGRectGetMaxX(_rateView.frame) + 5, CGRectGetMinY(_rateView.frame), 150, labelHeight);
     _rateLabel = [[UILabel alloc] initWithFrame:labelFrame];
     _rateLabel.text = @"暂无评价";
+    _rateLabel.backgroundColor = [UIColor clearColor];
     _rateLabel.font = [UIFont systemFontOfSize:12];
     _rateLabel.textColor = [QTools colorWithRGB:149 :149 :149];
     [_rateLabel sizeToFit];
@@ -83,6 +86,7 @@
     marginTop = 65;
     labelFrame = CGRectMake(marginLeft, marginTop, labelWidth, 15);
     _serviceContentAndLocationLabel = [[UILabel alloc] initWithFrame:labelFrame];
+    _serviceContentAndLocationLabel.backgroundColor = [UIColor clearColor];
     _serviceContentAndLocationLabel.font = [UIFont systemFontOfSize:12];
     _serviceContentAndLocationLabel.textColor = [QTools colorWithRGB:185 :185 :185];
     [self.contentView addSubview:_serviceContentAndLocationLabel];
@@ -94,6 +98,7 @@
     [self.contentView addSubview:_locationIconImageView];
     
     _locationLabel = [[UILabel alloc] init];
+    _locationLabel.backgroundColor = [UIColor clearColor];
     _locationLabel.deFrameSize  = CGSizeMake(40, 15);
     _locationLabel.deFrameOrigin = CGPointMake(_locationIconImageView.deFrameRight + 5, marginTop);
     _locationLabel.font = [UIFont systemFontOfSize:12];

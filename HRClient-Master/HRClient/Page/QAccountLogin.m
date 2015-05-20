@@ -73,6 +73,7 @@
         [_view addSubview:loginImageView];
 //        外框
         UILabel *accountLabel = [[UILabel alloc] initWithFrame:CGRectMake(beforeW, loginImageView.frame.size.height + loginImageView.frame.origin.y + topH, w, h)];
+        accountLabel.backgroundColor = [UIColor clearColor];
         accountLabel.layer.masksToBounds = YES;
         accountLabel.layer.cornerRadius = 4.0;
         accountLabel.layer.borderColor = [QTools colorWithRGB:213 :213 :213].CGColor;
@@ -91,6 +92,7 @@
         [accountLabel addSubview:lineLabel];
         
         accountTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(lineLabel.frame.origin.x + 4, 0, accountLabel.frame.size.width - lineLabel.frame.origin.x - 2, accountLabel.frame.size.height)];
+        accountTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         accountTextFiled.font = [UIFont systemFontOfSize:14];
         accountTextFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
         accountTextFiled.returnKeyType = UIReturnKeyNext;
@@ -102,6 +104,7 @@
         //        外框,,,输入密码
         UILabel *keyLabel = [[UILabel alloc] initWithFrame:CGRectMake(beforeW, accountLabel.frame.size.height + accountLabel.frame.origin.y + blank, w, h)];
         keyLabel.layer.masksToBounds = YES;
+        keyLabel.backgroundColor = [UIColor clearColor];
         keyLabel.layer.cornerRadius = 4.0;
         keyLabel.layer.borderColor = [QTools colorWithRGB:213 :213 :213].CGColor;
         keyLabel.layer.borderWidth = 1;
@@ -119,6 +122,7 @@
         [keyLabel addSubview:keyLineLabel];
         
         keyTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(keyLineLabel.frame.origin.x + 4, 0, keyLabel.frame.size.width - keyLineLabel.frame.origin.x - 2, keyLabel.frame.size.height)];
+        keyTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         keyTextFiled.font = [UIFont systemFontOfSize:14];
         keyTextFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
         keyTextFiled.returnKeyType = UIReturnKeyJoin;

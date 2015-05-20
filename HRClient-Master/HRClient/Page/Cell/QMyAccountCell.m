@@ -20,6 +20,7 @@
         CGFloat topH = 10;
         CGFloat nameH = 20;
         _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, topH, 180, nameH)];
+        _nameLabel.backgroundColor = [UIColor clearColor];
         _nameLabel.textColor = ColorDarkGray;
         _nameLabel.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:_nameLabel];
@@ -28,6 +29,7 @@
         CGFloat moneyW = 100;
         _moneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_SIZE_WIDTH - 10 - enterW - 5 - moneyW, topH, moneyW, 20)];
         _moneyLabel.textAlignment = NSTextAlignmentRight;
+        _moneyLabel.backgroundColor = [UIColor clearColor];
         _moneyLabel.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:_moneyLabel];
         

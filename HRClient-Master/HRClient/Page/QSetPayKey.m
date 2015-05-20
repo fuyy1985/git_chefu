@@ -59,6 +59,7 @@
             {
                 UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(beforeW, topH + 50 * i, frame.size.width - 2 * beforeW, h)];
                 textField.borderStyle = UITextBorderStyleRoundedRect;
+                textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
                 textField.clearButtonMode = UITextFieldViewModeWhileEditing;
                 textField.keyboardType = UIKeyboardTypePhonePad;
                 textField.font = [UIFont systemFontOfSize:14];
@@ -73,6 +74,7 @@
                 //手机号码
                 inputTextField = [[UITextField alloc] initWithFrame:CGRectMake(beforeW, topH + 50 * i, 200, h)];
                 inputTextField.borderStyle = UITextBorderStyleRoundedRect;
+                inputTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
                 inputTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
                 inputTextField.font = [UIFont systemFontOfSize:14];
                 inputTextField.text = NSString_No_Nil([ASUserDefaults objectForKey:LoginUserPhone]);
@@ -96,6 +98,7 @@
             {
                 UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(beforeW, topH + 50 * i, frame.size.width - 2 * beforeW, h)];
                 textField.borderStyle = UITextBorderStyleRoundedRect;
+                textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
                 textField.clearButtonMode = UITextFieldViewModeWhileEditing;
                 textField.font = [UIFont systemFontOfSize:14];
                 textField.placeholder = arr[i];

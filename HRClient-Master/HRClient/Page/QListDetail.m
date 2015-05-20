@@ -360,6 +360,7 @@ typedef enum{
             CGFloat titleW = iconView.frame.size.width - iconImageView.frame.size.width - contentBeforeW - contentBlank;
             CGFloat titleH = 15;
             titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(iconImageView.frame.size.width + contentBeforeW + contentBlank, 10, titleW, titleH)];
+            titleLabel.backgroundColor = [UIColor clearColor];
             titleLabel.font = [UIFont systemFontOfSize:15];
             titleLabel.textColor = ColorDarkGray;
             titleLabel.text = detailModel.subject;
@@ -368,6 +369,7 @@ typedef enum{
             //价格
             CGFloat priceTopH = titleLabel.deFrameBottom + titleH + contentBlank;
             priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(iconImageView.deFrameRight + contentBlank, priceTopH, titleW, titleH)];
+            priceLabel.backgroundColor = [UIColor clearColor];
             priceLabel.textColor = [QTools colorWithRGB:85 :85 :85];
             priceLabel.font = [UIFont systemFontOfSize:11];
             [iconView addSubview:priceLabel];
@@ -389,6 +391,7 @@ typedef enum{
             intimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(intimeImageView.frame.origin.x + intimeImageView.frame.size.width + 3,
                                                                     iconLineLabel.frame.origin.y + intimeTopH, intimeW, 20)];
             intimeLabel.font = [UIFont systemFontOfSize:12];
+            intimeLabel.backgroundColor = [UIColor clearColor];
             [iconView addSubview:intimeLabel];
             
             //过期退款
@@ -398,6 +401,7 @@ typedef enum{
             overtimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(overtimeImageView.frame.origin.x + overtimeImageView.frame.size.width + 3,
                                                                     iconLineLabel.frame.origin.y + intimeTopH, intimeW, 20)];
             overtimeLabel.font = [UIFont systemFontOfSize:12];
+            overtimeLabel.backgroundColor = [UIColor clearColor];
             [iconView addSubview:overtimeLabel];
             
             //设置数据
@@ -469,12 +473,14 @@ typedef enum{
             for (int i = 0; i < 3; i ++) {
                 UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(contentBeforeW , originY, 70, 25)];
                 title.text = titleArr[i];
+                title.backgroundColor = [UIColor clearColor];
                 title.textAlignment = NSTextAlignmentRight;
                 title.font = [UIFont systemFontOfSize:13];
                 title.textColor = [QTools colorWithRGB:85 :85 :85];
                 [cell.contentView addSubview:title];
                 
                 UILabel *detail = [[UILabel alloc] initWithFrame:CGRectMake(contentBeforeW + title.deFrameRight, originY, SCREEN_SIZE_WIDTH - title.deFrameRight, 25)];
+                detail.backgroundColor = [UIColor clearColor];
                 detail.text = detailArr[i];
                 detail.font = [UIFont systemFontOfSize:13];
                 detail.textColor = [QTools colorWithRGB:85 :85 :85];
@@ -502,11 +508,13 @@ typedef enum{
         {
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(contentBeforeW, 0, tableView.deFrameWidth - 2*contentBeforeW, 30)];
             label.font = [UIFont systemFontOfSize:14];
+            label.backgroundColor = [UIColor clearColor];
             label.text = @"订单信息";
             label.textColor = ColorDarkGray;
             [cell.contentView addSubview:label];
             
             label = [[UILabel alloc] initWithFrame:CGRectMake(contentBeforeW, label.deFrameBottom, tableView.deFrameWidth - 2*contentBeforeW, 0.5f)];
+            label.backgroundColor = [UIColor clearColor];
             label.backgroundColor = ColorLine;
             [cell.contentView addSubview:label];
             
@@ -522,6 +530,7 @@ typedef enum{
             for (int i = 0; i < 5; i ++) {
                 UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(contentBeforeW , originY, 60, 25)];
                 title.text = titleArr[i];
+                title.backgroundColor = [UIColor clearColor];
                 title.textAlignment = NSTextAlignmentRight;
                 title.font = [UIFont systemFontOfSize:13];
                 title.textColor = [QTools colorWithRGB:85 :85 :85];
@@ -529,6 +538,7 @@ typedef enum{
                 
                 UILabel *detail = [[UILabel alloc] initWithFrame:CGRectMake(contentBeforeW + title.deFrameRight, originY, SCREEN_SIZE_WIDTH - title.deFrameRight, 25)];
                 detail.text = detailArr[i];
+                detail.backgroundColor = [UIColor clearColor];
                 detail.font = [UIFont systemFontOfSize:13];
                 detail.textColor = [QTools colorWithRGB:85 :85 :85];
                 [cell.contentView addSubview:detail];

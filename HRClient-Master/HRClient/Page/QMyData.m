@@ -66,7 +66,7 @@
         leaveBtn.layer.cornerRadius = 4.0;
         [footerView addSubview:leaveBtn];
 
-        _MyDataTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)style:UITableViewStyleGrouped];
+        _MyDataTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)style:UITableViewStylePlain];
         _MyDataTableView.dataSource = self;
         _MyDataTableView.delegate = self;
         _MyDataTableView.tableFooterView = footerView;

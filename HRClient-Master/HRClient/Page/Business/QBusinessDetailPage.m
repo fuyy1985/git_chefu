@@ -98,7 +98,7 @@
     if ([super viewWithFrame:frame]) {
         
         // 商家详情
-        _businessDetailTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) style:UITableViewStyleGrouped];
+        _businessDetailTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) style:UITableViewStylePlain];
         _businessDetailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _businessDetailTableView.delegate = self;
         _businessDetailTableView.dataSource = self;
@@ -146,6 +146,7 @@
     label.numberOfLines = 0;
     label.text = address;
     [label sizeToFit];
+    label.backgroundColor = [UIColor clearColor];
     
     return 30 + label.deFrameHeight;
 }
@@ -317,6 +318,7 @@
         
         // 评分
         UILabel *scoreLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        scoreLabel.backgroundColor = [UIColor clearColor];
         scoreLabel.text = [dataModel.grade stringValue];
         scoreLabel.font = [UIFont systemFontOfSize:12];
         scoreLabel.textColor = [QTools colorWithRGB:246 :172 :75];
@@ -388,6 +390,7 @@
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierPhone];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.accessoryType = UITableViewCellAccessoryNone;
+                cell.contentView.backgroundColor = [UIColor whiteColor];
             }
             
             [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -402,6 +405,7 @@
             label.lineBreakMode = NSLineBreakByWordWrapping;
             label.text = NSString_No_Nil(dataModel.detailAddress);
             label.numberOfLines = 0;
+            label.backgroundColor = [UIColor clearColor];
             [cell.contentView addSubview:label];
             
             UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(label.deFrameRight + 5, 5, 0.5f, cellHeight - 2*5)];
@@ -426,6 +430,7 @@
             if (nil == cell) {
                 cell = [[QGroupBuyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierGroupBuy];
             }
+            cell.backgroundColor = [UIColor whiteColor];
             
             [cell configureCellForBusinPage:productsArr andIndexPath:indexPath];
             return cell;
@@ -437,9 +442,11 @@
             if (nil == cell) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierRateMore];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.contentView.backgroundColor = [UIColor whiteColor];
             }
             
             cell.textLabel.text = (!productsArr || productsArr.count == 0) ? @"暂无其他服务" : @"查看全部服务";
+            cell.textLabel.backgroundColor = [UIColor whiteColor];
             cell.textLabel.font = [UIFont systemFontOfSize:12];
             cell.textLabel.textColor = [QTools colorWithRGB:196 :0 :0];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

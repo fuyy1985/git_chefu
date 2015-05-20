@@ -126,7 +126,7 @@ typedef enum _payType {
         
         _pType = payType_none;
     
-        _confirmOrderTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) style:UITableViewStyleGrouped];
+        _confirmOrderTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) style:UITableViewStylePlain];
         _confirmOrderTableView.delegate = self;
         _confirmOrderTableView.dataSource = self;
         _confirmOrderTableView.backgroundColor = [QTools colorWithRGB:238 :238 :238];
@@ -245,6 +245,7 @@ typedef enum _payType {
         // 支付方式
         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.deFrameWidth, 45)];
         UILabel *styleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        styleLabel.backgroundColor = [UIColor clearColor];
         styleLabel.text = @"选择支付方式(暂时只支持支付宝支付)";
         styleLabel.font = [UIFont systemFontOfSize:15];
         [styleLabel sizeToFit];
@@ -303,11 +304,13 @@ typedef enum _payType {
         [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.deFrameWidth - 2*10, 46)];
+        titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.textColor = [QTools colorWithRGB:85 :85 :85];
         titleLabel.font = [UIFont systemFontOfSize:15];
         [cell.contentView addSubview:titleLabel];
         
         UILabel *detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.deFrameWidth - 2*10, 46)];
+        detailLabel.backgroundColor = [UIColor clearColor];
         detailLabel.textColor = UIColorFromRGB(0xc40000);
         detailLabel.font = [UIFont systemFontOfSize:15];
         detailLabel.textAlignment = NSTextAlignmentRight;
@@ -383,6 +386,7 @@ typedef enum _payType {
             {
                 titleLabel.text = @"支付密码：";
                 txtPwd = [[UITextField alloc]initWithFrame:CGRectMake(90, 8, 100, 30)];
+                txtPwd.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
                 txtPwd.font = [UIFont systemFontOfSize:12.f];
                 txtPwd.textColor = [QTools colorWithRGB:85 :85 :85];
                 txtPwd.textAlignment = NSTextAlignmentRight;

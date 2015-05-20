@@ -65,6 +65,7 @@
         CGFloat otherW = 80;
         CGFloat otherH = 35;
         UILabel *otherLabel = [[UILabel alloc] initWithFrame:CGRectMake(blankW, 3 * topH + 3 * moneyH + 20, otherW, otherH)];
+        otherLabel.backgroundColor = [UIColor clearColor];
         otherLabel.text = @"其他金额";
         otherLabel.textColor = ColorTheme;
         otherLabel.font = [UIFont boldSystemFontOfSize:16];
@@ -74,6 +75,7 @@
         CGFloat inputH = 35;
         inputTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(otherLabel.deFrameRight + 5, otherLabel.frame.origin.y, inputW, inputH)];
         inputTextFiled.backgroundColor = [QTools colorWithRGB:255 :255 :255];
+        inputTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         inputTextFiled.layer.masksToBounds = YES;
         inputTextFiled.borderStyle = UITextBorderStyleRoundedRect;
         inputTextFiled.placeholder = @"请输入要充值的金额";

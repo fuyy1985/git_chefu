@@ -27,6 +27,7 @@
         
         UITextField *keyTextField = [[UITextField alloc] initWithFrame:CGRectMake(keyLabel.deFrameRight + 10, 20, frame.size.width - 2 * 15 - keyLabel.deFrameRight, 40)];
         keyTextField.placeholder = @"请输入支付密码";
+        keyTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         keyTextField.borderStyle = UITextBorderStyleRoundedRect;
         [_view addSubview:keyTextField];
         

@@ -154,6 +154,7 @@
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(searchImageView.deFrameRight + 10, 0, titleView.deFrameRight - searchImageView.deFrameRight, titleView.deFrameHeight)];
     titleLabel.text = @"找商家";
+    titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.font = [UIFont systemFontOfSize:14];
     titleLabel.textColor = [QTools colorWithRGB:194 :194 :194];
     [titleView addSubview:titleLabel];

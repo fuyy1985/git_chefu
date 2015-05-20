@@ -111,6 +111,7 @@
         
         UILabel *locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, headerView.deFrameWidth - 50 - 10, headerView.deFrameHeight)];
         locationLabel.text = @"正在定位中...";
+        locationLabel.backgroundColor = [UIColor clearColor];
         locationLabel.font = [UIFont systemFontOfSize:12];
         locationLabel.textColor = [QTools colorWithRGB:135 :134 :132];
         [headerView addSubview:locationLabel];
@@ -191,6 +192,7 @@
         imageView.center = CGPointMake(_footerView.center.x, _footerView.center.y - 20);
         
         UILabel *label = [[UILabel alloc] init];
+        label.backgroundColor = [UIColor clearColor];
         label.textColor = ColorDarkGray;
         label.font = [UIFont systemFontOfSize:13];
         label.text = @"商家挖掘中...";
@@ -495,6 +497,7 @@
         cell = [[QBussinessCell alloc] initWithStyle:UITableViewCellStyleDefault
                                     reuseIdentifier:CellIdentifier];
     }
+    cell.contentView.backgroundColor = [UIColor whiteColor];
     [cell configureCellForHomePage:_dataPage.mData andIndexPath:indexPath];
     return cell;
 }

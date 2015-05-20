@@ -185,6 +185,7 @@
     
     CGFloat left = imageView.deFrameRight + 5;
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(left, 5, tableView.deFrameWidth - left - 10, 20)];
+    label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont boldSystemFontOfSize:14];
     label.textColor = ColorDarkGray;
     label.text = model.companyName;
@@ -192,12 +193,14 @@
     
     label = [[UILabel alloc] initWithFrame:CGRectMake(label.deFrameLeft, label.deFrameBottom, label.deFrameWidth, 15)];
     label.font = [UIFont systemFontOfSize:12];
+    label.backgroundColor = [UIColor clearColor];
     label.textColor = [QTools colorWithRGB:150 :150 : 150];
     label.text = model.subject;
     [cell.contentView addSubview:label];
     
     label = [[UILabel alloc] initWithFrame:CGRectMake(label.deFrameLeft, label.deFrameBottom, label.deFrameWidth, 15)];
     label.font = [UIFont systemFontOfSize:13];
+    label.backgroundColor = [UIColor clearColor];
     label.textColor = ColorDarkGray;
     label.text = [NSString stringWithFormat:@"%.2f", [model.member_bidPrice doubleValue]];
     [cell.contentView addSubview:label];

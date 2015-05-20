@@ -27,6 +27,23 @@
 @property (nonatomic,copy)NSString *photoPath;
 @property (nonatomic,strong)NSNumber *balance;   //普通账户余额
 
+//balance = 0;
+//createUser = 1;
+//gmtCreate = 1431254079506;
+//gmtModified = 1431254079506;
+//mail = "N/A";
+//member = 0;
+//modifiedUser = 1;
+//nick = "N/A";
+//password = (null);
+//payPasswd = N;
+//phone = 15669981231;
+//photoPath = (null);
+//realName = "N/A";
+//status = 1;
+//ticket = 0;
+//userId = 205;
+
 + (QLoginModel *)getModelFromDic:(NSDictionary *)dic;
 
 - (void)savetoLocal:(NSString*)password;

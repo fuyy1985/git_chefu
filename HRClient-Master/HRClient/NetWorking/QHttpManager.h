@@ -19,6 +19,7 @@
 #import "QMyCouponDetailModel.h"
 #import "QAppDelegate.h"
 #import "QMyListModel.h"
+#import "QRegisterModel.h"
 
 #define USER_INFO_KEY_TYPE          @"requestType"
 typedef enum{
@@ -106,7 +107,7 @@ typedef enum{
 - (void)didReSetPayPwd:(NSString*)message;
 
 //注册
-- (void)didGetNewUserInfro:(NSMutableArray *)dataArr;
+- (void)didGetNewUserInfro:(QRegisterModel *)dataModel;
 //找回登录密码
 - (void)didGetLoginPwd:(QLoginModel *)dataArr;
 //确认找回登录密码

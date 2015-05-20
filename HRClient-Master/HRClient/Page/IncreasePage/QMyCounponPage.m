@@ -74,12 +74,14 @@
         [view2 addSubview:insertImageView];
         
         UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(iconImageView.deFrameRight + 10, 10, frame.size.width - iconImageView.deFrameRight - 2 * 10 - insertW, 20)];
+        nameLabel.backgroundColor = [UIColor clearColor];
         [view2 addSubview:nameLabel];
         _lbName = nameLabel;
         
         UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(nameLabel.deFrameLeft, nameLabel.deFrameBottom + 10, nameLabel.frame.size.width, nameLabel.frame.size.height)];
         dateLabel.textColor = [UIColor grayColor];
         dateLabel.font = [UIFont systemFontOfSize:15];
+        dateLabel.backgroundColor = [UIColor clearColor];
         [view2 addSubview:dateLabel];
         _lbExpireData = dateLabel;
         
@@ -89,6 +91,7 @@
         
         UILabel *keyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, view2.deFrameBottom + 15, frame.size.width, 15)];
         keyLabel.textAlignment = NSTextAlignmentCenter;
+        keyLabel.backgroundColor = [UIColor clearColor];
         [view1 addSubview:keyLabel];
         _lbKey = keyLabel;
         
@@ -104,6 +107,7 @@
         
         UILabel *tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, view1.deFrameBottom + 15, SCREEN_SIZE_WIDTH - 2*15, 30)];
         tipLabel.numberOfLines = 0;
+        tipLabel.backgroundColor = [UIColor clearColor];
         tipLabel.textColor = ColorDarkGray;
         tipLabel.font = [UIFont systemFontOfSize:14];
         tipLabel.attributedText = string;

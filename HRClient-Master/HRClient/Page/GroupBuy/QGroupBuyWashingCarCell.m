@@ -31,6 +31,7 @@
         self.contentView.backgroundColor = [UIColor whiteColor];
         //商家信息
         _companyLabel = [[UILabel alloc] init];
+        _companyLabel.backgroundColor = [UIColor clearColor];
         _companyLabel.font = [UIFont boldSystemFontOfSize:17];
         _companyLabel.textColor = ColorDarkGray;
         [self addSubview:_companyLabel];
@@ -42,6 +43,7 @@
         
         //距离
         UILabel *label = [[UILabel alloc] init];
+        label.backgroundColor = [UIColor clearColor];
         label.font = [UIFont systemFontOfSize:12];
         label.textColor = [QTools colorWithRGB:149 :149 :149];
         [self addSubview:label];
@@ -49,6 +51,7 @@
         
         //城区
         UILabel *areaLabel = [[UILabel alloc] init];
+        areaLabel.backgroundColor = [UIColor clearColor];
         areaLabel.font = [UIFont systemFontOfSize:12];
         areaLabel.textColor = [QTools colorWithRGB:149 :149 :149];
         [self addSubview:areaLabel];
@@ -121,9 +124,10 @@
         
         [self.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.contentView.backgroundColor = [UIColor whiteColor];
+        
         
         // Configure the self...
-        
         CGFloat marginLeft, marginTop, labelWidth, labelHeight;
         
         // 展示图片
@@ -170,6 +174,7 @@
         marginTop = 33;
         labelFrame = CGRectMake(marginLeft, marginTop, labelWidth, labelHeight);
         _lowestPriceLabel = [[UILabel alloc] initWithFrame:labelFrame];
+        _lowestPriceLabel.backgroundColor = [UIColor clearColor];
         _lowestPriceLabel.font = [UIFont systemFontOfSize:12];
         _lowestPriceLabel.textColor = [QTools colorWithRGB:233 :113 :78];
         [self.contentView addSubview:_lowestPriceLabel];
@@ -179,6 +184,7 @@
         marginLeft = 100;
         labelFrame = CGRectMake(marginLeft, marginTop, labelWidth, labelHeight);
         _priceLabel = [[UILabel alloc] initWithFrame:labelFrame];
+        _priceLabel.backgroundColor = [UIColor clearColor];
         [self.contentView addSubview:_priceLabel];
         
         // 评分 & 销量
@@ -187,6 +193,7 @@
         labelHeight = 15;
         labelFrame = CGRectMake(marginLeft, marginTop, labelWidth, labelHeight);
         _rateAndCountLabel = [[UILabel alloc] initWithFrame:labelFrame];
+         _rateAndCountLabel.backgroundColor = [UIColor clearColor];
         _rateAndCountLabel.font = [UIFont systemFontOfSize:11];
         _rateAndCountLabel.textColor = [QTools colorWithRGB:149 :149 :149];
         _rateAndCountLabel.textAlignment = NSTextAlignmentRight;
@@ -203,8 +210,6 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    
-    
 }
 
 - (void)configureCellForWash:(NSArray *)arr andIndexPath:(NSIndexPath *)indexPath{

@@ -44,6 +44,7 @@
         CGFloat titleW = SCREEN_SIZE_WIDTH - _iconImageView.frame.size.width - 2*blank;
         CGFloat titleH = 15;
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(_iconImageView.frame.size.width + 2*blank, blank, titleW, titleH)];
+        _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.font = [UIFont systemFontOfSize:17];
         [self.contentView addSubview:_titleLabel];
 //        总价
@@ -53,6 +54,7 @@
         _totalLabel = [[UILabel alloc] initWithFrame:CGRectMake(_titleLabel.frame.origin.x,
                                                                 _titleLabel.frame.origin.y + _titleLabel.frame.size.height + erectH + 10,
                                                                 totalW, totalH)];
+        _totalLabel.backgroundColor = [UIColor clearColor];
         _totalLabel.font = [UIFont systemFontOfSize:13];
         _totalLabel.textColor = [UIColor grayColor];
         [self.contentView addSubview:_totalLabel];
@@ -62,6 +64,7 @@
         _quantityLabel = [[UILabel alloc] initWithFrame:CGRectMake(_totalLabel.frame.origin.x + _totalLabel.frame.size.width + erectH,
                                                                    _titleLabel.frame.origin.y + _titleLabel.frame.size.height + erectH + 10,
                                                                    quantityW, quantityH)];
+        _quantityLabel.backgroundColor = [UIColor clearColor];
         _quantityLabel.font = [UIFont systemFontOfSize:13];
         _quantityLabel.textColor = [UIColor grayColor];
         [self.contentView addSubview:_quantityLabel];
@@ -70,6 +73,7 @@
         CGFloat varyW = 70;
         CGFloat varyH = 25;
         _varyLabel = [[UILabel alloc] init];
+        _varyLabel.backgroundColor = [UIColor clearColor];
         _varyLabel.frame = CGRectMake(SCREEN_SIZE_WIDTH - 80, _totalLabel.frame.origin.y + _totalLabel.frame.size.height , varyW, varyH);
         _varyLabel.textAlignment = NSTextAlignmentCenter;
         _varyLabel.layer.masksToBounds = YES;

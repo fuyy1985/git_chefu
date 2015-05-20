@@ -95,7 +95,7 @@
 - (UIView *)viewWithFrame:(CGRect)frame{
     if ([super viewWithFrame:frame]) {
     
-        _confirmOrderTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) style:UITableViewStyleGrouped];
+        _confirmOrderTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 380) style:UITableViewStylePlain];
         _confirmOrderTableView.delegate = self;
         _confirmOrderTableView.dataSource = self;
         _confirmOrderTableView.backgroundColor = [QTools colorWithRGB:238 :238 :238];
@@ -241,6 +241,7 @@
                 //tip
                 UILabel *lbText = [[UILabel alloc]initWithFrame:CGRectMake(20, 10, 280, 16)];
         lbText.adjustsFontSizeToFitWidth = YES;
+        lbText.backgroundColor = [UIColor clearColor];
         
         if (bFromChased)
         {
@@ -313,6 +314,7 @@
                 UILabel *priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 20, 160, 16)];
                 priceLabel.textColor = [QTools colorWithRGB:149 :149 :149];
                 priceLabel.font = [UIFont systemFontOfSize:11];
+                priceLabel.backgroundColor = [UIColor clearColor];
                 priceLabel.attributedText = string;
                 [cell.contentView addSubview:priceLabel];
             }

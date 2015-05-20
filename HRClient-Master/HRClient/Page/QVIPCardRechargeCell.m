@@ -40,19 +40,23 @@
         [_agreeImageView addSubview:_sureImageView];
         
         _styleLabel = [[UILabel alloc] initWithFrame:CGRectMake(_agreeImageView.deFrameRight + 10, agreeTopH, 55, 25)];
+        _styleLabel.backgroundColor = [UIColor clearColor];
         _styleLabel.textColor = [QTools colorWithRGB:51 :51 :51];
         _styleLabel.adjustsFontSizeToFitWidth = YES;
         [self.contentView addSubview:_styleLabel];
         
         _carLabel = [[UILabel alloc] initWithFrame:CGRectMake(_styleLabel.deFrameRight + 15, agreeTopH, 50, 25)];
+        _carLabel.backgroundColor = [UIColor clearColor];
         _carLabel.textColor = [QTools colorWithRGB:51 :51 :51];
         [self.contentView addSubview:_carLabel];
         
         _SUVLabel = [[UILabel alloc] initWithFrame:CGRectMake(_carLabel.deFrameRight + 15, agreeTopH, 50, 25)];
+        _SUVLabel.backgroundColor = [UIColor clearColor];
         _SUVLabel.textColor = [QTools colorWithRGB:51 :51 :51];
         [self.contentView addSubview:_SUVLabel];
         
         _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(_SUVLabel.deFrameRight + 15, agreeTopH, 45, 25)];
+        _priceLabel.backgroundColor = [UIColor clearColor];
         _priceLabel.textColor = [QTools colorWithRGB:51 :51 :51];
         [self.contentView addSubview:_priceLabel];
 

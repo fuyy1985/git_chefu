@@ -54,6 +54,7 @@
         
         CGFloat nowH = 40;
         UILabel *priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(beforeW, 10, 160, nowH)];
+        priceLabel.backgroundColor = [UIColor clearColor];
         NSString *price = @"10.0";
         NSString *retailPrice = @"25元";
         NSString *text = [NSString stringWithFormat:@"%@元   %@",price,retailPrice];
@@ -89,7 +90,7 @@
         
         UILabel *knowLabel = [[UILabel alloc] initWithFrame:CGRectMake(beforeW, 0, 100, 30)];
         knowLabel.text = @"购买须知";
-//        knowLabel.backgroundColor = [UIColor redColor];
+        knowLabel.backgroundColor = [UIColor clearColor];//ios6
         [scrollView addSubview:knowLabel];
         
         UIView *notesView = [[UIView alloc] initWithFrame:CGRectMake(beforeW, knowLabel.deFrameBottom, frame.size.width, (20 + 5)*notesArr.count)];
@@ -103,6 +104,7 @@
             UILabel *notesLabel = [[UILabel alloc] initWithFrame:CGRectMake(notesImageView.deFrameRight + 5,5 + (5 + 20) * i, notesView.deFrameRight - notesImageView.deFrameRight -5, 20)];
             notesLabel.text = notesArr[i];
             notesLabel.font = [UIFont systemFontOfSize:13];
+            notesLabel.backgroundColor = [UIColor clearColor];
             [notesView addSubview:notesLabel];
         }
         UILabel *cutLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, notesView.deFrameBottom + 10, frame.size.width, 2)];
@@ -111,6 +113,7 @@
         
         UILabel *detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(beforeW, cutLabel.deFrameBottom + 10, frame.size.width, 30)];
         detailLabel.text  =@"本单详情";
+        detailLabel.backgroundColor = [UIColor clearColor];
         [scrollView addSubview:detailLabel];
         
         UIView *serviceView = [[UIView alloc] initWithFrame:CGRectMake(beforeW, detailLabel.deFrameBottom + 10, frame.size.width - 2 * beforeW, 40)];
@@ -120,12 +123,14 @@
         [scrollView addSubview:serviceView];
 //        服务
         UILabel *serLabel = [[UILabel alloc] initWithFrame:CGRectMake(beforeW, 0, 120, serviceView.deFrameHeight)];
+        serLabel.backgroundColor = [UIColor clearColor];
         serLabel.text = comboArr[0];
         serLabel.textColor = [QTools colorWithRGB:85 :85 :85];
         [serviceView addSubview:serLabel];
 //        价格
         CGFloat moneyW = 100;
         UILabel *moneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(serviceView.deFrameRight - beforeW - moneyW, 0, moneyW, serviceView.deFrameHeight)];
+        moneyLabel.backgroundColor = [UIColor clearColor];
         moneyLabel.textAlignment = NSTextAlignmentCenter;
         moneyLabel.text = comboArr[2];
         moneyLabel.textColor = [QTools colorWithRGB:85 :85 :85];
@@ -133,6 +138,7 @@
 //        次数
         UILabel *qtyLabel = [[UILabel alloc] initWithFrame:CGRectMake(moneyLabel.deFrameLeft - 85, 0, 85, serviceView.deFrameHeight)];
         qtyLabel.text  = comboArr[1];
+        qtyLabel.backgroundColor = [UIColor clearColor];
         qtyLabel.textColor = [QTools colorWithRGB:85 :85 :85];
         qtyLabel.textAlignment = NSTextAlignmentCenter;
         [serviceView addSubview:qtyLabel];
@@ -174,6 +180,7 @@
 //        商家名称
         UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, sellerView.deFrameBottom, frame.size.width, 30)];
         nameLabel.text = @"商家名称";
+        nameLabel.backgroundColor = [UIColor clearColor];
         nameLabel.textAlignment  =NSTextAlignmentCenter;
         [scrollView addSubview:nameLabel];
 //        商家介绍
@@ -182,6 +189,7 @@
         height = [contentStr sizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(frame.size.width - 2 * beforeW, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping].height;
         UILabel *contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(beforeW, nameLabel.deFrameBottom, frame.size.width - 2 * beforeW, height + 20)];
         contentLabel.text = contentStr;
+        contentLabel.backgroundColor = [UIColor clearColor];
         contentLabel.numberOfLines = 0;
         contentLabel.font = [UIFont systemFontOfSize:16];
         [scrollView addSubview:contentLabel];

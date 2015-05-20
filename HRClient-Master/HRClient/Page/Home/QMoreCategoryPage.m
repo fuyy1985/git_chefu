@@ -145,6 +145,7 @@
         
         // 名称
         UILabel *lbText = [[UILabel alloc]initWithFrame:CGRectZero];
+        lbText.backgroundColor = [UIColor clearColor];
         lbText.text = model.categoryName;
         lbText.textColor = ColorDarkGray;
         lbText.font = [UIFont boldSystemFontOfSize:15];
@@ -176,6 +177,7 @@
     cell.layer.borderColor = [ColorLine CGColor];
 
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+    label.backgroundColor = [UIColor clearColor];
     label.textColor = [QTools colorWithRGB:85 :85 :85];
     label.font = [UIFont systemFontOfSize:12];
     label.text = subModel.categoryName;

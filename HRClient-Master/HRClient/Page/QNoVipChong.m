@@ -65,6 +65,7 @@
         CGFloat instructW = SCREEN_SIZE_WIDTH - 2*instructBeforeW;
         CGFloat instructH = 20.f;
         UILabel *instructLabel = [[UILabel alloc] initWithFrame:CGRectMake(instructBeforeW, instructTopH, instructW, instructH)];
+        instructLabel.backgroundColor = [UIColor clearColor];
         instructLabel.text = @"您目前还没有会员洗车卡";
         instructLabel.textColor = ColorTheme;
         instructLabel.font = [UIFont systemFontOfSize:15];
@@ -167,7 +168,9 @@
     CGFloat explainH = agreeH;
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(explainBeforeW, explainTopH, explainW+20, explainH)];
     label.textColor = [QTools colorWithRGB:80 :80 :80];
+    label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont systemFontOfSize:12];
+    
     //属性文字
     NSString *text = @"我已阅读并同意车夫会员洗车卡使用协议";
     NSRange range = [text rangeOfString:@"会员洗车卡使用协议"];
@@ -198,6 +201,7 @@
         [_displayView addSubview:sendCodeButton];
         
         UITextField *phoneTextField = [[UITextField alloc] init];
+        phoneTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         phoneTextField.deFrameSize = CGSizeMake(_view.deFrameWidth - 18 - sendCodeButton.deFrameWidth - 10 - 15, h);
         phoneTextField.deFrameOrigin = CGPointMake(15, sendCodeButton.deFrameTop);
         phoneTextField.placeholder = @"输入手机号码";
@@ -208,6 +212,7 @@
         _phoneTextField = phoneTextField;
         
         UITextField *codeTextField = [[UITextField alloc] init];
+        codeTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         codeTextField.deFrameSize = CGSizeMake(_view.deFrameWidth - 18 - 15, h);
         codeTextField.deFrameOrigin = CGPointMake(15, phoneTextField.deFrameBottom + 10);
         codeTextField.placeholder = @"输入手机验证码";
@@ -229,6 +234,7 @@
         [_displayView addSubview:rechargeBtn];
         
         UILabel *loginLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        loginLabel.backgroundColor = [UIColor clearColor];
         loginLabel.text = @"已有车夫账号，";
         loginLabel.textColor = [QTools colorWithRGB:85 :85 :85];
         loginLabel.font = [UIFont systemFontOfSize:15];

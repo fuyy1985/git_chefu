@@ -178,6 +178,7 @@
         }
         
         UILabel *nameAndDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(marginLeft, marginTop, 0, 0)];
+        nameAndDateLabel.backgroundColor = [UIColor clearColor];
         nameAndDateLabel.text = strInfo;
         nameAndDateLabel.font = [UIFont systemFontOfSize:13];
         nameAndDateLabel.textColor = [QTools colorWithRGB:155 :155 :155];
@@ -195,6 +196,7 @@
         UILabel *commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(marginLeft, marginTop, tableView.deFrameWidth - 35, 0)];
         commentLabel.text = (!comment.content || [comment.content isEqualToString:@""]) ? @"这家伙很懒，什么都没留下" : comment.content;
         commentLabel.font = [UIFont systemFontOfSize:12];
+        commentLabel.backgroundColor = [UIColor clearColor];
         commentLabel.textColor = [QTools colorWithRGB:155 :155 :155];
         commentLabel.lineBreakMode = NSLineBreakByWordWrapping;
         commentLabel.numberOfLines = 0;

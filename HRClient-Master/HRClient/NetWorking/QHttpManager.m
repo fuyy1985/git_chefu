@@ -309,13 +309,11 @@
                 break;
             case kRegister:
             {//注册
-                NSArray *resultArray = [resultDic objectForKey:@"result"];
-                for (NSDictionary *appDic in resultArray) {
-                    QRegisterModel *registerModel = [QRegisterModel getModelFromRegister:appDic];
-                    [modeArray addObject:registerModel];
-                }
-                if ([self.delegate respondsToSelector:@selector(didGetHotCity:)]) {
-                    [self.delegate didGetHotCity:modeArray];
+                NSDictionary *result = [resultDic objectForKey:@"result"];
+                QRegisterModel *registerModel = [QRegisterModel getModelFromRegister:result];
+                
+                if ([self.delegate respondsToSelector:@selector(didGetNewUserInfro:)]) {
+                    [self.delegate didGetNewUserInfro:registerModel];
                 }
             }
                 break;

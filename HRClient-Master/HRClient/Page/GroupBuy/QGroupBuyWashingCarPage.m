@@ -128,6 +128,7 @@
         headerView.backgroundColor = [UIColor clearColor];
 
         UILabel *locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, headerView.frame.size.width - 15 - 45, headerView.frame.size.height)];
+        locationLabel.backgroundColor = [UIColor clearColor];
         locationLabel.text = @"正在定位中...";
         locationLabel.font = [UIFont systemFontOfSize:12];
         locationLabel.textColor = [QTools colorWithRGB:135 :134 :132];
@@ -288,6 +289,7 @@
         imageView.center = CGPointMake(_footerView.center.x, _footerView.center.y - 20);
         
         UILabel *label = [[UILabel alloc] init];
+        label.backgroundColor = [UIColor clearColor];
         label.textColor = ColorDarkGray;
         label.font = [UIFont systemFontOfSize:13];
         label.text = @"商家挖掘中...";

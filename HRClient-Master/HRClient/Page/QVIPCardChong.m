@@ -274,7 +274,7 @@
         CGFloat moneyW = 200;
         CGFloat moneyH = 20;
         UILabel *moneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(moneyBeforeW, moneyTopH, moneyW, moneyH)];
-        
+        moneyLabel.backgroundColor = [UIColor clearColor];
         if (_buyType == BuyType_normalCharge) //普通账户充值
         {
              moneyLabel.text = @"充值金额";
@@ -334,6 +334,7 @@
         CGFloat styleW = 250;
         CGFloat styleH = 20;
         UILabel *styleLabel = [[UILabel alloc] initWithFrame:CGRectMake(styleBeforeW, styleTopH, styleW, styleH)];
+        styleLabel.backgroundColor = [UIColor clearColor];
         styleLabel.adjustsFontSizeToFitWidth = YES;
         styleLabel.text = @"选择支付方式(暂时仅支持支付宝支付)";
         styleLabel.textColor = [QTools colorWithRGB:86 :86 :86];

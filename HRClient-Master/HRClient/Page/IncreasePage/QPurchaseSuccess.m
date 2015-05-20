@@ -55,7 +55,7 @@
         [continueBtn addTarget:self action:@selector(gotoContinueShop) forControlEvents:UIControlEventTouchUpInside];
         [footerView addSubview:continueBtn];
         
-        UITableView *myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) style:UITableViewStyleGrouped];
+        UITableView *myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) style:UITableViewStylePlain];
         myTableView.backgroundColor = _view.backgroundColor;
         myTableView.dataSource = self;
         myTableView.delegate = self;
@@ -83,6 +83,7 @@
     }else if (section == 1) {
         UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, headerView.deFrameWidth, headerView.deFrameHeight)];
         nameLabel.text = @"车夫券";
+        nameLabel.backgroundColor = [UIColor clearColor];
         [headerView addSubview:nameLabel];
     }
     return headerView;

@@ -24,6 +24,7 @@
     UIView *bottomView;
     
     NSMutableArray *deleteArr;
+    NSUInteger flag_seg;
 }
 @property (nonatomic,strong)UITableView *myListTableView;
 @property (nonatomic,strong)NSDictionary *dic;
@@ -100,6 +101,22 @@
     return editItem;
 }
 
+-(void)ChangeSegmentFont:(UIView *)aView
+{
+    if ([aView isKindOfClass:[UILabel class]]) {
+        UILabel *lb = (UILabel    *)aView;
+        [lb setTextAlignment:NSTextAlignmentCenter];
+        [lb setFrame:CGRectMake(0, 0, 120, 30)];
+        [lb setFont:[UIFont systemFontOfSize:14]];
+    }
+    NSArray *na = [aView subviews];
+    NSEnumerator *ne = [na objectEnumerator];
+    UIView *subView;
+    while (subView = [ne nextObject]) {
+        [self ChangeSegmentFont:subView];
+    }
+}
+
 - (UIView *)viewWithFrame:(CGRect)frame{
     if ([super viewWithFrame:frame]) {
         _view.backgroundColor = [UIColor whiteColor];
@@ -117,8 +134,11 @@
         [self updateSegmentTitle:[[QDifStatusListQtyModel alloc] init]];
         
         // 字体大小
+        if ( [[UIDevice currentDevice].systemVersion doubleValue] < 7.0)
+        {
         NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:10],NSFontAttributeName,ColorTheme, NSForegroundColorAttributeName, nil];
         [_segmentControl setTitleTextAttributes:attributes forState:UIControlStateNormal];
+        }
         [_segmentControl addTarget:self action:@selector(segmentedControl:) forControlEvents:UIControlEventValueChanged];
         [_view addSubview:_segmentControl];
         
@@ -375,6 +395,11 @@
 - (void)segmentedControl:(UISegmentedControl*)segmentedControl
 {
     selectIndex = segmentedControl.selectedSegmentIndex;
+    
+    /*
+    if ( [[UIDevice currentDevice].systemVersion doubleValue] < 7.0)
+        [self ChangeSegmentFont:segmentedControl];*/
+    
     if (selectIndex == 1 || selectIndex == 3) {
         [self enableEditList:YES];
     }

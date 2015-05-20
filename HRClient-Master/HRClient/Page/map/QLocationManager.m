@@ -75,10 +75,11 @@ static QLocationManager *sharedInstance = nil;
     BOOL canStartLocation = !(!enable || status<3);
     if(!canStartLocation){
         //请求权限
-#ifdef __IPHONE_8_0
+        
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
         [_locationManager requestWhenInUseAuthorization];
-#else
-#endif
+        }
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:Noti_Location_Done object:[NSNumber numberWithBool:NO]];
         self.geoResult = nil;
     }

@@ -218,6 +218,7 @@
         [cell.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         
         UILabel *listLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 90, cellH)];
+        listLabel.backgroundColor = [UIColor clearColor];
         listLabel.font = [UIFont systemFontOfSize:14];
         listLabel.textColor = ColorDarkGray;
         listLabel.text = @"退款商品：";
@@ -227,6 +228,7 @@
         listLabel.deFrameHeight = cellH;
         
         UILabel *keyLabel = [[UILabel alloc] initWithFrame:CGRectMake(listLabel.deFrameRight , 0, cell.frame.size.width - listLabel.deFrameRight , cellH)];
+        keyLabel.backgroundColor = [UIColor clearColor];
         keyLabel.font = [UIFont systemFontOfSize:13];
         keyLabel.textColor = [UIColor grayColor];
         keyLabel.text = orderDetail.subject;
@@ -257,6 +259,7 @@
         [cell.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         
         UILabel *listLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 90, cellH)];
+        listLabel.backgroundColor =[UIColor clearColor];
         listLabel.font = [UIFont systemFontOfSize:14];
         listLabel.textColor = ColorDarkGray;
         listLabel.text = @"退款金融：";
@@ -266,6 +269,7 @@
         listLabel.deFrameHeight = cellH;
         
         UILabel *keyLabel = [[UILabel alloc] initWithFrame:CGRectMake(listLabel.deFrameRight , 0, cell.frame.size.width - listLabel.deFrameRight , cellH)];
+        keyLabel.backgroundColor = [UIColor clearColor];
         keyLabel.font = [UIFont systemFontOfSize:13];
         keyLabel.textColor = [UIColor grayColor];
         keyLabel.text = [NSString stringWithFormat:@"现金  %.2f", [orderDetail.total doubleValue]];
@@ -287,6 +291,7 @@
             [cell.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
             
             UILabel *listLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 90, cellH)];
+            listLabel.backgroundColor = [UIColor clearColor];
             listLabel.font = [UIFont systemFontOfSize:14];
             listLabel.textColor = ColorDarkGray;
             listLabel.text = @"退还原因：";
@@ -296,6 +301,7 @@
             listLabel.deFrameHeight = cellH;
             
             UILabel *keyLabel = [[UILabel alloc] initWithFrame:CGRectMake(listLabel.deFrameRight, 0, cell.frame.size.width - listLabel.deFrameRight, cellH)];
+            keyLabel.backgroundColor = [UIColor clearColor];
             keyLabel.text = @"";
             keyLabel.font = [UIFont systemFontOfSize:13];
             keyLabel.textColor = [UIColor grayColor];

@@ -51,6 +51,7 @@ static BOOL isChange;
         [self.contentView addSubview:_backLabel];
         
         _accountTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(_beforeLabel.deFrameRight, topH, 140, h)];
+        _accountTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         _accountTextFiled.font = [UIFont systemFontOfSize:15];
         _accountTextFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
         _accountTextFiled.delegate = self;

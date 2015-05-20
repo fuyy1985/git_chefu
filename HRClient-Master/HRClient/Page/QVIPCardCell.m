@@ -35,6 +35,7 @@
     labelWidth = SCREEN_SIZE_WIDTH - 20;
     labelHeight = 40;
     UILabel *dueDateLable = [[UILabel alloc] initWithFrame:CGRectMake(marginLeft, marginTop, labelWidth, labelHeight)];
+    dueDateLable.backgroundColor = [UIColor clearColor];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy/MM/dd"];
@@ -52,6 +53,7 @@
     
     CGSize size = [@"输入支付密码" sizeWithFont:[UIFont systemFontOfSize:15]];
     UILabel *keyLable = [[UILabel alloc] initWithFrame:CGRectMake(marginLeft, marginTop, size.width, labelHeight)];
+    keyLable.backgroundColor = [UIColor clearColor];
     keyLable.text = @"输入支付密码";
     keyLable.textColor = [QTools colorWithRGB:40 :40 :40];
     keyLable.font = [UIFont systemFontOfSize:15];
@@ -61,6 +63,7 @@
     marginLeft = size.width + 15;
     _keyTextField = [[UITextField alloc] initWithFrame:CGRectMake(marginLeft, marginTop+5, SCREEN_SIZE_WIDTH - 20-130, labelHeight -  10)];
     _keyTextField.borderStyle = UITextBorderStyleRoundedRect;
+    _keyTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     _keyTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     _keyTextField.secureTextEntry = YES;
     _keyTextField.textColor = ColorDarkGray;

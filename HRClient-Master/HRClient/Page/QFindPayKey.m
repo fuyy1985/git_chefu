@@ -71,6 +71,7 @@
         CGFloat w = frame.size.width - 2*15;
         CGFloat blank = 10.0;
         numberTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(beforeW, topH, getBtn.deFrameLeft - 20 , h)];
+        numberTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         numberTextFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
         numberTextFiled.font = [UIFont systemFontOfSize:14];
         numberTextFiled.borderStyle = UITextBorderStyleRoundedRect;
@@ -79,6 +80,7 @@
         [_view addSubview:numberTextFiled];
         
         inputTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(beforeW, numberTextFiled.deFrameBottom + blank, w , h)];
+        inputTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         inputTextFiled.borderStyle = UITextBorderStyleRoundedRect;
         inputTextFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
         inputTextFiled.font = [UIFont systemFontOfSize:14];

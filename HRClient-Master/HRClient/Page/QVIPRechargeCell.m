@@ -51,28 +51,25 @@
     labelHeight = 22;
     CGRect payStyleLableFrame =CGRectMake(marginLeft, marginTop, labelWidth, labelHeight);
     _payStyleLable = [[UILabel alloc] initWithFrame:payStyleLableFrame];
-//    _payStyleLable.text = @"银行卡支付";
+    _payStyleLable.backgroundColor = [UIColor clearColor];
     _payStyleLable.font = [UIFont boldSystemFontOfSize:15];
     _payStyleLable.font = [UIFont systemFontOfSize:18];
     _payStyleLable.textColor = [QTools colorWithRGB:85 :85 :85];
-//    payStyleLable.backgroundColor = [UIColor yellowColor];
     [self.contentView addSubview:_payStyleLable];
     
     //详细说明
     marginTop = _payStyleLable.frame.origin.y+_payStyleLable.frame.size.height ;
     CGRect detailLabelFrame = CGRectMake(marginLeft, marginTop, labelWidth, labelHeight);
     _detailLabel = [[UILabel alloc] initWithFrame:detailLabelFrame];
-//    _detailLabel.text = @"支持储蓄卡信用卡，无需开通网银";
     _detailLabel.font = [UIFont systemFontOfSize:13];
+    _detailLabel.backgroundColor = [UIColor clearColor];
     _detailLabel.textColor = [QTools colorWithRGB:153 :153 :153];
-//    detailLabel.backgroundColor = [UIColor cyanColor];
     [self.contentView addSubview:_detailLabel];
     
 //    选择
     CGFloat selectW = 30;
     CGFloat selectH = (self.contentView.frame.size.height - 20)/2;
     _selectImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_SIZE_WIDTH - blank - selectW - 5, selectH, selectW, 30)];
-//    _selectImageView.image = [UIImage imageNamed:@"yuan01.gif"];
     [self.contentView addSubview:_selectImageView];
     
 }

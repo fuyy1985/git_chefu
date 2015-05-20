@@ -74,6 +74,7 @@ static BOOL isAgree;
         
         /*我的会员卡*/
         UILabel *MyVIPCardLable = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 105, MyVIPCardView.deFrameHeight)];
+        MyVIPCardLable.backgroundColor = [UIColor clearColor];
         MyVIPCardLable.font = [UIFont systemFontOfSize:16];
         MyVIPCardLable.textColor = ColorDarkGray;
         MyVIPCardLable.text = @"适用范围：";
@@ -83,6 +84,7 @@ static BOOL isAgree;
         
         /*卡类型*/
         UILabel *cardStyleLabel = [[UILabel alloc] initWithFrame:CGRectMake(MyVIPCardLable.deFrameRight + 3, 0, 100, MyVIPCardView.deFrameHeight)];
+        cardStyleLabel.backgroundColor = [UIColor clearColor];
         cardStyleLabel.font = [UIFont systemFontOfSize:16];
         cardStyleLabel.textColor = ColorTheme;
         cardStyleLabel.text = @"全国通用";
@@ -99,6 +101,7 @@ static BOOL isAgree;
         
         /*卡片内容*/
         titleLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 30, 240, 40)];
+        titleLabel1.backgroundColor = [UIColor clearColor];
         //titleLabel1.text =  [QUser sharedQUser].vipAccount.accountName;
         titleLabel1.textColor = [UIColor whiteColor];
         titleLabel1.textAlignment = NSTextAlignmentCenter;
@@ -108,6 +111,7 @@ static BOOL isAgree;
         /*余额*/
         residueLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, titleLabel1.frame.origin.y+titleLabel1.frame.size.height, 240, 40)];
         //residueLabel.text =  [NSString stringWithFormat:@"余额：￥%.2f", [[QUser sharedQUser].vipAccount.balance doubleValue]];
+        residueLabel.backgroundColor = [UIColor clearColor];
         residueLabel.textColor = [UIColor whiteColor];
         residueLabel.textAlignment = NSTextAlignmentCenter;
         [displayCardView addSubview:residueLabel];
@@ -120,12 +124,14 @@ static BOOL isAgree;
         //validLabel.text =  [NSString stringWithFormat:@"有效期至：%@",orderTime];//@"有效期至：2015-08-10";
         validLabel.font = [UIFont systemFontOfSize:12];
         validLabel.textColor = [UIColor whiteColor];
+        validLabel.backgroundColor = [UIColor clearColor];
         [displayCardView addSubview:validLabel];
         
         /*序列号*/
         numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, displayCardView.deFrameWidth - 2*10, 40)];
         numberLabel.textAlignment = NSTextAlignmentRight;
         //numberLabel.text = [@"NO." stringByAppendingString:[QUser sharedQUser].vipAccount.accountNo.stringValue];//@"NO.888888";
+        numberLabel.backgroundColor = [UIColor clearColor];
         numberLabel.font = [UIFont systemFontOfSize:12];
         numberLabel.textColor = [UIColor whiteColor];
         [displayCardView addSubview:numberLabel];
@@ -144,7 +150,7 @@ static BOOL isAgree;
         [_scrollView1 addSubview:lineLabel1];
         
         
-        [self performSelector:@selector(refreshUI) withObject:nil afterDelay:.1f]; //TODO
+        [self performSelector:@selector(refreshUI) withObject:nil afterDelay:.2f]; //TODO
         
     }
     return _view;

@@ -67,6 +67,7 @@ static BOOL isClick;
         CGFloat h = 40;
         UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_SIZE_WIDTH, h)];
         UILabel *rechargeLabel = [[UILabel alloc] initWithFrame:CGRectMake(blank, 0, 160, view1.frame.size.height)];
+        rechargeLabel.backgroundColor = [UIColor clearColor];
         rechargeLabel.text = [NSString stringWithFormat:@"充值金额:%d元",[_cardModel.amount intValue]];
         rechargeLabel.font = [UIFont systemFontOfSize:15];
         rechargeLabel.textColor = [QTools colorWithRGB:86 :86 :86];
@@ -75,6 +76,7 @@ static BOOL isClick;
         UILabel *balanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(rechargeLabel.deFrameRight, 0, frame.size.width - rechargeLabel.deFrameRight - blank, rechargeLabel.frame.size.height)];
         balanceLabel.text = @"账户余额:10元"; //TODO
         balanceLabel.textAlignment = NSTextAlignmentRight;
+        balanceLabel.backgroundColor = [UIColor clearColor];
         balanceLabel.textColor = [QTools colorWithRGB:86 :86 :86];
         [view1 addSubview:balanceLabel];
         }
@@ -101,6 +103,7 @@ static BOOL isClick;
         [scrollView addSubview:view2];
         
         UILabel *balanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,0, 120, h)];
+        balanceLabel.backgroundColor = [UIColor clearColor];
         balanceLabel.text = @"车夫账户余额：";
         balanceLabel.textColor = [QTools colorWithRGB:86 :86 :86];
         view2.userInteractionEnabled = YES;
@@ -123,6 +126,7 @@ static BOOL isClick;
         UILabel *moneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width - blank - imageW - moneyW, 0, moneyW, h)];
         moneyLabel.text = @"0.00元";
         moneyLabel.textColor = UIColorFromRGB(0xc40000);
+        moneyLabel.backgroundColor = [UIColor clearColor];
         [view2 addSubview:moneyLabel];
         
         UILabel *lineLabel3 =[[UILabel alloc] initWithFrame:CGRectMake(0, balanceLabel.deFrameBottom + 0.5, frame.size.width, 0.5)];
@@ -131,11 +135,13 @@ static BOOL isClick;
         
         UILabel *needLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, lineLabel3.deFrameBottom, 100, h)];
         needLabel.text = @"还需支付";
+        needLabel.backgroundColor = [UIColor clearColor];
         needLabel.textColor = [QTools colorWithRGB:86 :86 :86];
         [view2 addSubview:needLabel];
         
         UILabel *nmLabel = [[UILabel alloc] initWithFrame:CGRectMake(needLabel.deFrameRight + blank, lineLabel3.deFrameBottom, frame.size.width - 2 * blank - needLabel.deFrameRight, h)];
         nmLabel.text = @"多少元";
+        nmLabel.backgroundColor = [UIColor clearColor];
         nmLabel.textAlignment = NSTextAlignmentRight;
         nmLabel.textColor = [QTools colorWithRGB:86 :86 :86];
         [view2 addSubview:nmLabel];
@@ -147,11 +153,13 @@ static BOOL isClick;
         [scrollView addSubview:view3];
         UILabel *keyLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 80, h)];
         keyLabel.text = @"支付密码";
+        keyLabel.backgroundColor = [UIColor clearColor];
             keyLabel.textColor = [QTools colorWithRGB:86 :86 :86];
         [view3 addSubview:keyLabel];
         
         UITextField *keyTextField = [[UITextField alloc] initWithFrame:CGRectMake(keyLabel.deFrameRight + 10, 0, frame.size.width - keyLabel.deFrameRight - 2 * blank, h)];
         keyTextField.placeholder = @"请输入支付密码";
+        keyTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         keyTextField.borderStyle = UITextBorderStyleRoundedRect;
         [view3 addSubview:keyTextField];
         

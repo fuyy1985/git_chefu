@@ -22,6 +22,7 @@
         CGFloat w = frame.size.width - 2 * blankW;
         CGFloat h = 35;
         UITextField *accountTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(blankW, 15, w, h)];
+        accountTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         accountTextFiled.placeholder = @"手机号/用户名/邮箱";
         accountTextFiled.borderStyle = UITextBorderStyleRoundedRect;
         [_view addSubview:accountTextFiled];
@@ -39,6 +40,7 @@
         
         UITextField *numberTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(blankW, getNumberBtn.frame.origin.y + getNumberBtn.frame.size.height + topH, w, h)];
         numberTextFiled.placeholder = @"输入手机验证码";
+        numberTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         numberTextFiled.borderStyle = UITextBorderStyleRoundedRect;
         [_view addSubview:numberTextFiled];
         

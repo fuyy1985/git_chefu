@@ -57,6 +57,7 @@
         CGFloat w = frame.size.width - 2 * blankW;
         CGFloat h = 35;
         accountTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(blankW, 20, w, h)];
+        accountTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         accountTextFiled.placeholder = @"输入11位手机号";
         accountTextFiled.borderStyle = UITextBorderStyleRoundedRect;
         accountTextFiled.font = [UIFont systemFontOfSize:14];
@@ -78,6 +79,7 @@
         
         numberTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(blankW, getNumberBtn.frame.origin.y + getNumberBtn.frame.size.height + topH, w, h)];
         numberTextFiled.font = [UIFont systemFontOfSize:14];
+        numberTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         numberTextFiled.placeholder = @"输入验证码";
         numberTextFiled.borderStyle = UITextBorderStyleRoundedRect;
         numberTextFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -85,6 +87,7 @@
         
         inputKeyTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(blankW, numberTextFiled.frame.origin.y + numberTextFiled.frame.size.height + topH, w, h)];
         inputKeyTextFiled.font = [UIFont systemFontOfSize:14];
+        inputKeyTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         inputKeyTextFiled.placeholder = @"输入密码（6-12位）";
         inputKeyTextFiled.borderStyle = UITextBorderStyleRoundedRect;
         inputKeyTextFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -94,6 +97,7 @@
         
         sureTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(blankW, inputKeyTextFiled.frame.origin.y + inputKeyTextFiled.frame.size.height + topH, w, h)];
         sureTextFiled.font = [UIFont systemFontOfSize:14];
+        sureTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         sureTextFiled.placeholder = @"确认密码";
         sureTextFiled.borderStyle = UITextBorderStyleRoundedRect;
         sureTextFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -121,6 +125,7 @@
         UILabel *instrcutLabel = [[UILabel alloc] initWithFrame:CGRectMake(button.deFrameRight  + 10, submitBtn.frame.origin.y + submitBtn.frame.size.height + blankW, frame.size.width - button.deFrameRight - 10 - blankW + 20 , 20)];
         instrcutLabel.font = [UIFont systemFontOfSize:12];
         instrcutLabel.textColor = [QTools colorWithRGB:80 :80 :80];
+        instrcutLabel.backgroundColor = [UIColor clearColor];
         //属性文字
         NSString *text = @"我已阅读并同意车夫用户使用协议";
         NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:text attributes:@{NSStrikethroughStyleAttributeName: @(NSUnderlineStyleNone)}];
@@ -159,9 +164,14 @@
 }
 
 //成功回调
-- (void)acquireRegisterInfo:(NSNotification *)noti{
+- (void)acquireRegisterInfo:(NSNotification *)noti
+{
+    [ASRequestHUD dismiss];
+    
     QRegisterModel *dataArr = noti.object;
     [self saveRegisterInfro:dataArr];
+    
+    [QViewController gotoPage:@"QMyPage" withParam:nil];
 }
 //存储信息
 - (void)saveRegisterInfro:(QRegisterModel *)data{

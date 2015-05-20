@@ -319,7 +319,7 @@ static const NSUInteger kDomainSection = 1;
 	f.origin.y = [bar frame].size.height;
 	f.size.height -= f.origin.y;
 
-	[self setTableView:[[[UITableView alloc] initWithFrame:f style:UITableViewStyleGrouped] autorelease]];
+	[self setTableView:[[[UITableView alloc] initWithFrame:f style:UITableViewStylePlain] autorelease]];
 	[[self tableView] setDelegate:self];
 	[[self tableView] setDataSource:self];
 	[[self tableView] setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
@@ -467,6 +467,7 @@ static const NSUInteger kDomainSection = 1;
 
 	CGRect f = CGRectInset([cell bounds], 10, 10);
 	UITextField *textField = [[[UITextField alloc] initWithFrame:f] autorelease];
+    textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 	[textField setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
 	[textField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
 	[textField setAutocorrectionType:UITextAutocorrectionTypeNo];

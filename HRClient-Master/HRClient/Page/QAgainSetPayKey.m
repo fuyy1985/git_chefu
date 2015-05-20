@@ -46,6 +46,7 @@
         CGFloat blank = 10.0;
         
         inputNewTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(beforeW, topH, w, h)];
+        inputNewTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         inputNewTextFiled.borderStyle = UITextBorderStyleRoundedRect;
         inputNewTextFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
         inputNewTextFiled.keyboardType = UIKeyboardTypePhonePad;
@@ -56,6 +57,7 @@
         
         sureNewTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(beforeW, inputNewTextFiled.deFrameBottom + blank, w, h)];
         sureNewTextFiled.borderStyle = UITextBorderStyleRoundedRect;
+        sureNewTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         sureNewTextFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
         sureNewTextFiled.keyboardType = UIKeyboardTypePhonePad;
         sureNewTextFiled.font = [UIFont systemFontOfSize:14];

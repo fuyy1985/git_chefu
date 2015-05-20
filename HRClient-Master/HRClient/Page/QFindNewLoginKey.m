@@ -49,6 +49,7 @@
         CGFloat h = 37.0;
         CGFloat blank = 10.0;
         nowKeyTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(beforeW, topH, w - 20, h)];
+        nowKeyTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         nowKeyTextFiled.placeholder = @"输入新的登录密码";
         nowKeyTextFiled.secureTextEntry = YES;
         nowKeyTextFiled.borderStyle = UITextBorderStyleRoundedRect;
@@ -58,6 +59,7 @@
         
         againKeyTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(beforeW, nowKeyTextFiled.frame.size.height+nowKeyTextFiled.frame.origin.y + blank, w - 20, h)];
         againKeyTextFiled.placeholder = @"确认新的登录密码";
+        againKeyTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         againKeyTextFiled.secureTextEntry = YES;
         againKeyTextFiled.borderStyle = UITextBorderStyleRoundedRect;
         againKeyTextFiled.clearButtonMode = UITextFieldViewModeWhileEditing;

@@ -87,6 +87,7 @@
         CGFloat topH = 25.0;
         CGFloat h = 35.0;
         codeTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(beforeW, topH, 160, h)];
+        codeTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         codeTextFiled.font = [UIFont systemFontOfSize:14];
         codeTextFiled.placeholder = @"输入手机号";
         codeTextFiled.borderStyle = UITextBorderStyleRoundedRect;
@@ -107,6 +108,7 @@
         
         inputNewTel = [[UITextField alloc] initWithFrame:CGRectMake(beforeW, codeTextFiled.deFrameBottom + 15, frame.size.width - 2 * 15.0, h)];
         inputNewTel.font = [UIFont systemFontOfSize:14];
+        inputNewTel.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         inputNewTel.placeholder = @"输入手机验证码";
         inputNewTel.borderStyle = UITextBorderStyleRoundedRect;
         inputNewTel.clearButtonMode = UITextFieldViewModeWhileEditing;

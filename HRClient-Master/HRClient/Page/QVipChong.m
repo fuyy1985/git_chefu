@@ -106,6 +106,7 @@
             
             //当前卡类型
             UILabel *otherLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, frame.size.width - 40, 35)];
+            otherLabel.backgroundColor = [UIColor clearColor];
             otherLabel.text = [NSString stringWithFormat:@"您当前使用的会员卡：%@",[QUser sharedQUser].vipAccount.accountName];
             otherLabel.textAlignment = NSTextAlignmentCenter;
             otherLabel.textColor = ColorTheme;
@@ -114,6 +115,7 @@
             
             //当前卡余额
             otherLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 35,  frame.size.width - 40, 35)];
+            otherLabel.backgroundColor = [UIColor clearColor];
             otherLabel.text = [NSString stringWithFormat:@"当前卡内剩余：%.2f元",[[QUser sharedQUser].vipAccount.balance doubleValue]];
             otherLabel.textAlignment = NSTextAlignmentCenter;
             otherLabel.textColor = ColorTheme;
@@ -122,6 +124,7 @@
             
             //label
             otherLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 100, 60, 35)];
+            otherLabel.backgroundColor = [UIColor clearColor];
             otherLabel.text = @"充值金额";
             otherLabel.textAlignment = NSTextAlignmentRight;
             otherLabel.textColor = ColorTheme;
@@ -130,6 +133,7 @@
             
             //textfled
             inputTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(90, 105, 200, 25)];
+            inputTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
             inputTextFiled.backgroundColor = [QTools colorWithRGB:255 :255 :255];
             inputTextFiled.layer.masksToBounds = YES;
             inputTextFiled.layer.borderColor = [QTools colorWithRGB:219 :218 :218].CGColor;
@@ -178,6 +182,7 @@
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(explainBeforeW, explainTopH, explainW+20, explainH)];
             label.textColor = [QTools colorWithRGB:80 :80 :80];
             label.font = [UIFont systemFontOfSize:12];
+            label.backgroundColor = [UIColor clearColor];
             
             //属性文字
             NSString *text = @"我已阅读并同意车夫会员洗车卡使用协议";
@@ -291,7 +296,17 @@
             return;
         }
         
+        
+        NSRange rang = [strAmout rangeOfString:@"元"];
+        
+        if (rang.location && rang.length)
+        {
+            strAmout = [inputTextFiled.text substringToIndex:inputTextFiled.text.length - 1];
+        }
+        else
+        {
         strAmout = inputTextFiled.text;
+        }
         mbrTypeId = _curModel.memberTypeId;
         titleInfo = [NSString stringWithFormat:@"%@充值", _curModel.memberTypeName];
     }

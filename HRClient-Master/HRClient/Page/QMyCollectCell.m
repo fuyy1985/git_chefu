@@ -34,6 +34,7 @@
         // Initialization code
         [self.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.contentView.backgroundColor = [UIColor whiteColor];
         
         CGFloat marginLeft, marginTop, labelWidth, labelHeight;
         // 展示图片
@@ -49,10 +50,12 @@
         labelHeight = 30;
         CGRect labelFrame = CGRectMake(marginLeft, marginTop, labelWidth, labelHeight);
         _titleLabel= [[UILabel alloc] initWithFrame:labelFrame];
+        _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.font = [UIFont systemFontOfSize:15];
         _titleLabel.textColor = ColorDarkGray;
         _titleLabel.numberOfLines = 2;
         [self.contentView addSubview:_titleLabel];
+        
         //质保
         _qlyGuar = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_SIZE_WIDTH - 40, _titleLabel.deFrameTop + 5, 30, 17)];
         _qlyGuar.text = @"质保";
@@ -86,6 +89,7 @@
         
         //        会员低至多少
         _vipPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(_descLabel.deFrameLeft, _descLabel.deFrameBottom, _descLabel.deFrameWidth, _descLabel.deFrameHeight)];
+        _vipPriceLabel.backgroundColor = [UIColor clearColor];
         _vipPriceLabel.font = [UIFont systemFontOfSize:12];
         _vipPriceLabel.textColor = [QTools colorWithRGB:233 :113 :78];
         [self.contentView addSubview:_vipPriceLabel];
@@ -116,7 +120,7 @@
         _rateAndCountLabel.font = [UIFont systemFontOfSize:11];
         _rateAndCountLabel.textColor = [QTools colorWithRGB:149 :149 :149];
         _rateAndCountLabel.textAlignment = NSTextAlignmentRight;
-        //    rateAndCountLabel.layer.borderWidth = 1.f;
+        _rateAndCountLabel.backgroundColor = [UIColor clearColor];
         [self.contentView addSubview:_rateAndCountLabel];
         
         // SeparatorLine

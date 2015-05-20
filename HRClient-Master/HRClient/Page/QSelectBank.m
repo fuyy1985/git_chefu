@@ -65,7 +65,7 @@
         _indexArray = [[NSMutableArray alloc] initWithCapacity:0];
         [self handlIndexArray];
         
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, segmentedControl.deFrameBottom + 10, frame.size.width, frame.size.height - segmentedControl.deFrameBottom) style:UITableViewStyleGrouped];
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, segmentedControl.deFrameBottom + 10, frame.size.width, frame.size.height - segmentedControl.deFrameBottom) style:UITableViewStylePlain];
         tableView.dataSource = self;
         tableView.delegate = self;
 //        tableView.tableHeaderView = headerView;
@@ -133,7 +133,7 @@
     UILabel *hotLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, SCREEN_SIZE_WIDTH, 30)];
     hotLabel.frame = hotLabel.bounds;
     hotLabel.text = @"  热门";
-    //        hotLabel.backgroundColor = [UIColor yellowColor];
+    hotLabel.backgroundColor = [UIColor clearColor];
     hotLabel.textColor = [QTools colorWithRGB:109 :109 :109];
     [headerView addSubview:hotLabel];
     return headerView;

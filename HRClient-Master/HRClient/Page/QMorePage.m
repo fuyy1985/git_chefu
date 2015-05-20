@@ -109,8 +109,7 @@ typedef enum{
     {
         case moreType_givePrize:
         {
-            //TODO:test
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/app/id988438352"]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://appsto.re/cn/q9L66.i"]];
         }
             break;
         case moreType_response:

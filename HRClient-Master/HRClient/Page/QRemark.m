@@ -81,9 +81,11 @@ static BOOL isAnonymous;
         companyName.text = orderModel.subject;
         companyName.font = [UIFont boldSystemFontOfSize:15];
         companyName.textColor = ColorDarkGray;
+        companyName.backgroundColor = [UIColor clearColor];
         [gradeView addSubview:companyName];
         
         UILabel *priceLabel = [[UILabel alloc] initWithFrame:companyName.frame];
+        priceLabel.backgroundColor = [UIColor clearColor];
         priceLabel.text = [NSString stringWithFormat:@"%@元", orderModel.total];
         priceLabel.font = [UIFont systemFontOfSize:13];
         priceLabel.textAlignment = NSTextAlignmentRight;
@@ -104,6 +106,7 @@ static BOOL isAnonymous;
         CGFloat originY = priceLabel.deFrameBottom + 10;
         for (int i = 0; i < titleArr.count; i ++) {
             UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20 , originY, 60, 25)];
+            title.backgroundColor = [UIColor clearColor];
             title.text = titleArr[i];
             title.textAlignment = NSTextAlignmentLeft;
             title.font = [UIFont systemFontOfSize:13];
@@ -137,6 +140,7 @@ static BOOL isAnonymous;
         [_view addSubview:anonymousView];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 80, anonymousView.deFrameHeight)];
+        label.backgroundColor = [UIColor clearColor];
         label.textColor = ColorDarkGray;
         label.text = @"匿名评价";
         label.font = [UIFont systemFontOfSize:14];

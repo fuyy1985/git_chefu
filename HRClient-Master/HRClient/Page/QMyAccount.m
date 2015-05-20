@@ -84,6 +84,7 @@
         CGFloat reminderH = 100;
         UILabel *reminderLabel = [[UILabel alloc] initWithFrame:CGRectMake(blank, accountBtn.frame.origin.y + accountBtn.frame.size.height + 35, accountBtn.frame.size.width *2 + blank , reminderH)];
         reminderLabel.textColor = ColorDarkGray;
+        reminderLabel.backgroundColor = [UIColor clearColor];
         reminderLabel.font = [UIFont systemFontOfSize:14];
         reminderLabel.numberOfLines = 0;
         [footerView addSubview:reminderLabel];
@@ -97,7 +98,7 @@
         reminderLabel.attributedText = string;
         [reminderLabel sizeToFit];
         
-        _myAccountTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) style:UITableViewStyleGrouped];
+        _myAccountTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) style:UITableViewStylePlain];
         _myAccountTableView.dataSource = self;
         _myAccountTableView.delegate = self;
         _myAccountTableView.tableFooterView = footerView;

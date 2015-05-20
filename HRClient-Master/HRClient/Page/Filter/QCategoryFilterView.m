@@ -252,6 +252,7 @@
         [cell.contentView addSubview:imageView];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(imageView.deFrameRight + 5, 0, tableView.deFrameWidth - imageView.deFrameRight - 15, 30)];
+        label.backgroundColor = [UIColor clearColor];
         label.text = parentModel.categoryName;
         label.font = [UIFont systemFontOfSize:13];
         label.textColor = [QTools colorWithRGB:107 :107 :107];

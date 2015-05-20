@@ -165,7 +165,7 @@
         
         // 商家详情
         _groupBuyDetailTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)
-                                                                style:UITableViewStyleGrouped];
+                                                                style:UITableViewStylePlain];
         _groupBuyDetailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _groupBuyDetailTableView.delegate = self;
         _groupBuyDetailTableView.dataSource = self;
@@ -365,6 +365,7 @@
                     /* 团购简介 动态取 */
                 UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, _groupBuyDetailTableView.deFrameWidth - 2*15, CGFLOAT_MAX)];
                 label.text = self.productDetail.serviceDesc;
+                label.backgroundColor = [UIColor clearColor];
                 label.font = [UIFont systemFontOfSize:12];
                 label.numberOfLines = 0;
                 [label sizeToFit];
@@ -374,6 +375,7 @@
                 label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, _groupBuyDetailTableView.deFrameWidth - 2*15, CGFLOAT_MAX)];
                 label.text = self.productDetail.subject;
                 label.font = [UIFont systemFontOfSize:14];
+                label.backgroundColor = [UIColor clearColor];
                 label.numberOfLines = 0;
                 [label sizeToFit];
                 
@@ -449,6 +451,7 @@
     
     // 名称
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.font = [UIFont systemFontOfSize:14];
     titleLabel.textColor = ColorDarkGray;
     switch (section) {
@@ -478,6 +481,7 @@
             rateView.hidden = (0 == self.commentList.count)? YES : NO;
             // 评分
             UILabel *scoreLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+            scoreLabel.backgroundColor = [UIColor clearColor];
             scoreLabel.text = [self.productDetail.sumPoints stringValue];
             scoreLabel.font = [UIFont systemFontOfSize:13];
             scoreLabel.textColor = [QTools colorWithRGB:246 :172 :75];
@@ -522,7 +526,7 @@
             
             [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
+            cell.contentView.backgroundColor = [UIColor whiteColor];
             
             //数据源对接
             NSMutableArray *imageArray = [NSMutableArray arrayWithCapacity:0];
@@ -564,6 +568,7 @@
             #pragma mark -- 购买cellView
             static NSString *CellIdentifierBuy = @"Cell_Identifier_GroupBuy_Buy";
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierBuy];
+            cell.contentView.backgroundColor = [UIColor whiteColor];
             
             if (nil == cell)
             {
@@ -584,6 +589,7 @@
             UIView *buyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.deFrameWidth, Cell_Height_Buy)];
             buyView.backgroundColor = [UIColor whiteColor];
             UILabel *buyLabel = [[UILabel alloc] initWithFrame:CGRectMake(14, 20, 0, 0)];
+            buyLabel.backgroundColor = [UIColor clearColor];
             
             NSString *price = @"0";
             
@@ -639,6 +645,7 @@
             UIView *rechargeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.deFrameWidth, Cell_Height_Buy)];
             rechargeView.backgroundColor = [UIColor whiteColor];
             UILabel *lowPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(14, 20, 0, 0)];
+            lowPriceLabel.backgroundColor = [UIColor clearColor];
             lowPriceLabel.font = [UIFont systemFontOfSize:16];
             lowPriceLabel.textColor = [QTools colorWithRGB:255 :102 :0];
             lowPriceLabel.text = self.productDetail.minMemberPrice;
@@ -710,16 +717,18 @@
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifierIntroduction];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
-            
+            cell.contentView.backgroundColor = [UIColor whiteColor];
             [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
             
             cell.textLabel.text = self.productDetail.subject;
+            cell.textLabel.backgroundColor = [UIColor clearColor];
             cell.textLabel.font = [UIFont systemFontOfSize:16];
             cell.textLabel.textColor = ColorDarkGray;
             cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
             cell.textLabel.numberOfLines = 0;
             
             cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
+            cell.detailTextLabel.backgroundColor = [UIColor clearColor];
             cell.detailTextLabel.textColor = [QTools colorWithRGB:156 :156 :156];
             cell.detailTextLabel.text = self.productDetail.serviceDesc;
             cell.detailTextLabel.numberOfLines = 0;
@@ -739,8 +748,8 @@
             {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierSalesService];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.contentView.backgroundColor = [UIColor whiteColor];
             }
-            
             [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
             
             CGFloat originX = 20;
@@ -755,6 +764,7 @@
             imageView.deFrameTop = originY;
             [cell.contentView addSubview:imageView];
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(imageView.deFrameRight + 10, originY, 100, 15)];
+            label.backgroundColor = [UIColor clearColor];
             label.font = [UIFont systemFontOfSize:11];
             label.textColor = isRefundEnable ? [QTools colorWithRGB:144 :185 :81] : [QTools colorWithRGB:156 :156 :156];
             label.text = isRefundEnable ? @"支持随时退" : @"不支持过期退";
@@ -769,6 +779,7 @@
             imageView.deFrameTop = originY;
             [cell.contentView addSubview:imageView];
             label = [[UILabel alloc] initWithFrame:CGRectMake(imageView.deFrameRight + 10, originY, 100, 15)];
+            label.backgroundColor = [UIColor clearColor];
             label.font = [UIFont systemFontOfSize:11];
             label.textColor = isRefundEnable ? [QTools colorWithRGB:144 :185 :81] : [QTools colorWithRGB:156 :156 :156];
             label.text = isRefundEnable ? @"支持过期退" : @"不支持过期退";
@@ -783,6 +794,7 @@
             imageView.deFrameTop = originY;
             [cell.contentView addSubview:imageView];
             label = [[UILabel alloc] initWithFrame:CGRectMake(imageView.deFrameRight + 10, originY, 100, 15)];
+            label.backgroundColor = [UIColor clearColor];
             label.font = [UIFont systemFontOfSize:11];
             label.textColor = [QTools colorWithRGB:156 :156 :156];
             label.text = [NSString stringWithFormat:@"销售%d", [self.productDetail.salesVolume intValue]];
@@ -796,6 +808,7 @@
             imageView.deFrameTop = originY;
             [cell.contentView addSubview:imageView];
             label = [[UILabel alloc] initWithFrame:CGRectMake(imageView.deFrameRight + 10, originY, 100, 15)];
+            label.backgroundColor = [UIColor clearColor];
             label.font = [UIFont systemFontOfSize:11];
             label.textColor = [QTools colorWithRGB:156 :156 :156];
             [cell.contentView addSubview:label];
@@ -823,7 +836,10 @@
         static NSString *CellIdentifierBusinessInfo = @"Cell_Identifier_GroupBuy_BusinessInfo";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierBusinessInfo];
         if (nil == cell)
+        {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierBusinessInfo];
+        }
+        cell.contentView.backgroundColor = [UIColor whiteColor];
         
         if (nil != cell)
         {
@@ -831,6 +847,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             CGFloat marginLeft = 12;
             UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(marginLeft, 12, tableView.deFrameWidth - marginLeft - 75, 20)]; // 距右75
+            nameLabel.backgroundColor = [UIColor clearColor];
             nameLabel.text = self.productCompany.companyName;
             nameLabel.font = [UIFont systemFontOfSize:15];
             nameLabel.textColor = [QTools colorWithRGB:51 :51 :51];
@@ -841,6 +858,7 @@
             [cell.contentView addSubview:locationIconImageView];
             
             UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(locationIconImageView.deFrameRight + 5, 40, tableView.deFrameWidth - marginLeft - 75, 20)]; // 距右75
+            addressLabel.backgroundColor = [UIColor clearColor];
             addressLabel.text = self.productCompany.detailAddress;;
             addressLabel.font = [UIFont systemFontOfSize:12];
             addressLabel.textColor = [QTools colorWithRGB:153 :153 :153];
@@ -873,7 +891,7 @@
             cell = [[QGroupBuyDetailVIPPriceCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierVIPPrice];
             cell.delegate = self;
         }
-        
+        cell.contentView.backgroundColor = [UIColor whiteColor];
         cell.listTableView.deFrameHeight = [self tableView:tableView heightForRowAtIndexPath:indexPath];
         [cell.listTableView reloadData];
         return cell;
@@ -887,6 +905,7 @@
         {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierBuyNotes];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.contentView.backgroundColor = [UIColor whiteColor];
         }
         
         [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -895,6 +914,7 @@
         CGFloat marginTop = 15;
         
         UILabel *contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(marginLeft, marginTop, tableView.deFrameWidth - marginLeft * 2, 0)];
+        contentLabel.backgroundColor = [UIColor clearColor];
         contentLabel.text = NSString_No_Nil(self.productDetail.purchaseNote);
         contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
         contentLabel.numberOfLines = 0;
@@ -914,6 +934,7 @@
         {
             cell = [[QCommentsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierPhone];
             cell.delegate = self;
+            cell.contentView.backgroundColor = [UIColor clearColor];
         }
         
         cell.commentsArr = _commentList;
@@ -925,6 +946,7 @@
     if (nil == cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:CellIdentifier];
+        cell.contentView.backgroundColor = [UIColor clearColor];
     }
     
     return cell;

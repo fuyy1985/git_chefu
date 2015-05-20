@@ -12,6 +12,7 @@
 #import "QMyListDetailModel.h"
 #import "QProductDetail.h"
 #import "QMyListModel.h"
+#import "QRegisterModel.h"
 
 @interface QHttpMessageManager ()
 @property (nonatomic,strong)QHttpManager *httpManager;
@@ -159,8 +160,8 @@ static QHttpMessageManager *httpMessageManager = nil;
 - (void)accessRegister:(NSString *)phone andVerifyCode:(NSString *)verifyCode andPassword:(NSString *)password andVerifyPassword:(NSString *)verifyPassword{
     [self.httpManager accessRegister:phone andVerifyCode:verifyCode andPassword:password andVerifyPassword:verifyPassword];
 }
-- (void)didGetNewUserInfro:(NSMutableArray *)dataArr{
-    [[NSNotificationCenter defaultCenter] postNotificationName:kRegister object:dataArr];
+- (void)didGetNewUserInfro:(QRegisterModel *)dataModel{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kRegister object:dataModel];
 }
 //找回登录密码
 - (void)accessFindLoginPwd:(NSString *)phone andVerifyCode:(NSString *)verifyCode{

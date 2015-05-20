@@ -51,6 +51,7 @@
         CGFloat h = 37.0;
         CGFloat blank = 10.0;
         nowKeyTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(beforeW, topH, w, h)];
+        nowKeyTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         nowKeyTextFiled.placeholder = @"输入原支付密码";
         nowKeyTextFiled.borderStyle = UITextBorderStyleRoundedRect;
         nowKeyTextFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -60,6 +61,7 @@
         [_view addSubview:nowKeyTextFiled];
         
         againKeyTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(beforeW, nowKeyTextFiled.deFrameBottom + blank, w, h)];
+        againKeyTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         againKeyTextFiled.placeholder = @"输入新的支付密码";
         againKeyTextFiled.borderStyle = UITextBorderStyleRoundedRect;
         againKeyTextFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -71,6 +73,7 @@
         
         sureKeyTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(beforeW, againKeyTextFiled.deFrameBottom + blank, w, h)];
         sureKeyTextFiled.placeholder = @"确认输入新的支付密码";
+        sureKeyTextFiled.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         sureKeyTextFiled.borderStyle = UITextBorderStyleRoundedRect;
         sureKeyTextFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
         sureKeyTextFiled.keyboardType = UIKeyboardTypePhonePad;

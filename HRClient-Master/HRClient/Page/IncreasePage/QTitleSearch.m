@@ -42,6 +42,7 @@
     searchView.userInteractionEnabled = YES;
     
     _searchTextField = [[UITextField alloc] initWithFrame:searchView.bounds];
+    _searchTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     _searchTextField.borderStyle = UITextBorderStyleRoundedRect;
     _searchTextField.placeholder = @"找商家";
     _searchTextField.font = [UIFont systemFontOfSize:14];

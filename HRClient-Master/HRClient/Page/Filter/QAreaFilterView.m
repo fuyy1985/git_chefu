@@ -161,6 +161,8 @@
 {
     NSArray *array = [_areasDict objectForKey:_currentCityID];
     
+    if (!array || array.count < 1) return 0;
+    
     if (tableView == _areaTableView) {
         return array.count;
     }
