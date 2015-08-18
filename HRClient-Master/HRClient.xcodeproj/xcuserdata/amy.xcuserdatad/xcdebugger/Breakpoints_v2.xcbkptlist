@@ -137,29 +137,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HRClient/Page/QMorePage.m"
-            timestampString = "454037429.987681"
+            filePath = "HRClient/Page/QMyCollectCell.m"
+            timestampString = "461598459.479507"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HRClient/NetWorking/QHttpManager.m"
-            timestampString = "461595992.041656"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
-            landmarkName = "-requestDidFinish:"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
+            landmarkName = "-setIsChecked:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

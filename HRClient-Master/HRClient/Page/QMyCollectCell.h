@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define MyCollectCell_Height   (87)
+
 @class dataModel;
 @class QMyCollectCell;
 

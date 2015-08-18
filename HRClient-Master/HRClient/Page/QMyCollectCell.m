@@ -38,7 +38,7 @@
         
         CGFloat marginLeft, marginTop, labelWidth, labelHeight;
         // 展示图片
-        _img = [[UIImageView alloc] initWithFrame:CGRectMake(7.5, 11, 80, 65)];
+        _img = [[UIImageView alloc] initWithFrame:CGRectMake(8, (MyCollectCell_Height - 65)/2, 80, 65)];
         _img.contentMode = UIViewContentModeScaleAspectFill;
         _img.clipsToBounds = YES;
         [self.contentView addSubview:_img];
@@ -61,8 +61,8 @@
         _qlyGuar.text = @"质保";
         _qlyGuar.font = [UIFont systemFontOfSize:11];
         _qlyGuar.textAlignment = NSTextAlignmentCenter;
-        _qlyGuar.backgroundColor = UIColorFromRGB(0xc40000);
-        _qlyGuar.textColor = [QTools colorWithRGB:255 :255 :255];
+        _qlyGuar.backgroundColor = ColorTheme;
+        _qlyGuar.textColor = [UIColor whiteColor];
         [self.contentView addSubview:_qlyGuar];
         
         //        会员卡
@@ -70,7 +70,7 @@
         _vipLabel.text = @"卡";
         _vipLabel.font = [UIFont systemFontOfSize:11];
         _vipLabel.textAlignment = NSTextAlignmentCenter;
-        _vipLabel.textColor = [QTools colorWithRGB:255 :255 :255];
+        _vipLabel.textColor = [UIColor whiteColor];
         _vipLabel.backgroundColor = [QTools colorWithRGB:233 :113 :78];
         [self.contentView addSubview:_vipLabel];
         
@@ -254,8 +254,10 @@
         
         if (m_checkImageView == nil)
         {
-            m_checkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_collect_unselected"]];
+            m_checkImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 45, MyCollectCell_Height)];
+            m_checkImageView.image = [UIImage imageNamed:@"icon_collect_unselected"];
             m_checkImageView.userInteractionEnabled = YES;
+            m_checkImageView.contentMode = UIViewContentModeCenter;
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectTap:)];
             [m_checkImageView addGestureRecognizer:tap];
             [self addSubview:m_checkImageView];
