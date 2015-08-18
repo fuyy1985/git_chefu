@@ -15,7 +15,6 @@
 #import "QMainMenuView.h"
 #import "UIDevice+Resolutions.h"
 #import "QBottomMenuView.h"
-#import "SYSafeCategory.h"
 #import "QGuidepageController.h"
 
 #define PAGEOF(X)   ([_shareViewController findPageInternal:X])
@@ -45,7 +44,7 @@ static QViewController * _shareViewController = nil;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [SYSafeCategory callSafeCategory];
+    
     _pageCache = [[NSMutableDictionary alloc] initWithCapacity:16];//Page缓存
     // status bar
     CGFloat yOff = 0.0;

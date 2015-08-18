@@ -77,7 +77,7 @@ static QLocationManager *sharedInstance = nil;
         //请求权限
         
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
-        [_locationManager requestWhenInUseAuthorization];
+            [_locationManager requestWhenInUseAuthorization];
         }
         
         [[NSNotificationCenter defaultCenter] postNotificationName:Noti_Location_Done object:[NSNumber numberWithBool:NO]];
@@ -140,5 +140,7 @@ static QLocationManager *sharedInstance = nil;
         [[NSNotificationCenter defaultCenter] postNotificationName:Noti_Location_Done object:[NSNumber numberWithBool:YES]];
     }
 }
+
+
 
 @end

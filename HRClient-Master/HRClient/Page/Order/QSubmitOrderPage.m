@@ -20,6 +20,8 @@
     double totalPrice;
     QMyListDetailModel *detailModel;
     BOOL bMoneyIsFull;
+    
+    UILabel *_lbProductTitle;
 }
 @property (nonatomic, strong) QProductDetail *productDetail;
 @property (nonatomic, strong) UIView *footerView;
@@ -92,6 +94,18 @@
         _orderTableView.delegate = self;
         _orderTableView.dataSource = self;
         _orderTableView.backgroundColor = [QTools colorWithRGB:238 :238 :238];
+        
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _orderTableView.deFrameWidth, 46)];
+        view.backgroundColor = [UIColor clearColor];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, view.deFrameWidth - 2*10, 46)];
+        label.adjustsFontSizeToFitWidth = YES;
+        label.backgroundColor = [UIColor clearColor];
+        label.font = [UIFont systemFontOfSize:15];
+        label.textColor = [QTools colorWithRGB:85 :85 :85];
+        label.text = NSString_No_Nil(_productDetail.subject);
+        [view addSubview:label];
+        _lbProductTitle = label;
+        _orderTableView.tableHeaderView = view;
         
         totalPrice = 0.0f;
         
@@ -452,36 +466,11 @@
     }
 }
 
-#pragma mark - UITextFieldDelegate
-
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 3;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 46;
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 46;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UILabel *labInfo = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 46)];
-    labInfo.adjustsFontSizeToFitWidth = YES;
-    labInfo.text = [@"   " stringByAppendingString:self.productDetail.subject];
-    labInfo.backgroundColor = [UIColor clearColor];
-    labInfo.font = [UIFont systemFontOfSize:15];
-    labInfo.textColor = [QTools colorWithRGB:85 :85 :85];
-    
-    return labInfo;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -589,6 +578,12 @@
     }
     
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 46;
 }
 
 @end

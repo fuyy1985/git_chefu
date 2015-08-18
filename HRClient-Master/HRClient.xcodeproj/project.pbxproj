@@ -70,8 +70,6 @@
 		186574591A5F788900041B66 /* QRegisterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 186574581A5F788900041B66 /* QRegisterModel.m */; };
 		1865745C1A5FC98A00041B66 /* QRegularHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865745B1A5FC98A00041B66 /* QRegularHelp.m */; };
 		18661E0E1A5D42A900CC9C73 /* QMyListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18661E0D1A5D42A900CC9C73 /* QMyListModel.m */; };
-		18667CE61A6B56CA0001F67F /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 18667CE31A6B56CA0001F67F /* JRSwizzle.m */; };
-		18667CE71A6B56CA0001F67F /* SYSafeCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 18667CE51A6B56CA0001F67F /* SYSafeCategory.m */; };
 		1868C8B41A4A4C4C006F103A /* QMyAccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868C8B31A4A4C4C006F103A /* QMyAccountCell.m */; };
 		1870FC421A4A50D300BCAE0C /* QRemarkTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1870FC411A4A50D300BCAE0C /* QRemarkTextView.m */; };
 		1870FC461A4D865200BCAE0C /* QMoreCategoryPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1870FC451A4D865200BCAE0C /* QMoreCategoryPage.m */; };
@@ -607,10 +605,6 @@
 		1865745B1A5FC98A00041B66 /* QRegularHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRegularHelp.m; sourceTree = "<group>"; };
 		18661E0C1A5D42A900CC9C73 /* QMyListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMyListModel.h; sourceTree = "<group>"; };
 		18661E0D1A5D42A900CC9C73 /* QMyListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMyListModel.m; sourceTree = "<group>"; };
-		18667CE21A6B56CA0001F67F /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
-		18667CE31A6B56CA0001F67F /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
-		18667CE41A6B56CA0001F67F /* SYSafeCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYSafeCategory.h; sourceTree = "<group>"; };
-		18667CE51A6B56CA0001F67F /* SYSafeCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYSafeCategory.m; sourceTree = "<group>"; };
 		1868C8B21A4A4C4C006F103A /* QMyAccountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMyAccountCell.h; sourceTree = "<group>"; };
 		1868C8B31A4A4C4C006F103A /* QMyAccountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMyAccountCell.m; sourceTree = "<group>"; };
 		1870FC401A4A50D300BCAE0C /* QRemarkTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRemarkTextView.h; sourceTree = "<group>"; };
@@ -1595,7 +1589,6 @@
 		186315EC1A6206C8003764AC /* Help */ = {
 			isa = PBXGroup;
 			children = (
-				18667CE11A6B56CA0001F67F /* PreventCrash */,
 				186315F71A62075B003764AC /* 3DES */,
 			);
 			path = Help;
@@ -1613,17 +1606,6 @@
 				186315F31A6206F2003764AC /* NSString+NSReplace.m */,
 			);
 			path = 3DES;
-			sourceTree = "<group>";
-		};
-		18667CE11A6B56CA0001F67F /* PreventCrash */ = {
-			isa = PBXGroup;
-			children = (
-				18667CE21A6B56CA0001F67F /* JRSwizzle.h */,
-				18667CE31A6B56CA0001F67F /* JRSwizzle.m */,
-				18667CE41A6B56CA0001F67F /* SYSafeCategory.h */,
-				18667CE51A6B56CA0001F67F /* SYSafeCategory.m */,
-			);
-			path = PreventCrash;
 			sourceTree = "<group>";
 		};
 		1879BA2A1A590B9C003A6981 /* NetWorking */ = {
@@ -3081,7 +3063,6 @@
 				1858B12B1A737664006C562F /* SDImageCache.m in Sources */,
 				DD28739E1A2B55B30000B242 /* QMorePage.m in Sources */,
 				1879BA7B1A590C62003A6981 /* ASIS3ServiceRequest.m in Sources */,
-				18667CE71A6B56CA0001F67F /* SYSafeCategory.m in Sources */,
 				1897700C1A47F1BC005D234C /* QApplicationDrawback.m in Sources */,
 				1879BA721A590C62003A6981 /* ASICloudFilesObject.m in Sources */,
 				E125A01D1AC690F200775D60 /* QDataPaging.m in Sources */,
@@ -3108,7 +3089,6 @@
 				1897705D1A47F37E005D234C /* QMyPage.m in Sources */,
 				DD2872D01A2B53B60000B242 /* SBJsonTokeniser.m in Sources */,
 				A7C20E881ABDB2F5009C807A /* APAuthV2Info.m in Sources */,
-				18667CE61A6B56CA0001F67F /* JRSwizzle.m in Sources */,
 				184CFCA31A628E8F002DE7F9 /* QMyAccountMoel.m in Sources */,
 				189770501A47F34B005D234C /* QFindKey.m in Sources */,
 				187971701A53C54500D902BC /* QPurchaseSuccess.m in Sources */,
@@ -3372,7 +3352,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c7633690-8cda-4220-8054-83ffe8df274c";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3408,7 +3388,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c7633690-8cda-4220-8054-83ffe8df274c";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

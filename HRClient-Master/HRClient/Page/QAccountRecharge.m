@@ -80,7 +80,7 @@
         inputTextFiled.borderStyle = UITextBorderStyleRoundedRect;
         inputTextFiled.placeholder = @"请输入要充值的金额";
         inputTextFiled.font = [UIFont systemFontOfSize:14];
-        inputTextFiled.keyboardType = UIKeyboardTypeDecimalPad;
+        inputTextFiled.keyboardType = UIKeyboardTypeDefault;
         [_view addSubview:inputTextFiled];
         [inputTextFiled addTarget:self action:@selector(textFieldDidChanged:) forControlEvents:UIControlEventEditingChanged];
         
