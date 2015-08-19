@@ -66,7 +66,7 @@
 - (void)drawBackOrder:(id)sender
 {
     //退款操作
-    [[QHttpMessageManager sharedHttpMessageManager] drawBack:orderDetail.payId.stringValue andReson:arr[curIndex]];
+    [[QHttpMessageManager sharedHttpMessageManager] drawBack:orderDetail.payId.stringValue andReson:arr[MAX(curIndex - 1, 0)]];
     [ASRequestHUD showWithMaskType:ASRequestHUDMaskTypeClear];
 }
 

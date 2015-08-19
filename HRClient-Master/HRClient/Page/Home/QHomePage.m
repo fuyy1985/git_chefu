@@ -304,6 +304,8 @@
 
 - (void)successAutoLogin:(NSNotification*)noti
 {
+    [ASRequestHUD dismiss];
+    
     QLoginModel *loginModel = noti.object;
     if (loginModel) {
         [QUser sharedQUser].isLogin = YES;
