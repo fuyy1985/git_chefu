@@ -120,8 +120,8 @@
     RequestType requestType = [number intValue];
     if ([[resultDic objectForKey:@"status"] intValue] == 0)
     {
-        NSString *failure = [resultDic objectForKey:@"message"];
-        if (![failure isEqualToString:@""])
+        id message = [resultDic objectForKey:@"message"];
+        if ([message isKindOfClass:[NSString class]])
         {
             debug_NSLog(@"errcode:%d", requestType);
             
@@ -129,6 +129,7 @@
                 [self.delegate didGetDataFailed:requestType];
             }
             
+            NSString *failure = (NSString*)message;
             if (failure && ![failure isEqualToString:@""]) {
                 if ([failure isEqualToString:@"你今天已经使用过会员卡价格"])
                 {
@@ -158,8 +159,10 @@
             {
                 [ASRequestHUD dismiss];
             }
-            
-            return;
+        }
+        else
+        {
+            [ASRequestHUD dismiss];
         }
     }
     else if([[resultDic objectForKey:@"status"] intValue] == 1){
@@ -202,9 +205,8 @@
                 break;
             case kAcquireCode://验证码
             {
-                NSString *success = [resultDic objectForKey:@"message"];
                 if ([self.delegate respondsToSelector:@selector(didGetAcquireCode:)]) {
-                    [self.delegate didGetAcquireCode:success];
+                    [self.delegate didGetAcquireCode:nil];
                 }
             }
                 break;

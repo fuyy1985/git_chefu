@@ -157,7 +157,8 @@
 }
 
 #pragma mark - Notification
-- (void)acquireCode:(NSNotification *)noti{
+- (void)acquireCode:(NSNotification *)noti
+{
     message = noti.object;
     
     NSLog(@"%@",message);
