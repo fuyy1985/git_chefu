@@ -85,11 +85,17 @@
 
 #pragma mark - Action
 
-- (void)gotoLeaveAccount{
+- (void)gotoLeaveAccount
+{
     [QUser sharedQUser].isLogin = NO;
+    
     QLoginModel *model = [[QLoginModel alloc] init];
     [model savetoLocal:nil];
     [[QUser sharedQUser] clearInfo];
+    
+    //清理cookies
+    [ASIHTTPRequest clearSession];
+    
     [QViewController gotoPage:@"QHomePage" withParam:nil];
 }
 

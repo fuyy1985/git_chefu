@@ -25,6 +25,7 @@
     BOOL _isCityChanged;
     
     UIButton *_btnCity;
+    BOOL _lastLoginStatus;
 }
 
 @property (nonatomic) QCategoryView *categoryView;
@@ -73,6 +74,13 @@
             CLLocationCoordinate2D point = [QLocationManager sharedInstance].geoPoint;
             [self tryGetHomeList:point.longitude andlatitude:point.latitude];
             [ASRequestHUD show];
+        }
+        
+        //登录状态变化,商品价格有变化.需要重新刷列表
+        if (_lastLoginStatus != [QUser sharedQUser].isLogin)
+        {
+            [self.recommendTableView.legendHeader beginRefreshing];
+            _lastLoginStatus = [QUser sharedQUser].isLogin;
         }
         
         _isCityChanged = NO;
@@ -294,8 +302,8 @@
         [_recommendTableView.legendHeader endRefreshing];
 }
 
-- (void)successAutoLogin:(NSNotification*)noti {
- 
+- (void)successAutoLogin:(NSNotification*)noti
+{
     QLoginModel *loginModel = noti.object;
     if (loginModel) {
         [QUser sharedQUser].isLogin = YES;
@@ -304,6 +312,9 @@
     }
     
     [[QUser sharedQUser] updateUserInfo]; //更新数据
+    
+    //自动登录成功,进入"我的"页面
+    [QViewController gotoPage:@"QMyPage" withParam:nil];
 }
 
 - (void)locationDone:(NSNotification*)noti
