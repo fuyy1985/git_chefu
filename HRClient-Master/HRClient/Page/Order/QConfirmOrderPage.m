@@ -63,46 +63,9 @@ typedef enum _payType {
     _orderDetail = [params objectForKey:@"QMyListDetailModel"];
 }
 
-- (NSString *)title{
+- (NSString *)title
+{
     return @"确认支付";
-}
-
-- (void)getPayResult:(NSNotification*)notify
-{
-    if (self.selectBtn.selected)
-    {
-        if ([notify.object integerValue]  == 1)
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                            message:@"恭喜您，已购买成功"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"返回商品详情"
-                                                  otherButtonTitles:@"查看我的消费卷",nil];
-            [alert show];
-            
-            //更新账户余额
-            [[QUser sharedQUser] updateUserInfo];
-        }
-    }
-    else if (self.selAliPayBtn.selected)
-    {
-        [self productPaybyAliPay];
-    }
-    
-    [ASRequestHUD dismiss];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0)
-    {
-        [QViewController gotoPage:@"QGroupBuyDetailPage" withParam:
-                        [NSDictionary dictionaryWithObjectsAndKeys:_orderDetail.productId, @"ProductID", nil]];
-    }
-    else if (buttonIndex == 1)
-    {
-        [QViewController gotoPage:@"QMyNoWarry" withParam:nil];
-    }
 }
 
 - (void)pageEvent:(QPageEventType)eventType
@@ -134,6 +97,32 @@ typedef enum _payType {
     }
     return _view;
 }
+
+#pragma mark - Private
+- (void)successBuyWarry
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                    message:@"恭喜您，已购买成功"
+                                                   delegate:self
+                                          cancelButtonTitle:@"返回商品详情"
+                                          otherButtonTitles:@"查看我的消费券",nil];
+    [alert show];
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        [QViewController gotoPage:@"QGroupBuyDetailPage" withParam:
+         [NSDictionary dictionaryWithObjectsAndKeys:_orderDetail.productId, @"ProductID", nil]];
+    }
+    else if (buttonIndex == 1)
+    {
+        [QViewController gotoPage:@"QMyNoWarry" withParam:nil];
+    }
+}
+
 #pragma mark - Action
 
 - (void)sureToAgree:(id)sender
@@ -167,7 +156,32 @@ typedef enum _payType {
 
 - (void)gotoForeget
 {
-    [QViewController gotoPage:@"QSetPayKey" withParam:nil];
+    if([[ASUserDefaults objectForKey:AccountPayPasswd] isEqualToString:@"Y"])
+        [QViewController gotoPage:@"QFindPayKey" withParam:nil];
+    else
+        [QViewController gotoPage:@"QSetPayKey" withParam:nil];
+}
+
+#pragma mark - Notification
+
+- (void)getPayResult:(NSNotification*)notify
+{
+    if (self.selectBtn.selected)
+    {
+        if ([notify.object integerValue]  == 1)
+        {
+            //更新账户余额
+            [[QUser sharedQUser] updateUserInfo];
+            
+            [self successBuyWarry];
+        }
+    }
+    else if (self.selAliPayBtn.selected)
+    {
+        [self productPaybyAliPay];
+    }
+    
+    [ASRequestHUD dismiss];
 }
 
 #pragma mark - UITableViewDataSource
@@ -401,13 +415,9 @@ typedef enum _payType {
                 
                 NSString *strTipInfo;
                 if([[ASUserDefaults objectForKey:AccountPayPasswd] isEqualToString:@"Y"])
-                {
-                    strTipInfo = @"忘记密码？";
-                }
+                    strTipInfo = @"忘记密码";
                 else
-                {
                     strTipInfo = @"请设置支付密码";
-                }
                 
                 NSMutableAttributedString *content = [[NSMutableAttributedString alloc] initWithString:strTipInfo];
                 NSRange contentRange = {0, [content length]};
@@ -492,16 +502,10 @@ typedef enum _payType {
             debug_NSLog(@"reslut = %@",resultDic);
             
             NSString *resultStatus = [resultDic objectForKey:@"resultStatus"];
-            if ([resultStatus isEqualToString:@"9000"]) {
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                        message:@"恭喜您，已购买成功"
-                                                       delegate:self
-                                              cancelButtonTitle:@"查看商品详情"
-                                              otherButtonTitles:@"我的车夫券",nil];
-        
-        [alert show];
-    }
+            if ([resultStatus isEqualToString:@"9000"])
+            {
+                [self successBuyWarry];
+            }
         }];
     }
 }
