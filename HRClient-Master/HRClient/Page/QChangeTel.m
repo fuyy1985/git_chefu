@@ -15,7 +15,8 @@
 #define WIDTH(x)  (((CGFloat)x/320)*([[UIScreen mainScreen] bounds].size.width))
 #define HEIGHT(y)  ((CGFloat)y/((480-64)*(([[UIScreen mainScreen] bounds].size.height)-64)))
 
-@interface QChangeTel (){
+@interface QChangeTel ()
+{
     UITextField *codeTextFiled;
     UIButton *acquireBtn;
     UITextField *inputNewTel;
@@ -25,11 +26,6 @@
 @end
 
 @implementation QChangeTel
-
-- (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kConfirmBindPhone object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kAcquireCode object:nil];
-}
 
 - (void)pageEvent:(QPageEventType)eventType
 {

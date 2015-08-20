@@ -22,11 +22,6 @@
 
 @implementation QNewTel
 
-- (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kChangeBindPhone object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kAcquireCode object:nil];
-}
-
 - (void)pageEvent:(QPageEventType)eventType
 {
     if (eventType == kPageEventWillShow)

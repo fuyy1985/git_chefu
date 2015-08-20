@@ -26,10 +26,6 @@
 
 @implementation QNoAccountLogin
 
-- (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kAcquireCode object:nil];
-}
-
 - (QCacheType)pageCacheType //NOTE:页面缓存方式
 {
     return kCacheTypeNone;

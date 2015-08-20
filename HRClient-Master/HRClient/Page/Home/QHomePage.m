@@ -61,8 +61,6 @@
 {
     if (eventType == kPageEventWillShow)
     {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDone:) name:Noti_Location_Done object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(acquireHomeInfro:) name:kHomePage object:nil];
         if (_isCityChanged)
         {
             [_btnCity setTitle:_currentRegionModel.regionName forState:UIControlStateNormal];
@@ -87,12 +85,13 @@
     }
     else if (eventType == kPageEventWillHide)
     {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:kHomePage object:nil];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:Noti_Location_Done object:nil];
+        
     }
     else if (eventType == kPageEventViewCreate)
     {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getDataFailed:) name:kInterfaceFailed object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(acquireHomeInfro:) name:kHomePage object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDone:) name:Noti_Location_Done object:nil];
         
         _isCityChanged = YES;
         _currentRegionModel = [QRegionModel defaultRegionModel];

@@ -25,10 +25,6 @@
 
 @implementation QFindPayKey
 
-- (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kAcquireCode object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kFindPayPwd object:nil];
-}
 
 - (void)pageEvent:(QPageEventType)eventType
 {
@@ -36,6 +32,10 @@
     {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(acquireSuccess:) name:kFindPayPwd object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(acquireFindPayCode:) name:kAcquireCode object:nil];
+    }
+    else if (eventType == kPageEventViewDispose)
+    {
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
 }
 

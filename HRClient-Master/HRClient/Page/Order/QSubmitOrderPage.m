@@ -68,11 +68,7 @@
     }
     else if (eventType == kPageEventWillHide)
     {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:kRetList object:nil];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:kAddList object:nil];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:kAcquireCode object:nil];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:kFindLoginPwd object:nil];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:kGetMyListDetail object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
 }
 

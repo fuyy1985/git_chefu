@@ -98,6 +98,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(successGetCardDetails:) name:kCardDetails object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(successQuickLogin:) name:kFindLoginPwd object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(successGetMyAccount:) name:kGetMyAccountInfro object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(successGetVerifyCode:) name:kAcquireCode object:nil];
         
         _cardDetails = [QCardDetailModel defaultCardDetailsModel];
         if (_cardDetails && _cardDetails.count)
@@ -125,9 +126,7 @@
     }
     else if (eventType == kPageEventViewDispose)
     {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:kCardDetails object:nil];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:kFindLoginPwd object:nil];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:kGetMyAccountInfro object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
 }
 
@@ -370,6 +369,11 @@
 - (void)successGetMyAccount:(NSNotification*)noti
 {
     debug_NSLog(@"");
+}
+
+- (void)successGetVerifyCode:(NSNotification*)noti
+{
+    [ASRequestHUD dismiss];
 }
 
 #pragma mark - UITableViewDataSource

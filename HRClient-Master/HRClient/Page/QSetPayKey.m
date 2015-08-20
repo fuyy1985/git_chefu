@@ -22,17 +22,17 @@
 @end
 @implementation QSetPayKey
 
-- (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kAcquireCode object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kSetPayPwd object:nil];
-}
-
 - (void)pageEvent:(QPageEventType)eventType
 {
     if (eventType == kPageEventViewCreate)
     {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(acquireSetPayPwdCode:) name:kAcquireCode object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(successSetPayPwd:) name:kSetPayPwd object:nil];
+    }
+    else if (eventType == kPageEventViewDispose)
+    {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:kAcquireCode object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:kSetPayPwd object:nil];
     }
 }
 

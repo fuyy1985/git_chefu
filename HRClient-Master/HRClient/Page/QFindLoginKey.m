@@ -22,11 +22,6 @@
 
 @implementation QFindLoginKey
 
-- (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kAcquireCode object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kFindLoginPwd object:nil];
-}
-
 - (void)pageEvent:(QPageEventType)eventType
 {
     if (eventType == kPageEventWillShow)
