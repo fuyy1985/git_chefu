@@ -234,7 +234,9 @@
     } else if ([keyTextFiled.text length] < 6 || [keyTextFiled.text length] > 12) {
         [ASRequestHUD showErrorWithStatus:@"请输入6-12英文或者数字"];
     }
-    else{
+    else
+    {
+        [ASUserDefaults setObject:keyTextFiled.text forKey:LoginUserPassCode];
         [[QHttpMessageManager sharedHttpMessageManager] accessLogin:accountTextFiled.text andPassword:keyTextFiled.text];
         [ASRequestHUD show];
     }

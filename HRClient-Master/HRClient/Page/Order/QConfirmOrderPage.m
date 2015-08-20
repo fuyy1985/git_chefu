@@ -293,7 +293,7 @@ typedef enum _payType {
         self.selAliPayBtn = (UIButton*)[VIPRechargeCell.contentView viewWithTag:100000];
         if (self.selAliPayBtn == nil)
         {
-            self.selAliPayBtn = [[UIButton alloc] initWithFrame:CGRectMake(VIPRechargeCell.frame.size.width - 42, 12, 22, 22)];
+            self.selAliPayBtn = [[UIButton alloc] initWithFrame:CGRectMake(VIPRechargeCell.frame.size.width - 62, 0, 62, 46)];
             self.selAliPayBtn.tag = 100000;
             [self.selAliPayBtn setImage:[UIImage imageNamed:@"icon_agree_unselected"] forState:UIControlStateNormal];
             [self.selAliPayBtn setImage:[UIImage imageNamed:@"icon_agree_selected"] forState:UIControlStateSelected];
@@ -380,7 +380,7 @@ typedef enum _payType {
                         titleLabel.text = @"洗车卡余额：0元";
                 }
 
-                self.selectBtn = [[UIButton alloc] initWithFrame:CGRectMake(cell.frame.size.width - 42, 12, 22, 22)];
+                self.selectBtn = [[UIButton alloc] initWithFrame:CGRectMake(cell.frame.size.width - 62, 0, 62, 46)];
                 self.selectBtn.tag = 100001;
                 [self.selectBtn setImage:[UIImage imageNamed:@"icon_agree_unselected"] forState:UIControlStateNormal];
                 [self.selectBtn setImage:[UIImage imageNamed:@"icon_agree_selected"] forState:UIControlStateSelected];
@@ -504,7 +504,7 @@ typedef enum _payType {
             NSString *resultStatus = [resultDic objectForKey:@"resultStatus"];
             if ([resultStatus isEqualToString:@"9000"])
             {
-                [self successBuyWarry];
+                [self performSelectorOnMainThread:@selector(successBuyWarry) withObject:nil waitUntilDone:NO];
             }
         }];
     }
