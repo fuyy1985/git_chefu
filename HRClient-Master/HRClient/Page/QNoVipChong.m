@@ -17,8 +17,6 @@
 
 @interface QNoVipChong ()
 {
-    BOOL _isMember;
-    
     UIButton *selectBtn;
     UIButton *rechargeBtn;
     UIScrollView *scrollView1;
@@ -52,9 +50,6 @@
     if ([super viewWithFrame:frame]) {
         
         _view.backgroundColor = [QTools colorWithRGB:240 :239 :237];
-        
-        //是否为会员
-        _isMember = [[QUser sharedQUser] isVIP];
 
         scrollView1 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         scrollView1.backgroundColor = [QTools colorWithRGB:240 :239 :237];
@@ -110,11 +105,6 @@
             [[QHttpMessageManager sharedHttpMessageManager] accessCardDetails];
             [ASRequestHUD showWithMaskType:ASRequestHUDMaskTypeClear];
         }
-        //是否为会员
-        if (_isMember) {
-            [[QHttpMessageManager sharedHttpMessageManager] accessMyAccount];
-        }
-        
     }
     else if (eventType == kPageEventWillShow)
     {
@@ -346,29 +336,28 @@
 
 - (void)successQuickLogin:(NSNotification*)noti
 {
-    [ASRequestHUD dismiss];
-    
     QLoginModel *loginModel = noti.object;
-    if (loginModel) {
+    if (loginModel)
+    {
         [QUser sharedQUser].isLogin = YES;
         [loginModel savetoLocal:@""];
         
-        if ([loginModel.member integerValue])
-        {
-            [QViewController gotoPage:@"QMyVIPCard" withParam:nil];
-        }
-        else
-        {
-            [QViewController gotoPage:@"QVIPCardChong" withParam:[[NSDictionary alloc]
-                                                                  initWithObjectsAndKeys:_selectCardDetailModel, @"cardModel",
-                                                                  [NSNumber numberWithInteger:1],@"buy_type",nil]];
-        }
+        [[QHttpMessageManager sharedHttpMessageManager] accessMyAccount];
     }
 }
 
 - (void)successGetMyAccount:(NSNotification*)noti
 {
-    debug_NSLog(@"");
+    if ([[QUser sharedQUser] isVIP])
+    {
+        [QViewController gotoPage:@"QMyVIPCard" withParam:nil];
+    }
+    else
+    {
+        [QViewController gotoPage:@"QVIPCardChong" withParam:[[NSDictionary alloc]
+                                                              initWithObjectsAndKeys:_selectCardDetailModel, @"cardModel",
+                                                              [NSNumber numberWithInteger:1],@"buy_type",nil]];
+    }
 }
 
 - (void)successGetVerifyCode:(NSNotification*)noti

@@ -168,7 +168,7 @@ static BOOL isAgree;
     NSString *orderTime = [dateFormatter stringFromDate: expireDate];//毫秒->秒
     
     validLabel.text =  [NSString stringWithFormat:@"有效期至：%@",orderTime];//@"有效期至：2015-08-10";
-    numberLabel.text = [@"NO." stringByAppendingString:[QUser sharedQUser].vipAccount.accountNo.stringValue];//@"NO.888888";
+    numberLabel.text = [@"NO." stringByAppendingString:NSString_No_Nil([QUser sharedQUser].vipAccount.accountNo.stringValue)];//@"NO.888888";
 }
 
 #pragma mark - Private
