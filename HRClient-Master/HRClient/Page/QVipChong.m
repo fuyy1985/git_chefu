@@ -305,7 +305,7 @@
         }
         else
         {
-        strAmout = inputTextFiled.text;
+            strAmout = inputTextFiled.text;
         }
         mbrTypeId = _curModel.memberTypeId;
         titleInfo = [NSString stringWithFormat:@"%@充值", _curModel.memberTypeName];
@@ -372,7 +372,7 @@
         {
             if (_curModel.memberTypeId.integerValue == 5 || _curModel.memberTypeId.integerValue == 6)
             {
-                inputTextFiled.text = [NSString stringWithFormat:@"%.2f元",[self getNeedPayMony]];
+                inputTextFiled.text = [NSString stringWithFormat:@"%.2f",[self getNeedPayMony]];
                 inputTextFiled.enabled = NO;
             }
             else
