@@ -67,6 +67,12 @@
 @property (nonatomic, copy) NSString *refreshToken;
 
 /**
+ 微信授权完成后得到的unionId
+ 
+ */
+@property (nonatomic, copy) NSString *unionId;
+
+/**
  初始化方法
  
  @param platformName 微博平台名

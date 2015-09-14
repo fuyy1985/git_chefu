@@ -31,7 +31,7 @@ void handler(int n)
     
     [UMSocialData setAppKey:UMSocalAppKey];
     //urlType也需要改，是appid，我写的是appkey
-    [UMSocialWechatHandler setWXAppId:@"wxba1f0f3a73571da2" appSecret:@"60837783636e52eedd34b7675c0d793c"
+    [UMSocialWechatHandler setWXAppId:@"wx491220a1f4d6bbc8" appSecret:@"85d650d43e0459a3848b12da3da796f5"
                                   url:@"http://www.wanliwuyou.com/downloadiPhone.html"];
     
     self.partner = @"2088711426105023";

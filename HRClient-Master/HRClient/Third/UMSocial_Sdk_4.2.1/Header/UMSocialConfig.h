@@ -237,12 +237,22 @@ typedef void (^UMTableViewCellConfig)(UITableViewCell *cell,UMSViewControllerTyp
  */
 //+ (void)showAllPlatform:(BOOL)showAllPlatform;
 
-/**
+/** Deprecated API, Use [UMSocialConfig hiddenNotInstallPlatforms:nil];
  指定显示没有安装客户端的平台，默认需要客户端的分享平台不显示。
  传nil则显示所有平台。
  
+ @param showPlatforms 指定要显示的平台
+ 
  */
 + (void)showNotInstallPlatforms:(NSArray *)showPlatforms;
+
+/**
+ 隐藏指定没有安装客户端的平台。
+ 
+ @param hiddenPlatforms 指定要隐藏的平台,传nil则隐藏所有没有安装客户端的平台
+
+ */
++ (void)hiddenNotInstallPlatforms:(NSArray *)hiddenPlatforms;
 
 + (UMSocialConfig *)shareInstance;
 

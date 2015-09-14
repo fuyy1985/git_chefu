@@ -298,8 +298,6 @@
 		A7C59C3A1AD2B92600C05938 /* QVipChong.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C59C391AD2B92600C05938 /* QVipChong.m */; };
 		A7C66B821AC00B8B009AD487 /* QCardDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C66B811AC00B8B009AD487 /* QCardDetailModel.m */; };
 		A7C6E3091AC7EEDA00CC5E5B /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A7C6E2EE1AC7EEDA00CC5E5B /* UMSocialLocalizable.strings */; };
-		A7C6E30A1AC7EEDA00CC5E5B /* libUMSocial_Sdk_4.2.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C6E2FC1AC7EEDA00CC5E5B /* libUMSocial_Sdk_4.2.1.a */; };
-		A7C6E30B1AC7EEDA00CC5E5B /* libUMSocial_Sdk_Comment_4.2.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C6E2FD1AC7EEDA00CC5E5B /* libUMSocial_Sdk_Comment_4.2.1.a */; };
 		A7C6E30C1AC7EEDA00CC5E5B /* UMSCommentDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7C6E2FF1AC7EEDA00CC5E5B /* UMSCommentDetailController.xib */; };
 		A7C6E30D1AC7EEDA00CC5E5B /* UMSCommentInputController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7C6E3001AC7EEDA00CC5E5B /* UMSCommentInputController.xib */; };
 		A7C6E30E1AC7EEDA00CC5E5B /* UMSCommentInputControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7C6E3011AC7EEDA00CC5E5B /* UMSCommentInputControlleriPad.xib */; };
@@ -427,6 +425,7 @@
 		E1CB6B2D1AE2B50100DCE7D2 /* CustomWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CB6B2C1AE2B50100DCE7D2 /* CustomWindow.m */; };
 		E1CF90B21AC7A3EE00370E8F /* QSuggestRetroactionPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CF90B11AC7A3EE00370E8F /* QSuggestRetroactionPage.m */; };
 		E1CF90B51AC7AA7200370E8F /* QAboutUs.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CF90B41AC7AA7200370E8F /* QAboutUs.m */; };
+		E1FC99CF1BA6B7C500DF3942 /* libUMSocial_Sdk_4.2.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C6E2FC1AC7EEDA00CC5E5B /* libUMSocial_Sdk_4.2.1.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1281,13 +1280,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1FC99CF1BA6B7C500DF3942 /* libUMSocial_Sdk_4.2.1.a in Frameworks */,
 				A7C6E32C1AC7F7D000CC5E5B /* libstdc++.dylib in Frameworks */,
 				A7C6E32A1AC7F7B100CC5E5B /* CoreTelephony.framework in Frameworks */,
 				DD0305901AC80FF50036468A /* libWeChatSDK.a in Frameworks */,
 				A7C6E3281AC7F77000CC5E5B /* libsqlite3.dylib in Frameworks */,
 				A7C6E3261AC7F65600CC5E5B /* libiconv.dylib in Frameworks */,
 				A7C6E3241AC7F5FD00CC5E5B /* Security.framework in Frameworks */,
-				A7C6E30B1AC7EEDA00CC5E5B /* libUMSocial_Sdk_Comment_4.2.1.a in Frameworks */,
 				E125A0171AC64BAB00775D60 /* CoreLocation.framework in Frameworks */,
 				18EA230E1A6A6B0F00ACAA98 /* ImageIO.framework in Frameworks */,
 				18EA230C1A6A6B0300ACAA98 /* MapKit.framework in Frameworks */,
@@ -1302,7 +1301,6 @@
 				1879BA7F1A590EFE003A6981 /* libz.dylib in Frameworks */,
 				1879BA7D1A590EF4003A6981 /* libxml2.dylib in Frameworks */,
 				A7C20E981ABDB740009C807A /* libcrypto.a in Frameworks */,
-				A7C6E30A1AC7EEDA00CC5E5B /* libUMSocial_Sdk_4.2.1.a in Frameworks */,
 				DD2873C11A2B57FC0000B242 /* UIKit.framework in Frameworks */,
 				DD2873BF1A2B57ED0000B242 /* Foundation.framework in Frameworks */,
 			);
