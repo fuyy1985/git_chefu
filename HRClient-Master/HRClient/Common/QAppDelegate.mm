@@ -89,7 +89,7 @@ void handler(int n)
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    return  [UMSocialSnsService handleOpenURL:url];
+    return [UMSocialSnsService handleOpenURL:url];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -103,10 +103,7 @@ void handler(int n)
     [QConfigration saveFile];
 }
 
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation {
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     
     if ([url.host isEqualToString:@"safepay"]) {
         

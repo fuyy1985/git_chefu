@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+
+typedef enum _payType {
+    payType_none = -1,
+    payType_member = 0,
+    payType_balance = 1,
+    payType_aliPay = 2,
+    payType_wxPay = 3,
+    payType_bank = 4,
+} payType;
+
 @interface QVIPRechargeCell : UITableViewCell
 @property (nonatomic,strong)UIImageView *selectImageView;
 

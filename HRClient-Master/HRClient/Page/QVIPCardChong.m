@@ -22,8 +22,10 @@
 #import "DataSigner.h"
 
 @interface QVIPCardChong ()
+{
+    payType _chongPayType;
+}
 
-@property (nonatomic,strong)UIImageView *temImageView;
 @property (nonatomic)UITableView *VIPTableView;
 @property (nonatomic,strong)NSString *strAmout; //普通账户充值金额
 @property (nonatomic,assign)NSInteger buyType; //付款类型
@@ -100,6 +102,9 @@
     }
     else if (eventType == kPageEventViewCreate)
     {
+        /*默认支付宝*/
+        _chongPayType = payType_aliPay;
+        
         NSString *regionID = [[ASUserDefaults objectForKey:CurrentRegionID] stringValue];
         if (_buyType == BuyType_normalCharge) //普通账户充值
         {
@@ -336,7 +341,7 @@
         UILabel *styleLabel = [[UILabel alloc] initWithFrame:CGRectMake(styleBeforeW, styleTopH, styleW, styleH)];
         styleLabel.backgroundColor = [UIColor clearColor];
         styleLabel.adjustsFontSizeToFitWidth = YES;
-        styleLabel.text = @"选择支付方式(暂时仅支持支付宝支付)";
+        styleLabel.text = @"选择支付方式";
         styleLabel.textColor = [QTools colorWithRGB:86 :86 :86];
         [headerView addSubview:styleLabel];
         
@@ -362,7 +367,7 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1; //3 暂时只支持支付宝充值
+    return 2; /*2 支付宝、微信支付*/
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -377,30 +382,38 @@
     QVIPRechargeCell *VIPRechargeCell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (VIPRechargeCell==nil) {
         VIPRechargeCell = [[QVIPRechargeCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
-        VIPRechargeCell.selectImageView.image = [UIImage imageNamed:@"yuan02.gif"];
     }
-    if (indexPath.row == 0) {
-        VIPRechargeCell.selectImageView.image = [UIImage imageNamed:@"yuan01.gif"];
-        _temImageView = VIPRechargeCell.selectImageView;
+    if (indexPath.row == 0)
+    {
+        if (_chongPayType == payType_aliPay)
+            VIPRechargeCell.selectImageView.image = [UIImage imageNamed:@"yuan01.gif"];
+        else
+            VIPRechargeCell.selectImageView.image = [UIImage imageNamed:@"yuan02.gif"];;
     }
+    else if (indexPath.row == 1)
+    {
+        if (_chongPayType == payType_wxPay)
+            VIPRechargeCell.selectImageView.image = [UIImage imageNamed:@"yuan01.gif"];
+        else
+            VIPRechargeCell.selectImageView.image = [UIImage imageNamed:@"yuan02.gif"];;
+    }
+
     NSArray *arr = @[/*@{@"icon":@"pic01.png",@"title":@"银行卡支付",@"detail":@"支持储蓄卡信用卡，无需开通网银",@"select":@"yuan01.gif"},*/
-                     @{@"icon":@"pic02.png",@"title":@"支付宝支付",@"detail":@"推荐安装支付宝客户端的用户",@"select":@"yuan02.gif"}
-                     /*@{@"icon":@"pic03.png",@"title":@"微信支付",@"detail":@"推荐安装微信5.0及以上版本的用户",@"select":@"yuan02.gif"}*/];
+                     @{@"icon":@"pic02.png",@"title":@"支付宝支付",@"detail":@"推荐安装支付宝客户端的用户",@"select":@"yuan02.gif"},
+                     @{@"icon":@"pic03.png",@"title":@"微信支付",@"detail":@"推荐安装微信5.0及以上版本的用户",@"select":@"yuan02.gif"}];
     [VIPRechargeCell cofigureModelToCell:arr andIndexPath:indexPath];
+    
     return VIPRechargeCell;
 }
 
 #pragma mark - UITableViewDelegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    _chongPayType = (0 == indexPath.row) ? payType_aliPay : payType_wxPay;
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    /*
-    _temImageView.image = [UIImage imageNamed:@"yuan02.gif"];
-    QVIPRechargeCell *newCell = (QVIPRechargeCell *)[tableView cellForRowAtIndexPath:indexPath];
-    newCell.selectImageView.image = [UIImage imageNamed:@"yuan01.gif"];
-    _temImageView = newCell.selectImageView;*/
-
+    [tableView reloadData];
 }
 
 #pragma mark - UIAlertViewDelegate

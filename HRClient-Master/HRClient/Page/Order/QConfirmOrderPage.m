@@ -23,14 +23,6 @@
 #import "QHttpMessageManager.h"
 #import "QCardDetailModel.h"
 
-typedef enum _payType {
-    payType_none = -1,
-    payType_member = 0,
-    payType_balance = 1,
-    payType_aliPay = 2,
-    payType_bank = 3,
-} payType;
-
 @interface QConfirmOrderPage ()
 {
     QMyListDetailModel *_orderDetail;
@@ -43,6 +35,7 @@ typedef enum _payType {
 @property (nonatomic,strong) UITableView *confirmOrderTableView;
 @property (nonatomic,strong) UIButton *selectBtn;
 @property (nonatomic,strong) UIButton *selAliPayBtn;
+@property (nonatomic,strong) UIButton *selWXPayBtn;
 @property (nonatomic,assign) payType pType;
 //@property (nonatomic,assign) payWhat pComeWhat;
 //@property (nonatomic,strong) NSString *strBillID;
@@ -93,12 +86,23 @@ typedef enum _payType {
         _confirmOrderTableView.delegate = self;
         _confirmOrderTableView.dataSource = self;
         _confirmOrderTableView.backgroundColor = [QTools colorWithRGB:238 :238 :238];
+        _confirmOrderTableView.tableFooterView = [UIView new];
         [_view addSubview:_confirmOrderTableView];
     }
     return _view;
 }
 
 #pragma mark - Private
+
+- (UIButton*)payButton
+{
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
+    [button setImage:[UIImage imageNamed:@"icon_agree_unselected"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"icon_agree_selected"] forState:UIControlStateSelected];
+    [button addTarget:self action:@selector(sureToAgree:) forControlEvents:UIControlEventTouchUpInside];
+    return button;
+}
+
 - (void)successBuyWarry
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
@@ -129,6 +133,7 @@ typedef enum _payType {
 {
     _selectBtn.selected = NO;
     _selAliPayBtn.selected = NO;
+    _selWXPayBtn.selected = NO;
     
     _pType = payType_none;
     
@@ -143,7 +148,9 @@ typedef enum _payType {
         case 100001:
             _pType = payType_balance;
             break;
-            
+        case 100002:
+            _pType = payType_wxPay;
+            break;
         default:
             break;
     }
@@ -217,14 +224,13 @@ typedef enum _payType {
             case 1:
                 return _selectBtn.selected ? 2 : 1;
             case 2:
-                return 1;//暂时支持支付宝支付
+                return 2;//支付宝、微信支付
             case 3:
                 return 1;
             default:
                 return 0;
         }
     }
-
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -278,29 +284,53 @@ typedef enum _payType {
     //支付宝支付
     if (indexPath.section == 2 && ![_orderDetail.or_member integerValue])
     {
-        //
-        static NSString *cellID = @"cellpayID";
-        QVIPRechargeCell *VIPRechargeCell = [tableView dequeueReusableCellWithIdentifier:cellID];
-        if (VIPRechargeCell==nil) {
-            VIPRechargeCell = [[QVIPRechargeCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
-        }
-        
         NSArray *arr = @[@{@"icon":@"pic02.png",@"title":@"支付宝支付",@"detail":@"推荐安装支付宝客户端的用户",@"select":@"yuan02.gif"},
-                         /*@{@"icon":@"pic01.png",@"title":@"银行卡支付",@"detail":@"支持储蓄卡信用卡，无需开通网银",@"select":@"yuan01.gif"},
-                          @{@"icon":@"pic03.png",@"title":@"微信支付",@"detail":@"推荐安装微信5.0及以上版本的用户",@"select":@"yuan02.gif"}*/];
-        [VIPRechargeCell cofigureModelToCell:arr andIndexPath:indexPath];
+                         /*@{@"icon":@"pic01.png",@"title":@"银行卡支付",@"detail":@"支持储蓄卡信用卡，无需开通网银",@"select":@"yuan01.gif"},*/
+                         @{@"icon":@"pic03.png",@"title":@"微信支付",@"detail":@"推荐安装微信5.0及以上版本的用户",@"select":@"yuan02.gif"}];
+        //
+        static NSString *cellAlipayID = @"cellAlipayID";
+        static NSString *cellWXPayID = @"cellWXPayID";
+        QVIPRechargeCell *VIPRechargeCell;
         
-        self.selAliPayBtn = (UIButton*)[VIPRechargeCell.contentView viewWithTag:100000];
-        if (self.selAliPayBtn == nil)
+        if (0 == indexPath.row) /*支付宝*/
         {
-            self.selAliPayBtn = [[UIButton alloc] initWithFrame:CGRectMake(VIPRechargeCell.frame.size.width - 62, 0, 62, 46)];
-            self.selAliPayBtn.tag = 100000;
-            [self.selAliPayBtn setImage:[UIImage imageNamed:@"icon_agree_unselected"] forState:UIControlStateNormal];
-            [self.selAliPayBtn setImage:[UIImage imageNamed:@"icon_agree_selected"] forState:UIControlStateSelected];
-            [self.selAliPayBtn addTarget:self action:@selector(sureToAgree:) forControlEvents:UIControlEventTouchUpInside];
-            [VIPRechargeCell.contentView addSubview:self.selAliPayBtn];
+            VIPRechargeCell = [tableView dequeueReusableCellWithIdentifier:cellAlipayID];
+            if (!VIPRechargeCell)
+            {
+                VIPRechargeCell = [[QVIPRechargeCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellAlipayID];
+            }
+            [VIPRechargeCell cofigureModelToCell:arr andIndexPath:indexPath];
+            
+            _selAliPayBtn = (UIButton*)[VIPRechargeCell.contentView viewWithTag:100000];
+            if (_selAliPayBtn == nil)
+            {
+                _selAliPayBtn = [self payButton];
+                _selAliPayBtn.frame = CGRectMake(VIPRechargeCell.frame.size.width - 62, 0, 62, 46);
+                _selAliPayBtn.tag = 100000;
+                [VIPRechargeCell.contentView addSubview:_selAliPayBtn];
+            }
+            _selAliPayBtn.selected = (_pType == payType_aliPay);
         }
-        self.selAliPayBtn.selected = (_pType == payType_aliPay);
+        else /*微信*/
+        {
+            VIPRechargeCell = [tableView dequeueReusableCellWithIdentifier:cellWXPayID];
+            if (!VIPRechargeCell)
+            {
+                VIPRechargeCell = [[QVIPRechargeCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWXPayID];
+            }
+            [VIPRechargeCell cofigureModelToCell:arr andIndexPath:indexPath];
+            
+            _selWXPayBtn = (UIButton*)[VIPRechargeCell.contentView viewWithTag:100002];
+            if (!_selWXPayBtn)
+            {
+                _selWXPayBtn = [self payButton];
+                _selWXPayBtn.frame = CGRectMake(VIPRechargeCell.frame.size.width - 62, 0, 62, 46);
+                _selWXPayBtn.tag = 100002;
+                [VIPRechargeCell.contentView addSubview:_selWXPayBtn];
+            }
+            
+            _selWXPayBtn.selected = (_pType == payType_wxPay);
+        }
 
         return VIPRechargeCell;
     }
