@@ -53,7 +53,8 @@
 #define kCategorySubList @"kCategorySubList"
 #define kMyCoupon @"kMyCoupon"//我的车夫券
 #define kMyCouponDetail @"kMyCouponDetail"//我的车夫券详情
-#define kPayResult @"kPayResult"//我的车夫券详情
+#define kPayResult @"kPayResult"//支付宝支付结果
+#define kWXPayResult @"kWXPayResult" //微信支付结果
 #define kCompanyProduct @"kCompanyProduct" //本商家所有商品
 #define kHotSearchWord  @"kHotSearchWord" //热门搜索词
 #define kSearchBusiness @"kSearchBusiness"//搜索商家

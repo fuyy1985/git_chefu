@@ -13,6 +13,7 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "QAppDelegate.h"
     #import "QTools.h"
     #import "DHHudPrecess.h"
     #import "QDefine.h"

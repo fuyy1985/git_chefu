@@ -375,6 +375,9 @@
 		E125A0171AC64BAB00775D60 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E125A0161AC64BAB00775D60 /* CoreLocation.framework */; };
 		E125A01A1AC651B100775D60 /* QLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E125A0191AC651B100775D60 /* QLocationManager.m */; };
 		E125A01D1AC690F200775D60 /* QDataPaging.m in Sources */ = {isa = PBXBuildFile; fileRef = E125A01C1AC690F200775D60 /* QDataPaging.m */; };
+		E12FB45C1BB97D4000852DD4 /* ApiXml.mm in Sources */ = {isa = PBXBuildFile; fileRef = E12FB4571BB97D4000852DD4 /* ApiXml.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E12FB45D1BB97D4000852DD4 /* payRequsestHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = E12FB4591BB97D4000852DD4 /* payRequsestHandler.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E12FB45E1BB97D4000852DD4 /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = E12FB45B1BB97D4000852DD4 /* WXUtil.mm */; };
 		E14297CB1AE3759C00D17BC0 /* icon_list_all@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14297BF1AE3759C00D17BC0 /* icon_list_all@2x.png */; };
 		E14297CC1AE3759C00D17BC0 /* icon_list_baoyang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14297C01AE3759C00D17BC0 /* icon_list_baoyang@2x.png */; };
 		E14297CD1AE3759C00D17BC0 /* icon_list_luntai@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14297C11AE3759C00D17BC0 /* icon_list_luntai@2x.png */; };
@@ -1200,6 +1203,12 @@
 		E125A0191AC651B100775D60 /* QLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QLocationManager.m; sourceTree = "<group>"; };
 		E125A01B1AC690F200775D60 /* QDataPaging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QDataPaging.h; sourceTree = "<group>"; };
 		E125A01C1AC690F200775D60 /* QDataPaging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QDataPaging.m; sourceTree = "<group>"; };
+		E12FB4561BB97D4000852DD4 /* ApiXml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApiXml.h; path = WXPay/ApiXml.h; sourceTree = "<group>"; };
+		E12FB4571BB97D4000852DD4 /* ApiXml.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ApiXml.mm; path = WXPay/ApiXml.mm; sourceTree = "<group>"; };
+		E12FB4581BB97D4000852DD4 /* payRequsestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = payRequsestHandler.h; path = WXPay/payRequsestHandler.h; sourceTree = "<group>"; };
+		E12FB4591BB97D4000852DD4 /* payRequsestHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = payRequsestHandler.mm; path = WXPay/payRequsestHandler.mm; sourceTree = "<group>"; };
+		E12FB45A1BB97D4000852DD4 /* WXUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXUtil.h; path = WXPay/WXUtil.h; sourceTree = "<group>"; };
+		E12FB45B1BB97D4000852DD4 /* WXUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = WXUtil.mm; path = WXPay/WXUtil.mm; sourceTree = "<group>"; };
 		E14297BF1AE3759C00D17BC0 /* icon_list_all@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_list_all@2x.png"; path = "HRClient/Image/icon_list_all@2x.png"; sourceTree = SOURCE_ROOT; };
 		E14297C01AE3759C00D17BC0 /* icon_list_baoyang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_list_baoyang@2x.png"; path = "HRClient/Image/icon_list_baoyang@2x.png"; sourceTree = SOURCE_ROOT; };
 		E14297C11AE3759C00D17BC0 /* icon_list_luntai@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_list_luntai@2x.png"; path = "HRClient/Image/icon_list_luntai@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -2389,15 +2398,16 @@
 		DD2872961A2B53B60000B242 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				E12FB45F1BB97D5300852DD4 /* WXPay */,
 				A7C20E251ABDB2F5009C807A /* AliPay */,
-				1858B1801A73BED3006C562F /* MJRefresh */,
-				1858B1391A7386FC006C562F /* MapSDK */,
-				1858B1071A737664006C562F /* SDWebImage */,
 				18F034C61A4861B900BEB8C4 /* ALScrollViewPaging */,
-				189770811A47F440005D234C /* IQKeyBoardManager */,
 				DD2872971A2B53B60000B242 /* BECheckBox */,
+				189770811A47F440005D234C /* IQKeyBoardManager */,
+				1858B1391A7386FC006C562F /* MapSDK */,
 				DD28729A1A2B53B60000B242 /* MBProgressHUD */,
+				1858B1801A73BED3006C562F /* MJRefresh */,
 				DD28729F1A2B53B60000B242 /* SBJson */,
+				1858B1071A737664006C562F /* SDWebImage */,
 				DD2872B91A2B53B60000B242 /* XMLParser */,
 			);
 			path = ThirdParty;
@@ -2621,6 +2631,19 @@
 				DDAA5FDB1AAF48F000230734 /* icon_mine_quan@2x.png */,
 			);
 			name = Mine;
+			sourceTree = "<group>";
+		};
+		E12FB45F1BB97D5300852DD4 /* WXPay */ = {
+			isa = PBXGroup;
+			children = (
+				E12FB4561BB97D4000852DD4 /* ApiXml.h */,
+				E12FB4571BB97D4000852DD4 /* ApiXml.mm */,
+				E12FB4581BB97D4000852DD4 /* payRequsestHandler.h */,
+				E12FB4591BB97D4000852DD4 /* payRequsestHandler.mm */,
+				E12FB45A1BB97D4000852DD4 /* WXUtil.h */,
+				E12FB45B1BB97D4000852DD4 /* WXUtil.mm */,
+			);
+			name = WXPay;
 			sourceTree = "<group>";
 		};
 		E1639F9E1AD2AF3F0046FF14 /* libqrencode */ = {
@@ -2982,6 +3005,7 @@
 				1858B12D1A737664006C562F /* SDWebImageDecoder.m in Sources */,
 				189770661A47F394005D234C /* AllenProvince.m in Sources */,
 				18F034BC1A48614200BEB8C4 /* QGroupBuyWashingCarCell.m in Sources */,
+				E12FB45C1BB97D4000852DD4 /* ApiXml.mm in Sources */,
 				DD2873B61A2B55B30000B242 /* QTextButton.m in Sources */,
 				189770AC1A47F440005D234C /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				18B3F26F1A51806B00E37322 /* QAreaFilterView.m in Sources */,
@@ -3136,6 +3160,7 @@
 				189770431A47F31A005D234C /* QListDetail.m in Sources */,
 				18976FFE1A47F174005D234C /* QVIPCard.m in Sources */,
 				1858B12F1A737664006C562F /* SDWebImageDownloaderOperation.m in Sources */,
+				E12FB45D1BB97D4000852DD4 /* payRequsestHandler.mm in Sources */,
 				1879BA7A1A590C62003A6981 /* ASIS3Request.m in Sources */,
 				E1639FEE1AD56A260046FF14 /* MJRefreshLegendFooter.m in Sources */,
 				1879BA651A590C62003A6981 /* ASIAuthenticationDialog.m in Sources */,
@@ -3196,6 +3221,7 @@
 				DD2873AF1A2B55B30000B242 /* QNavigationBar.m in Sources */,
 				DD2873A11A2B55B30000B242 /* DHTwoTabControl.m in Sources */,
 				1879BA6C1A590C62003A6981 /* ASINetworkQueue.m in Sources */,
+				E12FB45E1BB97D4000852DD4 /* WXUtil.mm in Sources */,
 				189770561A47F36C005D234C /* QRegister.m in Sources */,
 				E1639FF21AD56A260046FF14 /* UIView+MJExtension.m in Sources */,
 				1870FC421A4A50D300BCAE0C /* QRemarkTextView.m in Sources */,

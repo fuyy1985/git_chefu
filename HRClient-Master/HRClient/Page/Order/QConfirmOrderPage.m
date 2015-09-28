@@ -66,11 +66,12 @@
     if (eventType == kPageEventWillShow)
     {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getPayResult:) name:kPayResult object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getWXPayResult:) name:kWXPayResult object:nil];
     }
     else if (eventType == kPageEventWillHide)
     {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:kPayResult object:nil];
-        //[[NSNotificationCenter defaultCenter] removeObserver:self name:kCreatVipPrePayID object:nil]; ----
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:kWXPayResult object:nil];
     }
     else if (eventType == kPageEventViewCreate)
     {
@@ -191,6 +192,15 @@
     [ASRequestHUD dismiss];
 }
 
+- (void)getWXPayResult:(NSNotification*)noti
+{
+    //微信支付结果返回
+    if (WXSuccess == [noti.object intValue])
+    {
+        [self successBuyWarry];
+    }
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -266,7 +276,7 @@
         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.deFrameWidth, 45)];
         UILabel *styleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         styleLabel.backgroundColor = [UIColor clearColor];
-        styleLabel.text = @"选择支付方式(暂时只支持支付宝支付)";
+        styleLabel.text = @"选择支付方式";
         styleLabel.font = [UIFont systemFontOfSize:15];
         [styleLabel sizeToFit];
         styleLabel.textColor = [QTools colorWithRGB:0 :0 :0];
@@ -581,10 +591,17 @@
     
     if (_orderDetail.orderListNo.length > 0)
     {
-        if ([[ASUserDefaults objectForKey:AccountPayPasswd] isEqualToString:@"Y"] || self.selAliPayBtn.selected)
+        if ([[ASUserDefaults objectForKey:AccountPayPasswd] isEqualToString:@"Y"])
         {
-            [[QHttpMessageManager sharedHttpMessageManager] payAction:pwd andOrderListId:_orderDetail.orderListId.stringValue andPayType:isAliPay];
-            [ASRequestHUD show];
+            if (self.selWXPayBtn.selected) //微信支付
+            {
+                [[QAppDelegate appDelegate] sendWXPay:_orderDetail.orderListNo name:_orderDetail.subject price:[_orderDetail.total doubleValue]];
+            }
+            else if (self.selAliPayBtn.selected)
+            {
+                [[QHttpMessageManager sharedHttpMessageManager] payAction:pwd andOrderListId:_orderDetail.orderListId.stringValue andPayType:isAliPay];
+                [ASRequestHUD show];
+            }
         }
         else
         {

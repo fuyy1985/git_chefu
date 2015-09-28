@@ -15,6 +15,8 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
+#import "payRequsestHandler.h"
+#import "QHttpMessageManager.h"
 
 void handler(int n)
 {
@@ -115,12 +117,95 @@ void handler(int n)
                                          }];
         
     }
+    else if ([url.host isEqualToString:@"pay"])
+    {
+        //微信支付
+        [WXApi handleOpenURL:url delegate:self];
+    }
     else
     {
         return  [UMSocialSnsService handleOpenURL:url];
     }
     
     return YES;
+}
+
+#pragma mark - 
++ (QAppDelegate*)appDelegate
+{
+    return (QAppDelegate*)[UIApplication sharedApplication].delegate;
+}
+
+#pragma mark - WXPay
+- (void)sendWXPay:(NSString*)orderId name:(NSString*)orderName price:(double)price
+{
+    //{{{
+    //本实例只是演示签名过程， 请将该过程在商户服务器上实现
+    
+    //创建支付签名对象
+    payRequsestHandler *req = [payRequsestHandler alloc];
+    //初始化支付签名对象
+    [req init:APP_ID mch_id:MCH_ID];
+    //设置密钥
+    [req setKey:PARTNER_ID];
+    
+    //}}}
+    
+    //获取到实际调起微信支付的参数后，在app端调起支付
+    NSMutableDictionary *dict = [req sendPay:orderId name:orderName price:[NSString stringWithFormat:@"%d", (int)(price*100)]];
+    
+    if(dict == nil)
+    {
+        //错误提示
+        /*
+        NSString *debug = [req getDebugifo];
+        [self alert:@"提示信息" msg:debug];
+        NSLog(@"%@\n\n",debug);
+        */
+    }
+    else
+    {
+        /*
+        NSLog(@"%@\n\n",[req getDebugifo]);
+        
+        [self alert:@"确认" msg:@"下单成功，点击OK后调起支付！"];
+        */
+        NSMutableString *stamp  = [dict objectForKey:@"timestamp"];
+        
+        //调起微信支付
+        PayReq* req             = [[PayReq alloc] init];
+        req.openID              = [dict objectForKey:@"appid"];
+        req.partnerId           = [dict objectForKey:@"partnerid"];
+        req.prepayId            = [dict objectForKey:@"prepayid"];
+        req.nonceStr            = [dict objectForKey:@"noncestr"];
+        req.timeStamp           = stamp.intValue;
+        req.package             = [dict objectForKey:@"package"];
+        req.sign                = [dict objectForKey:@"sign"];
+        
+        [WXApi sendReq:req];
+    }
+}
+
+#pragma mark - WXApiDelegate
+-(void) onReq:(BaseReq*)req
+{
+
+}
+
+-(void) onResp:(BaseResp*)resp
+{
+    if([resp isKindOfClass:[PayResp class]])
+    {
+        //支付返回结果，实际支付结果需要去微信服务器端查询
+        [[NSNotificationCenter defaultCenter] postNotificationName:kWXPayResult object:[NSNumber numberWithInt:resp.errCode]];
+        switch (resp.errCode)
+        {
+            case WXSuccess:
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 @end

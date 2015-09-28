@@ -10,19 +10,23 @@
 #import "BMapKit.h"
 #import "ASIHTTPRequest.h"
 #import "ASIDownloadCache.h"
+#import "WXApi.h"
 
 
-@interface QAppDelegate : UIResponder <UIApplicationDelegate>{
+@interface QAppDelegate : UIResponder <UIApplicationDelegate, WXApiDelegate>{
     BMKMapManager *_mapManager;
 }
 
 @property (strong, nonatomic) UIWindow *window;
++ (QAppDelegate*)appDelegate;
 @property (assign, nonatomic) UIBackgroundTaskIdentifier bgTask;
 @property (nonatomic,strong)  ASIDownloadCache *myCache;
 
 @property (nonatomic,strong)NSString *partner;
 @property (nonatomic,strong)NSString *seller;
 @property (nonatomic,strong)NSString *privateKey;
+/*微信支付*/
+- (void)sendWXPay:(NSString*)orderId name:(NSString*)orderName price:(double)price;
 
 @end
 

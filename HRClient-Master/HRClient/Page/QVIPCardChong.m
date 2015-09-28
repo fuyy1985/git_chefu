@@ -65,22 +65,6 @@
     }
 }
 
-- (void)createVipOrderPrepaidBillId:(NSNotification*)notify
-{
-    debug_NSLog(@"prepaidBillId = %@",notify.object);
-    
-    [ASRequestHUD dismiss];
-    self.strBillID = notify.object;
-}
-
-- (void)createAccOrderPrepaidBillId:(NSNotification*)notify
-{
-    debug_NSLog(@"acc_prepaidBillId = %@",notify.object);
-    
-    [ASRequestHUD dismiss];
-    self.strAccBillID = notify.object;
-}
-
 - (void)pageEvent:(QPageEventType)eventType
 {
     if (eventType == kPageEventWillShow)
@@ -94,11 +78,13 @@
                                                  selector:@selector(createAccOrderPrepaidBillId:)
                                                      name:kCreatAccPrePayID
                                                    object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getWXPayResult:) name:kWXPayResult object:nil];
     }
     else if (eventType == kPageEventWillHide)
     {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:kCreatVipPrePayID object:nil];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:kCreatAccPrePayID object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:kWXPayResult object:nil];
     }
     else if (eventType == kPageEventViewCreate)
     {
@@ -132,139 +118,6 @@
 
         [ASRequestHUD show];
     }
-}
-
-- (void)chargeVipCard
-{
-    //生成订单号
-    //accountId+"_"+prepaidBillId+"_"+amount 例如 1_33_22222
-    
-    NSString *strOrderNO = @"";
-    NSString *strProductName = @"";
-    NSString *strProductDescription = @"";
-    
-    double payMoney = 0;
-    
-    if (_buyType == BuyType_normalCharge) //普通账户充值
-    {
-        strProductName = @"普通账户余额充值";
-        strProductDescription = @"普通账户余额充值";
-        strOrderNO = self.strAccBillID;//[self.strAccBillID stringByAppendingString:_strAmout];
-        
-        payMoney = [_strAmout doubleValue];
-    }
-    else if (_buyType == BuyType_vipCard) //购买会员卡
-    {
-        strProductName = @"购买洗车卡";
-        strProductDescription = @"购买洗车卡";
-        strOrderNO = self.strBillID;//[self.strBillID stringByAppendingString:_vipModel.amount.stringValue];
-        
-        payMoney = [_vipModel.amount doubleValue];
-    }
-    else if (_buyType == BuyType_vipCardCharge) //充值会员卡
-    {
-        strProductName = @"会员卡充值";
-        strProductDescription = @"会员卡充值";
-        strOrderNO = self.strBillID;//[self.strBillID stringByAppendingString:_vipModel.amount.stringValue];
-        
-        payMoney = [_strAmout doubleValue];
-    }
-    
-    if (strOrderNO.length > 0)
-    {
-        QAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-        
-        //partner和seller获取失败,提示
-        if ([appDelegate.partner length] == 0 ||
-            [appDelegate.seller length] == 0 ||
-            [appDelegate.privateKey length] == 0)
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                            message:@"缺少partner或者seller或者私钥。"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"确定"
-                                                  otherButtonTitles:nil];
-            [alert show];
-            return;
-        }
-        
-        Order *order = [[Order alloc] init];
-        order.partner = appDelegate.partner;
-        order.seller = appDelegate.seller;
-        order.tradeNO = strOrderNO;//订单号
-        order.productName = strProductName;
-        order.productDescription = strProductDescription;
-        order.amount = [NSString stringWithFormat:@"%.2f",payMoney]; //商品价格
-        NSLog(@"付款金额：%.2f",payMoney);
-        order.notifyURL = @"http://121.41.116.252/appapi/prepaidBill/addBalance"; //回调URL
-        order.service = @"mobile.securitypay.pay";
-        order.paymentType = @"1";
-        order.inputCharset = @"utf-8";
-        order.itBPay = @"30m";
-        order.showUrl = @"m.alipay.com";
-        
-        //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
-        NSString *appScheme = @"HRClient";
-        
-        //将商品信息拼接成字符串
-        NSString *orderSpec = [order description];
-        NSLog(@"orderSpec = %@",orderSpec);
-        
-        //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循 RSA 签名规范, 并将签名字符串 base64 编码和 UrlEncode
-        id<DataSigner> signer = CreateRSADataSigner(appDelegate.privateKey);
-        NSString *signedString = [signer signString:orderSpec];
-        
-        //将签名成功字符串格式化为订单字符串,请严格按照该格式
-        NSString *orderString = nil;
-        if (signedString != nil) {
-            orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"", orderSpec, signedString, @"RSA"];
-            [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-                
-                debug_NSLog(@"reslut = %@",resultDic);
-                NSString *resultStatus = [resultDic objectForKey:@"resultStatus"];
-                if ([resultStatus isEqualToString:@"9000"]) {
-                    if (_buyType == BuyType_normalCharge) //普通账户充值
-                    {
-                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                                            message:@"恭喜您已充值成功！"
-                                                                           delegate:self
-                                                                  cancelButtonTitle:nil
-                                                                  otherButtonTitles:@"查看我的账户余额", nil];
-                        alertView.tag = 1;
-                        [alertView show];
-                    }
-                }
-            }];
-        }
-        
-        [self successDeal];
-    }
-}
-
-- (void)successDeal
-{
-    if (_buyType == BuyType_normalCharge) //普通账户充值
-    {
-        /*
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                            message:@"恭喜您已充值成功！"
-                                                           delegate:self
-                                                  cancelButtonTitle:nil
-                                                  otherButtonTitles:@"查看我的账户余额", nil];
-        alertView.tag = 1;
-        [alertView show];
-        */
-    }
-    else if (_buyType == BuyType_vipCard) //购买会员卡
-    {
-        [QViewController backPageWithParam:nil];
-    }
-    else if (_buyType == BuyType_vipCardCharge) //充值会员卡
-    {
-        [QViewController backPageWithParam:nil];
-    }
-    
-    [[QUser sharedQUser] updateUserInfo];
 }
 
 - (UIView *)viewWithFrame:(CGRect)frame{
@@ -359,9 +212,177 @@
     return _view;
 }
 
+#pragma mark - Private
+
 - (void)sureToRecharge
 {
     [self chargeVipCard];
+}
+
+- (void)chargeVipCard
+{
+    //生成订单号
+    //accountId+"_"+prepaidBillId+"_"+amount 例如 1_33_22222
+    
+    NSString *strOrderNO = @"";
+    NSString *strProductName = @"";
+    NSString *strProductDescription = @"";
+    
+    double payMoney = 0;
+    
+    if (_buyType == BuyType_normalCharge) //普通账户充值
+    {
+        strProductName = @"普通账户余额充值";
+        strProductDescription = @"普通账户余额充值";
+        strOrderNO = self.strAccBillID;//[self.strAccBillID stringByAppendingString:_strAmout];
+        
+        payMoney = [_strAmout doubleValue];
+    }
+    else if (_buyType == BuyType_vipCard) //购买会员卡
+    {
+        strProductName = @"购买洗车卡";
+        strProductDescription = @"购买洗车卡";
+        strOrderNO = self.strBillID;//[self.strBillID stringByAppendingString:_vipModel.amount.stringValue];
+        
+        payMoney = [_vipModel.amount doubleValue];
+    }
+    else if (_buyType == BuyType_vipCardCharge) //充值会员卡
+    {
+        strProductName = @"会员卡充值";
+        strProductDescription = @"会员卡充值";
+        strOrderNO = self.strBillID;//[self.strBillID stringByAppendingString:_vipModel.amount.stringValue];
+        
+        payMoney = [_strAmout doubleValue];
+    }
+    
+    if (strOrderNO.length > 0)
+    {
+        QAppDelegate *appDelegate = [QAppDelegate appDelegate];
+        if (_chongPayType == payType_wxPay) //微信
+        {
+            [appDelegate sendWXPay:strOrderNO name:strProductName price:payMoney];
+        }
+        else if (_chongPayType == payType_aliPay) //支付宝
+        {
+            //partner和seller获取失败,提示
+            if ([appDelegate.partner length] == 0 ||
+                [appDelegate.seller length] == 0 ||
+                [appDelegate.privateKey length] == 0)
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                message:@"缺少partner或者seller或者私钥。"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"确定"
+                                                      otherButtonTitles:nil];
+                [alert show];
+                return;
+            }
+            
+            Order *order = [[Order alloc] init];
+            order.partner = appDelegate.partner;
+            order.seller = appDelegate.seller;
+            order.tradeNO = strOrderNO;//订单号
+            order.productName = strProductName;
+            order.productDescription = strProductDescription;
+            order.amount = [NSString stringWithFormat:@"%.2f",payMoney]; //商品价格
+            NSLog(@"付款金额：%.2f",payMoney);
+            order.notifyURL = @"http://121.41.116.252/appapi/prepaidBill/addBalance"; //回调URL
+            order.service = @"mobile.securitypay.pay";
+            order.paymentType = @"1";
+            order.inputCharset = @"utf-8";
+            order.itBPay = @"30m";
+            order.showUrl = @"m.alipay.com";
+            
+            //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
+            NSString *appScheme = @"HRClient";
+            
+            //将商品信息拼接成字符串
+            NSString *orderSpec = [order description];
+            NSLog(@"orderSpec = %@",orderSpec);
+            
+            //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循 RSA 签名规范, 并将签名字符串 base64 编码和 UrlEncode
+            id<DataSigner> signer = CreateRSADataSigner(appDelegate.privateKey);
+            NSString *signedString = [signer signString:orderSpec];
+            
+            //将签名成功字符串格式化为订单字符串,请严格按照该格式
+            NSString *orderString = nil;
+            if (signedString != nil) {
+                orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"", orderSpec, signedString, @"RSA"];
+                [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+                    
+                    debug_NSLog(@"reslut = %@",resultDic);
+                    NSString *resultStatus = [resultDic objectForKey:@"resultStatus"];
+                    if ([resultStatus isEqualToString:@"9000"]) {
+                        if (_buyType == BuyType_normalCharge) //普通账户充值
+                        {
+                            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                                message:@"恭喜您已充值成功！"
+                                                                               delegate:self
+                                                                      cancelButtonTitle:nil
+                                                                      otherButtonTitles:@"查看我的账户余额", nil];
+                            alertView.tag = 1;
+                            [alertView show];
+                        }
+                    }
+                }];
+            }
+            
+            [self successDeal];
+        }
+    }
+}
+
+- (void)successDeal
+{
+    if (_buyType == BuyType_normalCharge) //普通账户充值
+    {
+    }
+    else if (_buyType == BuyType_vipCard) //购买会员卡
+    {
+        [QViewController backPageWithParam:nil];
+    }
+    else if (_buyType == BuyType_vipCardCharge) //充值会员卡
+    {
+        [QViewController backPageWithParam:nil];
+    }
+    
+    [[QUser sharedQUser] updateUserInfo];
+}
+
+#pragma mark - Notification
+
+- (void)createVipOrderPrepaidBillId:(NSNotification*)notify
+{
+    debug_NSLog(@"prepaidBillId = %@",notify.object);
+    
+    [ASRequestHUD dismiss];
+    self.strBillID = notify.object;
+}
+
+- (void)createAccOrderPrepaidBillId:(NSNotification*)notify
+{
+    debug_NSLog(@"acc_prepaidBillId = %@",notify.object);
+    
+    [ASRequestHUD dismiss];
+    self.strAccBillID = notify.object;
+}
+
+- (void)getWXPayResult:(NSNotification*)notify
+{
+    if (WXSuccess == [notify.object intValue])
+    {
+        if (_buyType == BuyType_normalCharge) //普通账户充值
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                message:@"恭喜您已充值成功！"
+                                                               delegate:self
+                                                      cancelButtonTitle:nil
+                                                      otherButtonTitles:@"查看我的账户余额", nil];
+            alertView.tag = 1;
+            [alertView show];
+        }
+        [self successDeal];
+    }
 }
 
 #pragma mark - UITableViewDataSource
