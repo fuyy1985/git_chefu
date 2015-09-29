@@ -109,7 +109,8 @@
     _dataArr = noti.object;
     [_myNoWarryTableView reloadData];
     
-    [ASUserDefaults setObject:[NSNumber numberWithInt:_dataArr.count] forKey:AccountTicket];
+    if (0 == _ctrl.selectedSegmentIndex)
+        [ASUserDefaults setObject:[NSNumber numberWithInt:_dataArr.count] forKey:AccountTicket];
 }
 
 #pragma mark - UITableViewDataSource
