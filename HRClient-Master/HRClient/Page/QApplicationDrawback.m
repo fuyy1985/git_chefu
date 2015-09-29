@@ -106,7 +106,11 @@
     if (alertView.tag == 10000)
     {
         //作用在于，跳过车夫券详情页面
-        [QViewController gotoPage:@"QMyNoWarry" withParam:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], @"isNeedRefresh", nil]];
+        QPage *page = [QViewController findPage:@"QMyNoWarry"];
+        if (page)
+        {
+            [QViewController gotoPage:@"QMyNoWarry" withParam:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], @"isNeedRefresh", nil]];
+        }
         
         if (buttonIndex == 0)
         {
