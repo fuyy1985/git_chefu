@@ -50,10 +50,10 @@
 #define PARTNER_ID      @"412fde4e9c2e2bb619514ecea142e449"
 //支付结果回调页面
 #define NOTIFY_URL      @"http://121.41.116.252/appapi/pay/payWeixinpay"
+/*
 //获取服务器端支付数据地址（商户自定义）
-//#define SP_URL          @"http://wxpay.weixin.qq.com/pub_v2/app/app_pay.php"
-#define SP_URL          @"http://121.41.116.252/appapi/pay/payWeixinpay"
-
+#define SP_URL          @"http://wxpay.weixin.qq.com/pub_v2/app/app_pay.php"
+*/
 
 @interface payRequsestHandler : NSObject{
 	//预支付网关url地址

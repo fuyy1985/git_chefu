@@ -100,7 +100,7 @@
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
     [button setImage:[UIImage imageNamed:@"icon_agree_unselected"] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:@"icon_agree_selected"] forState:UIControlStateSelected];
-    [button addTarget:self action:@selector(sureToAgree:) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(changePayType:) forControlEvents:UIControlEventTouchUpInside];
     return button;
 }
 
@@ -111,26 +111,49 @@
                                                    delegate:self
                                           cancelButtonTitle:@"返回商品详情"
                                           otherButtonTitles:@"查看我的消费券",nil];
+    alert.tag = 1;
     [alert show];
 }
 
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0)
-    {
-        [QViewController gotoPage:@"QGroupBuyDetailPage" withParam:
-         [NSDictionary dictionaryWithObjectsAndKeys:_orderDetail.productId, @"ProductID", nil]];
+    switch (alertView.tag) {
+        case 1:
+        {
+            if (buttonIndex == 0)
+            {
+                [QViewController gotoPage:@"QGroupBuyDetailPage" withParam:
+                 [NSDictionary dictionaryWithObjectsAndKeys:_orderDetail.productId, @"ProductID", nil]];
+            }
+            else if (buttonIndex == 1)
+            {
+                [QViewController gotoPage:@"QMyNoWarry" withParam:nil];
+            }
+        }
+            break;
+        case 9:
+        {
+            if (1 == buttonIndex) //安装微信
+            {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[WXApi getWXAppInstallUrl]]];
+            }
+            else if (0 == buttonIndex) //换成支付宝支付
+            {
+                [self changePayType:self.selAliPayBtn];
+                [self productPaybyAliPay];
+            }
+        }
+            break;
+        default:
+            break;
     }
-    else if (buttonIndex == 1)
-    {
-        [QViewController gotoPage:@"QMyNoWarry" withParam:nil];
-    }
+    
 }
 
 #pragma mark - Action
 
-- (void)sureToAgree:(id)sender
+- (void)changePayType:(id)sender
 {
     _selectBtn.selected = NO;
     _selAliPayBtn.selected = NO;
@@ -187,6 +210,24 @@
     else if (self.selAliPayBtn.selected)
     {
         [self productPaybyAliPay];
+    }
+    else if (self.selWXPayBtn.selected)
+    {
+        if (![WXApi isWXAppInstalled])
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                                message:@"请先安装微信，再使用微信支付"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"使用支付宝支付"
+                                                      otherButtonTitles:@"去App Store安装微信", nil];
+            alertView.tag = 9;
+            [alertView show];
+        }
+        else
+
+        {
+            [[QAppDelegate appDelegate] sendWXPay:_orderDetail.orderListNo name:_orderDetail.subject price:[_orderDetail.total doubleValue]];
+        }
     }
     
     [ASRequestHUD dismiss];
@@ -424,7 +465,7 @@
                 self.selectBtn.tag = 100001;
                 [self.selectBtn setImage:[UIImage imageNamed:@"icon_agree_unselected"] forState:UIControlStateNormal];
                 [self.selectBtn setImage:[UIImage imageNamed:@"icon_agree_selected"] forState:UIControlStateSelected];
-                [self.selectBtn addTarget:self action:@selector(sureToAgree:) forControlEvents:UIControlEventTouchUpInside];
+                [self.selectBtn addTarget:self action:@selector(changePayType:) forControlEvents:UIControlEventTouchUpInside];
                 
                 self.selectBtn.enabled = !([[QUser sharedQUser].normalAccount.balance doubleValue] < [_orderDetail.total doubleValue]);
                 self.selectBtn.selected = (_pType == payType_balance);
@@ -492,7 +533,7 @@
 
 - (void)productPaybyAliPay
 {
-    QAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    QAppDelegate *appDelegate = (QAppDelegate*)[UIApplication sharedApplication].delegate;
     
     //partner和seller获取失败,提示
     if ([appDelegate.partner length] == 0 ||
@@ -583,7 +624,8 @@
             return;
         }
     }
-    else if (self.selAliPayBtn.selected)//支付宝支付
+    else if (self.selAliPayBtn.selected
+             || self.selWXPayBtn.selected)//支付宝支付
     {
         isAliPay = YES;
         pwd = nil;
@@ -591,17 +633,12 @@
     
     if (_orderDetail.orderListNo.length > 0)
     {
-        if ([[ASUserDefaults objectForKey:AccountPayPasswd] isEqualToString:@"Y"])
+        if ([[ASUserDefaults objectForKey:AccountPayPasswd] isEqualToString:@"Y"]
+            || self.selAliPayBtn.selected
+            || self.selWXPayBtn.selected)
         {
-            if (self.selWXPayBtn.selected) //微信支付
-            {
-                [[QAppDelegate appDelegate] sendWXPay:_orderDetail.orderListNo name:_orderDetail.subject price:[_orderDetail.total doubleValue]];
-            }
-            else if (self.selAliPayBtn.selected)
-            {
-                [[QHttpMessageManager sharedHttpMessageManager] payAction:pwd andOrderListId:_orderDetail.orderListId.stringValue andPayType:isAliPay];
-                [ASRequestHUD show];
-            }
+            [[QHttpMessageManager sharedHttpMessageManager] payAction:pwd andOrderListId:_orderDetail.orderListId.stringValue andPayType:isAliPay];
+            [ASRequestHUD show];
         }
         else
         {

@@ -163,7 +163,7 @@
     [packageParams setObject: orderName        forKey:@"body"];        //订单描述，展示给用户
     [packageParams setObject: NOTIFY_URL        forKey:@"notify_url"];  //支付结果异步通知
     [packageParams setObject: orderId           forKey:@"out_trade_no"];//商户订单号
-//    [packageParams setObject: @"196.168.1.1"    forKey:@"spbill_create_ip"];//发器支付的机器ip
+    [packageParams setObject: @"196.168.1.1"    forKey:@"spbill_create_ip"];//发器支付的机器ip
     [packageParams setObject: orderPrice       forKey:@"total_fee"];       //订单金额，单位为分
     
     //获取prepayId（预支付交易会话标识）
