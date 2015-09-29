@@ -55,7 +55,7 @@ static BOOL isClick;
         cellH = 50;
         isClick = NO;
         array1 = [NSMutableArray arrayWithCapacity:0];
-        array=[[NSMutableArray alloc]initWithObjects:@"yuan01.gif",@"yuan02.gif",@"yuan02.gif",@"yuan02.gif", nil];
+        array=[[NSMutableArray alloc]initWithObjects:@"icon_check_red_p",@"icon_check_red_n",@"icon_check_red_n",@"icon_check_red_n", nil];
         arr = @[@{@"icon":@"pic01.png",@"title":@"银行卡支付",@"detail":@"支持储蓄卡信用卡，无需开通网银"},
                          @{@"icon":@"pic02.png",@"title":@"支付宝支付",@"detail":@"推荐安装支付宝客户端的用户"},
                          @{@"icon":@"pic03.png",@"title":@"微信支付",@"detail":@"推荐安装微信5.0及以上版本的用户"},
@@ -251,46 +251,13 @@ static BOOL isClick;
     [QViewController gotoPage:@"QSelectBank" withParam:nil];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    temImageView.image = [UIImage imageNamed:@"yuan02.gif"];
+    temImageView.image = [UIImage imageNamed:@"icon_check_red_n"];
     QVIPRechargeCell *cell = (QVIPRechargeCell *)[tableView cellForRowAtIndexPath:indexPath];
-    cell.selectImageView.image = [UIImage imageNamed:@"yuan01.gif"];
+    cell.selectImageView.image = [UIImage imageNamed:@"icon_check_red_p"];
     temImageView = cell.selectImageView;
-    //    if (indexPath.section == 1) {
-//        if (indexPath.row==0) {
-//            array=[[NSMutableArray alloc]initWithObjects:@"yuan01.gif",@"yuan02.gif",@"yuan02.gif",@"yuan02.gif",nil];
-//            [array1[0] sendModelToImage1:array andRow:0];
-//            [array1[1] sendModelToImage1:array andRow:1];
-//            [array1[2] sendModelToImage1:array andRow:2];
-//            [array1[3] sendModelToImage1:array andRow:3];
-//            return;
-//        }
-//        if (indexPath.row==1) {
-//            array=[[NSMutableArray alloc]initWithObjects:@"yuan02.gif",@"yuan01.gif",@"yuan02.gif",@"yuan02.gif", nil];
-//            [array1[0] sendModelToImage1:array andRow:0];
-//            [array1[1] sendModelToImage1:array andRow:1];
-//            [array1[2] sendModelToImage1:array andRow:2];
-//            [array1[3] sendModelToImage1:array andRow:3];
-//            return;
-//        }
-//        if (indexPath.row==2) {
-//            array=[[NSMutableArray alloc]initWithObjects:@"yuan02.gif",@"yuan02.gif",@"yuan01.gif",@"yuan02.gif", nil];
-//            [array1[0] sendModelToImage1:array andRow:0];
-//            [array1[1] sendModelToImage1:array andRow:1];
-//            [array1[2] sendModelToImage1:array andRow:2];
-//            [array1[3] sendModelToImage1:array andRow:3];
-//            return;
-//        }
-//        if (indexPath.row==3) {
-//            array=[[NSMutableArray alloc]initWithObjects:@"yuan02.gif",@"yuan02.gif",@"yuan02.gif",@"yuan01.gif", nil];
-//            [array1[0] sendModelToImage1:array andRow:0];
-//            [array1[1] sendModelToImage1:array andRow:1];
-//            [array1[2] sendModelToImage1:array andRow:2];
-//            [array1[3] sendModelToImage1:array andRow:3];
-//            return;
-//        }
-//    }
 }
 
 - (void)swicthTheState:(UIGestureRecognizer *)sender{

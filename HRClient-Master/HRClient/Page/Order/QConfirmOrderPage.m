@@ -98,8 +98,8 @@
 - (UIButton*)payButton
 {
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
-    [button setImage:[UIImage imageNamed:@"icon_agree_unselected"] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"icon_agree_selected"] forState:UIControlStateSelected];
+    [button setImage:[UIImage imageNamed:@"icon_check_red_n"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"icon_check_red_p"] forState:UIControlStateSelected];
     [button addTarget:self action:@selector(changePayType:) forControlEvents:UIControlEventTouchUpInside];
     return button;
 }
@@ -219,14 +219,13 @@
                                                                 message:@"请先安装微信，再使用微信支付"
                                                                delegate:self
                                                       cancelButtonTitle:@"使用支付宝支付"
-                                                      otherButtonTitles:@"去App Store安装微信", nil];
+                                                      otherButtonTitles:@"去App Store下载微信", nil];
             alertView.tag = 9;
             [alertView show];
         }
         else
-
         {
-            [[QAppDelegate appDelegate] sendWXPay:_orderDetail.orderListNo name:_orderDetail.subject price:[_orderDetail.total doubleValue]];
+            [[QAppDelegate appDelegate] sendWXPay:_orderDetail.orderListNo name:_orderDetail.subject price:[_orderDetail.total doubleValue] url:ORDER_NOTIFY_URL];
         }
     }
     

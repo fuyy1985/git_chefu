@@ -11,7 +11,7 @@
 #import "ASIHTTPRequest.h"
 #import "ASIDownloadCache.h"
 #import "WXApi.h"
-
+#import "payRequsestHandler.h"
 
 @interface QAppDelegate : UIResponder <UIApplicationDelegate, WXApiDelegate>{
     BMKMapManager *_mapManager;
@@ -26,7 +26,7 @@
 @property (nonatomic,strong)NSString *seller;
 @property (nonatomic,strong)NSString *privateKey;
 /*微信支付*/
-- (void)sendWXPay:(NSString*)orderId name:(NSString*)orderName price:(double)price;
+- (void)sendWXPay:(NSString*)orderId name:(NSString*)orderName price:(double)price url:(NSString*)notifyUrl;
 
 @end
 

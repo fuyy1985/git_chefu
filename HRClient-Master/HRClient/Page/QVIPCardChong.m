@@ -234,7 +234,7 @@
     {
         strProductName = @"普通账户余额充值";
         strProductDescription = @"普通账户余额充值";
-        strOrderNO = self.strAccBillID;//[self.strAccBillID stringByAppendingString:_strAmout];
+        strOrderNO = self.strAccBillID;
         
         payMoney = [_strAmout doubleValue];
     }
@@ -242,7 +242,7 @@
     {
         strProductName = @"购买洗车卡";
         strProductDescription = @"购买洗车卡";
-        strOrderNO = self.strBillID;//[self.strBillID stringByAppendingString:_vipModel.amount.stringValue];
+        strOrderNO = self.strBillID;
         
         payMoney = [_vipModel.amount doubleValue];
     }
@@ -250,86 +250,103 @@
     {
         strProductName = @"会员卡充值";
         strProductDescription = @"会员卡充值";
-        strOrderNO = self.strBillID;//[self.strBillID stringByAppendingString:_vipModel.amount.stringValue];
+        strOrderNO = self.strBillID;
         
         payMoney = [_strAmout doubleValue];
     }
     
     if (strOrderNO.length > 0)
     {
-        QAppDelegate *appDelegate = [QAppDelegate appDelegate];
         if (_chongPayType == payType_wxPay) //微信
         {
-            [appDelegate sendWXPay:strOrderNO name:strProductName price:payMoney];
+            if (![WXApi isWXAppInstalled])
+            {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                                    message:@"请先安装微信，再使用微信支付"
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"使用支付宝支付"
+                                                          otherButtonTitles:@"去App Store下载微信", nil];
+                alertView.tag = 9;
+                [alertView show];
+            }
+            else
+            {
+                [[QAppDelegate appDelegate] sendWXPay:strOrderNO name:strProductName price:payMoney url:ACCOUNT_NOTIFY_URL];
+            }
         }
         else if (_chongPayType == payType_aliPay) //支付宝
         {
-            //partner和seller获取失败,提示
-            if ([appDelegate.partner length] == 0 ||
-                [appDelegate.seller length] == 0 ||
-                [appDelegate.privateKey length] == 0)
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                                message:@"缺少partner或者seller或者私钥。"
-                                                               delegate:self
-                                                      cancelButtonTitle:@"确定"
-                                                      otherButtonTitles:nil];
-                [alert show];
-                return;
-            }
-            
-            Order *order = [[Order alloc] init];
-            order.partner = appDelegate.partner;
-            order.seller = appDelegate.seller;
-            order.tradeNO = strOrderNO;//订单号
-            order.productName = strProductName;
-            order.productDescription = strProductDescription;
-            order.amount = [NSString stringWithFormat:@"%.2f",payMoney]; //商品价格
-            NSLog(@"付款金额：%.2f",payMoney);
-            order.notifyURL = @"http://121.41.116.252/appapi/prepaidBill/addBalance"; //回调URL
-            order.service = @"mobile.securitypay.pay";
-            order.paymentType = @"1";
-            order.inputCharset = @"utf-8";
-            order.itBPay = @"30m";
-            order.showUrl = @"m.alipay.com";
-            
-            //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
-            NSString *appScheme = @"HRClient";
-            
-            //将商品信息拼接成字符串
-            NSString *orderSpec = [order description];
-            NSLog(@"orderSpec = %@",orderSpec);
-            
-            //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循 RSA 签名规范, 并将签名字符串 base64 编码和 UrlEncode
-            id<DataSigner> signer = CreateRSADataSigner(appDelegate.privateKey);
-            NSString *signedString = [signer signString:orderSpec];
-            
-            //将签名成功字符串格式化为订单字符串,请严格按照该格式
-            NSString *orderString = nil;
-            if (signedString != nil) {
-                orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"", orderSpec, signedString, @"RSA"];
-                [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-                    
-                    debug_NSLog(@"reslut = %@",resultDic);
-                    NSString *resultStatus = [resultDic objectForKey:@"resultStatus"];
-                    if ([resultStatus isEqualToString:@"9000"]) {
-                        if (_buyType == BuyType_normalCharge) //普通账户充值
-                        {
-                            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                                                message:@"恭喜您已充值成功！"
-                                                                               delegate:self
-                                                                      cancelButtonTitle:nil
-                                                                      otherButtonTitles:@"查看我的账户余额", nil];
-                            alertView.tag = 1;
-                            [alertView show];
-                        }
-                    }
-                }];
-            }
-            
-            [self successDeal];
+            [self aliPayOrder:strOrderNO name:strProductName detail:strProductDescription price:payMoney];
         }
     }
+}
+
+- (void)aliPayOrder:(NSString*)orderNo name:(NSString*)name detail:(NSString*)detail price:(double)price
+{
+    QAppDelegate *appDelegate = [QAppDelegate appDelegate];
+    //partner和seller获取失败,提示
+    if ([appDelegate.partner length] == 0 ||
+        [appDelegate.seller length] == 0 ||
+        [appDelegate.privateKey length] == 0)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                        message:@"缺少partner或者seller或者私钥。"
+                                                       delegate:self
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
+    Order *order = [[Order alloc] init];
+    order.partner = appDelegate.partner;
+    order.seller = appDelegate.seller;
+    order.tradeNO = orderNo;//订单号
+    order.productName = name;
+    order.productDescription = detail;
+    order.amount = [NSString stringWithFormat:@"%.2f",price]; //商品价格
+    order.notifyURL = @"http://121.41.116.252/appapi/prepaidBill/addBalance"; //回调URL
+    order.service = @"mobile.securitypay.pay";
+    order.paymentType = @"1";
+    order.inputCharset = @"utf-8";
+    order.itBPay = @"30m";
+    order.showUrl = @"m.alipay.com";
+    
+    //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
+    NSString *appScheme = @"HRClient";
+    
+    //将商品信息拼接成字符串
+    NSString *orderSpec = [order description];
+    NSLog(@"orderSpec = %@",orderSpec);
+    
+    //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循 RSA 签名规范, 并将签名字符串 base64 编码和 UrlEncode
+    id<DataSigner> signer = CreateRSADataSigner(appDelegate.privateKey);
+    NSString *signedString = [signer signString:orderSpec];
+    
+    //将签名成功字符串格式化为订单字符串,请严格按照该格式
+    NSString *orderString = nil;
+    if (signedString != nil) {
+        orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"", orderSpec, signedString, @"RSA"];
+        [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+            
+            debug_NSLog(@"reslut = %@",resultDic);
+            NSString *resultStatus = [resultDic objectForKey:@"resultStatus"];
+            if ([resultStatus isEqualToString:@"9000"]) {
+                if (_buyType == BuyType_normalCharge) //普通账户充值
+                {
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                        message:@"恭喜您已充值成功！"
+                                                                       delegate:self
+                                                              cancelButtonTitle:nil
+                                                              otherButtonTitles:@"查看我的账户余额", nil];
+                    alertView.tag = 1;
+                    [alertView show];
+                }
+            }
+        }];
+    }
+    
+    [self successDeal];
 }
 
 - (void)successDeal
@@ -407,21 +424,21 @@
     if (indexPath.row == 0)
     {
         if (_chongPayType == payType_aliPay)
-            VIPRechargeCell.selectImageView.image = [UIImage imageNamed:@"yuan01.gif"];
+            VIPRechargeCell.selectImageView.image = [UIImage imageNamed:@"icon_check_red_p"];
         else
-            VIPRechargeCell.selectImageView.image = [UIImage imageNamed:@"yuan02.gif"];;
+            VIPRechargeCell.selectImageView.image = [UIImage imageNamed:@"icon_check_red_n"];;
     }
     else if (indexPath.row == 1)
     {
         if (_chongPayType == payType_wxPay)
-            VIPRechargeCell.selectImageView.image = [UIImage imageNamed:@"yuan01.gif"];
+            VIPRechargeCell.selectImageView.image = [UIImage imageNamed:@"icon_check_red_p"];
         else
-            VIPRechargeCell.selectImageView.image = [UIImage imageNamed:@"yuan02.gif"];;
+            VIPRechargeCell.selectImageView.image = [UIImage imageNamed:@"icon_check_red_n"];;
     }
 
     NSArray *arr = @[/*@{@"icon":@"pic01.png",@"title":@"银行卡支付",@"detail":@"支持储蓄卡信用卡，无需开通网银",@"select":@"yuan01.gif"},*/
-                     @{@"icon":@"pic02.png",@"title":@"支付宝支付",@"detail":@"推荐安装支付宝客户端的用户",@"select":@"yuan02.gif"},
-                     @{@"icon":@"pic03.png",@"title":@"微信支付",@"detail":@"推荐安装微信5.0及以上版本的用户",@"select":@"yuan02.gif"}];
+                     @{@"icon":@"pic02.png",@"title":@"支付宝支付",@"detail":@"推荐安装支付宝客户端的用户",@"select":@"icon_check_red_p"},
+                     @{@"icon":@"pic03.png",@"title":@"微信支付",@"detail":@"推荐安装微信5.0及以上版本的用户",@"select":@"icon_check_red_p"}];
     [VIPRechargeCell cofigureModelToCell:arr andIndexPath:indexPath];
     
     return VIPRechargeCell;
@@ -438,14 +455,36 @@
 }
 
 #pragma mark - UIAlertViewDelegate
-
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0)
-    {
-        [QViewController backPageWithParam:nil];
-        [[QUser sharedQUser] updateUserInfo];
+    switch (alertView.tag) {
+        case 1:
+        {
+            if (buttonIndex == 0)
+            {
+                [QViewController backPageWithParam:nil];
+                [[QUser sharedQUser] updateUserInfo];
+            }
+        }
+            break;
+        case 9:
+        {
+            if (1 == buttonIndex) //安装微信
+            {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[WXApi getWXAppInstallUrl]]];
+            }
+            else if (0 == buttonIndex) //换成支付宝支付
+            {
+                _chongPayType = payType_aliPay;
+                [self chargeVipCard];
+            }
+        }
+            break;
+        default:
+            break;
     }
+    
 }
+
 
 @end

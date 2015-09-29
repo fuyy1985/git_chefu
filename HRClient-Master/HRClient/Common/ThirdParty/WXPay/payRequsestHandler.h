@@ -49,7 +49,8 @@
 //商户API密钥，填写相应参数
 #define PARTNER_ID      @"412fde4e9c2e2bb619514ecea142e449"
 //支付结果回调页面
-#define NOTIFY_URL      @"http://121.41.116.252/appapi/pay/payWeixinpay"
+#define ORDER_NOTIFY_URL      @"http://121.41.116.252/appapi/pay/payWeixinpay"
+#define ACCOUNT_NOTIFY_URL    @"http://121.41.116.252/appapi/prepaidBill/addBalance"
 /*
 //获取服务器端支付数据地址（商户自定义）
 #define SP_URL          @"http://wxpay.weixin.qq.com/pub_v2/app/app_pay.php"
@@ -65,6 +66,7 @@
     NSMutableString *debugInfo;
     NSString *appid,*mchid,*spkey;
 }
+
 //初始化函数
 -(BOOL) init:(NSString *)app_id mch_id:(NSString *)mch_id;
 -(NSString *) getDebugifo;
@@ -78,6 +80,6 @@
 //提交预支付
 -(NSString *)sendPrepay:(NSMutableDictionary *)prePayParams;
 //签名实例测试
-- (NSMutableDictionary*)sendPay:(NSString*)orderId name:(NSString*)orderName price:(NSString*)orderPrice;
+- (NSMutableDictionary*)sendPay:(NSString*)orderId name:(NSString*)orderName price:(NSString*)orderPrice url:(NSString*)notifyUrl;
 
 @end

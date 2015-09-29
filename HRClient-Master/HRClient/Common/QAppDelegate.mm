@@ -15,7 +15,6 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
-#import "payRequsestHandler.h"
 #import "QHttpMessageManager.h"
 
 void handler(int n)
@@ -137,7 +136,7 @@ void handler(int n)
 }
 
 #pragma mark - WXPay
-- (void)sendWXPay:(NSString*)orderId name:(NSString*)orderName price:(double)price
+- (void)sendWXPay:(NSString*)orderId name:(NSString*)orderName price:(double)price url:(NSString*)notifyUrl
 {
     //{{{
     //本实例只是演示签名过程， 请将该过程在商户服务器上实现
@@ -152,7 +151,9 @@ void handler(int n)
     //}}}
     
     //获取到实际调起微信支付的参数后，在app端调起支付
-    NSMutableDictionary *dict = [req sendPay:orderId name:orderName price:[NSString stringWithFormat:@"%d", (int)(price*100)]];
+    NSMutableDictionary *dict = [req sendPay:orderId name:orderName
+                                       price:[NSString stringWithFormat:@"%d", (int)(price*100)]
+                                         url:notifyUrl];
     
     if(dict == nil)
     {
